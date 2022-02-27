@@ -24,4 +24,17 @@ public final class Constants {
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)200; // 4 to 200.
+
+    // Turning.
+    public static final double TURN_RAD = 0.4;
+    public static final double LOW_TURN_THRESHHOLD = 0.3;
+    public static final double LOW_TURN_MULTIPLIER = 2.0; // Don't make this value 0!
+
+    // Controller.
+    public static final int DRIVER_CONTROLLER = 0;
+    public static final int RIGHT_STICK_Y = 3; //5 for flight, 3 for cntroller
+    public static final int RIGHT_STICK_X = 4;
+    public static final int LEFT_STICK_Y = 1;
+    public static final int LEFT_STICK_X = 0;
+    public static final int STICK_Z = 2;
 }
