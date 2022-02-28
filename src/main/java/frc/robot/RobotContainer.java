@@ -28,11 +28,14 @@ public class RobotContainer {
   private final DriveTrainSub m_driveTrainSub = new DriveTrainSub();
   private final IntakeSub m_intakeSub = new IntakeSub();
   private final FeederSub m_feederSub = new FeederSub();
+  private final ClimbSub m_climbSub = new ClimbSub();
 
   // Commands.
   private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrainSub, driveController);
   private final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSub);
   private final FeederCommand m_feederCommand = new FeederCommand(m_feederSub);
+  private final LiftRobotCommand m_liftRobotCommand = new LiftRobotCommand(m_climbSub);
+  private final RaiseLiftArmCommand m_raiseLiftArmCommand = new RaiseLiftArmCommand(m_climbSub);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
