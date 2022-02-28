@@ -18,9 +18,12 @@ public final class Constants {
     public static final int RIGHT_DRIVE_2 = 0;
     public static final int LEFT_DRIVE_1 = 0;
     public static final int LEFT_DRIVE_2 = 0;
+    public static final int INTAKE_MOTOR = 0;
 
     // Speed.
     public static final double DRIVE_SPEED = 1.0;
+    public static final double INTAKE_SPEED = 0.25;
+    public static final double INTAKE_SPEED_REV = 0.25;
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)200; // 4 to 200.
