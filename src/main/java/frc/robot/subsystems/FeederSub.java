@@ -9,24 +9,24 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Constants;
 
-public class IntakeSub extends SubsystemBase {
-  /** Creates a new IntakeSub. */
-  private VictorSPX intakeMotor;
+public class FeederSub extends SubsystemBase {
+  /** Creates a new FeederSub. */
+  private final VictorSPX feederMotor;
 
-  public IntakeSub() {
-    intakeMotor = new VictorSPX(Constants.INTAKE_MOTOR);
+  public FeederSub() {
+    feederMotor = new VictorSPX(Constants.FEEDER_MOTOR);
   }
 
   public void startMotor() {
-    intakeMotor.set(ControlMode.PercentOutput, Constants.INTAKE_SPEED);
+    feederMotor.set(ControlMode.PercentOutput, Constants.FEEDER_SPEED);
   }
 
   public void stopMotor() {
-    intakeMotor.set(ControlMode.PercentOutput, 0.0);
+    feederMotor.set(ControlMode.PercentOutput, 0.0);
   }
 
   public void startMotorRev() {
-    intakeMotor.set(ControlMode.PercentOutput, -Constants.INTAKE_SPEED_REV);
+    feederMotor.set(ControlMode.PercentOutput, -Constants.FEEDER_SPEED_REV);
   }
 
   @Override

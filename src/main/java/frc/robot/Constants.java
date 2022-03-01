@@ -19,11 +19,14 @@ public final class Constants {
     public static final int LEFT_DRIVE_1 = 0;
     public static final int LEFT_DRIVE_2 = 0;
     public static final int INTAKE_MOTOR = 0;
+    public static final int FEEDER_MOTOR = 0;
 
     // Speed.
-    public static final double DRIVE_SPEED = 1.0;
+    public static final double DRIVE_SPEED = 0.5;
     public static final double INTAKE_SPEED = 0.25;
     public static final double INTAKE_SPEED_REV = 0.25;
+    public static final double FEEDER_SPEED = 0.25;
+    public static final double FEEDER_SPEED_REV = 0.25;
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)200; // 4 to 200.
@@ -40,4 +43,9 @@ public final class Constants {
     public static final int LEFT_STICK_Y = 1;
     public static final int LEFT_STICK_X = 0;
     public static final int STICK_Z = 2;
+
+    public static final int XBOX_A_BUTTON = 1; 
+    public static final int XBOX_B_BUTTON = 2;
+    public static final int XBOX_X_BUTTON = 3;
+    public static final int XBOX_Y_BUTTON = 4;
 }

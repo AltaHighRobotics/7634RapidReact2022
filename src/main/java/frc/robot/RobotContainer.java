@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -25,9 +26,13 @@ public class RobotContainer {
 
   // Subsystems.
   private final DriveTrainSub m_driveTrainSub = new DriveTrainSub();
+  private final IntakeSub m_intakeSub = new IntakeSub();
+  private final FeederSub m_feederSub = new FeederSub();
 
   // Commands.
   private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrainSub, driveController);
+  private final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSub);
+  private final FeederCommand m_feederCommand = new FeederCommand(m_feederSub);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -42,7 +47,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    // Set buttons.
+    final JoystickButton intakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
+    final JoystickButton feederButton = new JoystickButton(driveController, Constants.XBOX_A_BUTTON);
+
+    intakeButton.toggleWhenPressed(m_intakeCommand);
+    feederButton.whileHeld(m_feederCommand);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
