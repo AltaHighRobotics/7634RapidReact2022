@@ -29,6 +29,7 @@ public final class Constants {
     public static final double INTAKE_SPEED_REV = 0.25;
     public static final double FEEDER_SPEED = 0.25;
     public static final double FEEDER_SPEED_REV = 0.25;
+    public static final double WINCH_SPEED = 0;
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)200; // 4 to 200.
@@ -52,5 +53,4 @@ public final class Constants {
     public static final int XBOX_Y_BUTTON = 4;
     public static final int WINCH_MOTOR = 0;
     public static final int LIFT_PISTON = 0;
-    public static final double WINCH_SPEED = 0;
 }
