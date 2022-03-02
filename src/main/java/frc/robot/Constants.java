@@ -23,6 +23,10 @@ public final class Constants {
     public static final int INTAKE_MOTOR = 0;
     public static final int FEEDER_MOTOR = 0;
 
+    public static final int SHOOTER_MOTOR = 0;
+
+    public static final int AIM_MOTOR = 0;
+
     // Speed.
     public static final double DRIVE_SPEED = 0.5;
     public static final double INTAKE_SPEED = 0.25;
@@ -30,6 +34,12 @@ public final class Constants {
     public static final double FEEDER_SPEED = 0.25;
     public static final double FEEDER_SPEED_REV = 0.25;
     public static final double WINCH_SPEED = 0;
+
+    public static final double STOP_SHOOTER = 0;
+    public static final double START_SHOOTER = 0.1;
+
+    public static final double AIM_SPEED = 0.2;
+    public static final double AIM_STOP = 0;
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)200; // 4 to 200.
