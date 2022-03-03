@@ -25,10 +25,6 @@ public class IntakeSub extends SubsystemBase {
     intakeMotor.set(ControlMode.PercentOutput, 0.0);
   }
 
-  public void startMotorRev() {
-    intakeMotor.set(ControlMode.PercentOutput, -Constants.INTAKE_SPEED_REV);
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

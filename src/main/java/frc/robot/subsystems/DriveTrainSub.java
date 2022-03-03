@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.Constants;
 
 public class DriveTrainSub extends SubsystemBase {
@@ -19,7 +20,11 @@ public class DriveTrainSub extends SubsystemBase {
   private VictorSPX leftDrive1;
   private VictorSPX leftDrive2;
 
-  private AHRS navX;
+  // Encoders.
+  public Encoder rightEncoder;
+  public Encoder leftEncoder;
+
+  public AHRS navX;
 
   public DriveTrainSub() {
     rightDrive1 = new VictorSPX(Constants.RIGHT_DRIVE_1);
@@ -29,6 +34,14 @@ public class DriveTrainSub extends SubsystemBase {
     leftDrive1 = new VictorSPX(Constants.LEFT_DRIVE_1);
     leftDrive2 = new VictorSPX(Constants.LEFT_DRIVE_2);
     leftDrive2.follow(leftDrive1);
+
+    rightEncoder = new Encoder(Constants.R_DRIVE_ENCODER_A, Constants.R_DRIVE_ENCODER_B);
+    leftEncoder = new Encoder(Constants.L_DRIVE_ENCODER_A, Constants.L_DRIVE_ENCODER_B);
+
+    rightEncoder.setDistancePerPulse(Constants.DRIVE_ENCODER_DIS_PER_PULSE);
+    leftEncoder.setDistancePerPulse(Constants.DRIVE_ENCODER_DIS_PER_PULSE);
+
+    resetEncoders();
 
     navX = new AHRS(I2C.Port.kMXP, Constants.NAVX_UPDATE_RATE);
     navX.reset();
@@ -50,8 +63,9 @@ public class DriveTrainSub extends SubsystemBase {
     setLeftMotors(speed);
   }
 
-  public AHRS setNavx() {
-    return navX;
+  public void resetEncoders() {
+    rightEncoder.reset();
+    leftEncoder.reset();
   }
 
   @Override

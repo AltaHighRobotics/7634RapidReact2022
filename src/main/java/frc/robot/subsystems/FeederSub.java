@@ -25,10 +25,6 @@ public class FeederSub extends SubsystemBase {
     feederMotor.set(ControlMode.PercentOutput, 0.0);
   }
 
-  public void startMotorRev() {
-    feederMotor.set(ControlMode.PercentOutput, -Constants.FEEDER_SPEED_REV);
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
