@@ -29,10 +29,16 @@ public class DriveTrainSub extends SubsystemBase {
   public DriveTrainSub() {
     rightDrive1 = new VictorSPX(Constants.RIGHT_DRIVE_1);
     rightDrive2 = new VictorSPX(Constants.RIGHT_DRIVE_2);
+
+    rightDrive1.configFactoryDefault();
+    rightDrive2.configFactoryDefault();
     rightDrive2.follow(rightDrive1);
 
     leftDrive1 = new VictorSPX(Constants.LEFT_DRIVE_1);
     leftDrive2 = new VictorSPX(Constants.LEFT_DRIVE_2);
+
+    leftDrive1.configFactoryDefault();
+    leftDrive2.configFactoryDefault();
     leftDrive2.follow(leftDrive1);
 
     rightEncoder = new Encoder(Constants.R_DRIVE_ENCODER_A, Constants.R_DRIVE_ENCODER_B);

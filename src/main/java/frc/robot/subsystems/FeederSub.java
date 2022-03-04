@@ -6,15 +6,16 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.Constants;
 
 public class FeederSub extends SubsystemBase {
   /** Creates a new FeederSub. */
-  private final VictorSPX feederMotor;
+  private final TalonSRX feederMotor;
 
   public FeederSub() {
-    feederMotor = new VictorSPX(Constants.FEEDER_MOTOR);
+    feederMotor = new TalonSRX(Constants.FEEDER_MOTOR);
+    feederMotor.configFactoryDefault();
   }
 
   public void startMotor() {

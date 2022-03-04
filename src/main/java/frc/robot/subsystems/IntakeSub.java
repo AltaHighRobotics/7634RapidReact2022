@@ -15,6 +15,7 @@ public class IntakeSub extends SubsystemBase {
 
   public IntakeSub() {
     intakeMotor = new VictorSPX(Constants.INTAKE_MOTOR);
+    intakeMotor.configFactoryDefault();
   }
 
   public void startMotor() {
