@@ -28,6 +28,8 @@ public class RobotContainer {
   private final IntakeSub m_intakeSub = new IntakeSub();
   private final FeederSub m_feederSub = new FeederSub();
   private final ClimbSub m_climbSub = new ClimbSub();
+  private final AimSub m_aimSub = new AimSub();
+  private final ShooterSub m_shooterSub = new ShooterSub();
 
   // Commands.
   private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrainSub, driveController);
@@ -35,6 +37,12 @@ public class RobotContainer {
   private final FeederCommand m_feederCommand = new FeederCommand(m_feederSub);
   private final LiftRobotCommand m_liftRobotCommand = new LiftRobotCommand(m_climbSub);
   private final RaiseLiftArmCommand m_raiseLiftArmCommand = new RaiseLiftArmCommand(m_climbSub);
+
+  private final AimClWiCommand m_aimClWiCommand = new AimClWiCommand(m_aimSub);
+  private final AimClWiCommand m_aimCoWiCommand = new AimClWiCommand(m_aimSub);
+
+  private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -54,8 +62,15 @@ public class RobotContainer {
     final JoystickButton intakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
     final JoystickButton feederButton = new JoystickButton(driveController, Constants.XBOX_A_BUTTON);
 
+    /*
+    final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
+
+    final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_10);
+    final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
+
     intakeButton.toggleWhenPressed(m_intakeCommand);
     feederButton.whileHeld(m_feederCommand);
+    */
   }
 
   /**

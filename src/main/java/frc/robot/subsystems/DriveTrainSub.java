@@ -41,6 +41,7 @@ public class DriveTrainSub extends SubsystemBase {
     leftDrive2.configFactoryDefault();
     leftDrive2.follow(leftDrive1);
 
+    /*
     rightEncoder = new Encoder(Constants.R_DRIVE_ENCODER_A, Constants.R_DRIVE_ENCODER_B);
     leftEncoder = new Encoder(Constants.L_DRIVE_ENCODER_A, Constants.L_DRIVE_ENCODER_B);
 
@@ -54,6 +55,7 @@ public class DriveTrainSub extends SubsystemBase {
     navX.resetDisplacement();
     navX.calibrate();
     navX.zeroYaw();
+    */
   }
 
   public void setRightMotors(double speed) {

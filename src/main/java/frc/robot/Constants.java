@@ -74,4 +74,8 @@ public final class Constants {
     public static final int XBOX_B_BUTTON = 2;
     public static final int XBOX_X_BUTTON = 3;
     public static final int XBOX_Y_BUTTON = 4;
+
+    public static final int FLIGHT_BUTTON_7 = 7;
+    public static final int FLIGHT_BUTTON_8 = 8;
+    public static final int FLIGHT_BUTTON_10 = 10;
 }
