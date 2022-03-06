@@ -6,16 +6,18 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.motorcontrol.Victor;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ClimbSub extends SubsystemBase {
   private Solenoid liftPiston;
-  private Victor winchMotor;
+  private VictorSPX winchMotor;
   /** Creates a new ClimbSub. */
   public ClimbSub() {
-    winchMotor = new Victor(Constants.WINCH_MOTOR);
+    winchMotor = new VictorSPX(Constants.WINCH_MOTOR);
     liftPiston = new Solenoid(PneumaticsModuleType.REVPH, Constants.LIFT_PISTON);
   }
 
@@ -30,10 +32,10 @@ public class ClimbSub extends SubsystemBase {
 
   public void pullArmDown() {
     liftPiston.set(false);
-    winchMotor.set(Constants.WINCH_SPEED);
+    winchMotor.set(ControlMode.PercentOutput, Constants.WINCH_SPEED);
   }
 
   public void stopArm() {
-    winchMotor.set(0);
+    winchMotor.set(ControlMode.PercentOutput, 0.0);
   }
 }

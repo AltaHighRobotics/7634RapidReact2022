@@ -16,26 +16,28 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
  */
 public final class Constants { 
     // Motors.
-    public static final int RIGHT_DRIVE_1 = 0;
-    public static final int RIGHT_DRIVE_2 = 0;
-    public static final int LEFT_DRIVE_1 = 0;
-    public static final int LEFT_DRIVE_2 = 0;
+    public static final int RIGHT_DRIVE_1 = 1;
+    public static final int RIGHT_DRIVE_2 = 2;
+    public static final int LEFT_DRIVE_1 = 3;
+    public static final int LEFT_DRIVE_2 = 4;
     public static final int INTAKE_MOTOR = 0;
     public static final int FEEDER_MOTOR = 0;
 
     public static final int SHOOTER_MOTOR = 0;
 
-    public static final int AIM_MOTOR = 0;
-    public static final int WINCH_MOTOR = 0;
+    public static final int AIM_MOTOR = 5;
+    public static final int WINCH_MOTOR = 6;
 
     // Piston.
     public static final int LIFT_PISTON = 0;
 
     //Encoders.
+    public static final int ARDUINO_SERIAL_SPEED = 9600;
     public static final int R_DRIVE_ENCODER_A = 0; // Encoders use 2 ports.
     public static final int R_DRIVE_ENCODER_B = 0;
     public static final int L_DRIVE_ENCODER_A = 0;
     public static final int L_DRIVE_ENCODER_B = 0;
+    public static final int ARDUINO_MSG_LEN = 15;
 
     // Wheel and gears.
     public static final double DRIVE_ENCODER_DIS_PER_PULSE = 0;
@@ -53,6 +55,7 @@ public final class Constants {
     public static final double AIM_STOP = 0;
 
     public static final double MULTIPLIER = 0;
+
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)200; // 4 to 200.

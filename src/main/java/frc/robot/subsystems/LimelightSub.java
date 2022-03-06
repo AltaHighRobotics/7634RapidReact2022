@@ -10,9 +10,12 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.subsystems.DriveTrainSub;
+import frc.robot.subsystems.AimSub;
 
 public class LimelightSub extends SubsystemBase {
   private DriveTrainSub m_driveTrainSub;
+  private AimSub m_aimSub;
+
   int c = 0;
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
@@ -44,10 +47,13 @@ public class LimelightSub extends SubsystemBase {
 
     if(tarX > 10){
       //Turn to the right
+      m_aimSub.rotateAim(true);
      toRight = true;
-    } else if (tarX < -10) { 
-        toRight = false; }
-     // Turn to the left
+    } else if (tarX < -10) {
+      // Turn to the left
+      m_aimSub.rotateAim(false);
+      toRight = false; 
+    }
 
     SmartDashboard.putBoolean("TO THE RIGHT :: ", toRight);
   }
