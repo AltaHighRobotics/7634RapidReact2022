@@ -9,6 +9,7 @@ import frc.robot.subsystems.ClimbSub;
 
 public class LiftRobotCommand extends CommandBase {
   private ClimbSub m_climbSub;
+
   /** Creates a new LiftRobot. */
   public LiftRobotCommand(ClimbSub climbSub) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -22,7 +23,8 @@ public class LiftRobotCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_climbSub.pullArmDown();
+    //m_climbSub.pullArmDown();
+    m_climbSub.doArm();
   }
 
   // Called once the command ends or is interrupted.

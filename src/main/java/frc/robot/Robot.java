@@ -7,6 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.LiftRobotCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -15,6 +18,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
+  private final XboxController driveController = new XboxController(Constants.DRIVER_CONTROLLER);
+  public static double xboxPOV;
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
@@ -62,6 +67,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+
   }
 
   /** This function is called periodically during autonomous. */
@@ -81,7 +87,24 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    xboxPOV = driveController.getPOV();
+
+    int pov = (int)xboxPOV;
+    switch(pov){
+      case 0: //Dpad up
+        SmartDashboard.putString("POV", "UP");
+      break;
+
+      case 180: //Dpad down
+        SmartDashboard.putString("POV", "Down");
+      break;
+
+      case -1: //Dpad neutral
+      SmartDashboard.putString("POV", "NEUTRAL");
+      break;
+    }
+  }
 
   @Override
   public void testInit() {

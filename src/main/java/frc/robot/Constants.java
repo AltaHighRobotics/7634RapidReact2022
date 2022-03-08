@@ -26,7 +26,7 @@ public final class Constants {
     public static final int SHOOTER_MOTOR = 0;
 
     public static final int AIM_MOTOR = 0;
-    public static final int WINCH_MOTOR = 6;//Temporary place holder for ID.
+    public static final int WINCH_MOTOR = 0;//Temporary place holder for ID.
 
     // Sadness ):
     public static final double FEEDER_INVERT = -1; // 1 or -1

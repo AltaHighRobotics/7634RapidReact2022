@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -43,6 +44,7 @@ public class RobotContainer {
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
+  //society
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -63,18 +65,20 @@ public class RobotContainer {
     final JoystickButton feederButton = new JoystickButton(driveController, Constants.XBOX_A_BUTTON);
     final JoystickButton raiseArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_11);
     final JoystickButton pullArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_12);
-
-    /*
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
 
+    /*
     final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_10);
     final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
 
     */
     intakeButton.toggleWhenPressed(m_intakeCommand);
     feederButton.whileHeld(m_feederCommand);
-    raiseArmButton.whileHeld(m_raiseLiftArmCommand);
-    pullArmButton.whileHeld(m_liftRobotCommand);
+    shootButton.toggleWhenPressed(m_shootCommand);
+
+    raiseArmButton.toggleWhenPressed(m_raiseLiftArmCommand);
+    //raiseArmButton.whileHeld(m_raiseLiftArmCommand);
+    //pullArmButton.whileHeld(m_liftRobotCommand);
   }
 
   /**

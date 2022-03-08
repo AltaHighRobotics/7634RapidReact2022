@@ -6,9 +6,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSub;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants;
+
 
 public class RaiseLiftArmCommand extends CommandBase {
   private ClimbSub m_climbSub;
+
   /** Creates a new ClimbCommand. */
   public RaiseLiftArmCommand(ClimbSub climbSub) {
     m_climbSub = climbSub;
@@ -16,12 +21,14 @@ public class RaiseLiftArmCommand extends CommandBase {
   }
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_climbSub.liftArmUp();
+    //m_climbSub.liftArmUp();
+    m_climbSub.doArm();
   }
 
   // Called once the command ends or is interrupted.
