@@ -2,24 +2,30 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+/*
+  @Hacker
+  @New Hawks
+*/
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import frc.robot.Constants;
 
 public class FeederSub extends SubsystemBase {
   /** Creates a new FeederSub. */
-  private final TalonSRX feederMotor;
+  private final VictorSPX feederMotor;
 
   public FeederSub() {
-    feederMotor = new TalonSRX(Constants.FEEDER_MOTOR);
+    feederMotor = new VictorSPX(Constants.FEEDER_MOTOR);
     feederMotor.configFactoryDefault();
   }
 
   public void startMotor() {
-    feederMotor.set(ControlMode.PercentOutput, Constants.FEEDER_SPEED);
+    feederMotor.set(ControlMode.PercentOutput, Constants.FEEDER_SPEED * Constants.FEEDER_INVERT);
   }
 
   public void stopMotor() {

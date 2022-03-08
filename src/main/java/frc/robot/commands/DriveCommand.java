@@ -2,6 +2,11 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+/*
+  @Hacker
+  @New Hawks
+*/
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -57,8 +62,8 @@ public class DriveCommand extends CommandBase {
       lowTurnMultiplier = 1.0;
     }
 
-    rightSpeed = (leftStickY - ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
-    leftSpeed = (leftStickY + ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
+    rightSpeed = (leftStickY + ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
+    leftSpeed = (leftStickY - ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
 
     m_driveTrainSub.setRightMotors(rightSpeed);
     m_driveTrainSub.setLeftMotors(leftSpeed);

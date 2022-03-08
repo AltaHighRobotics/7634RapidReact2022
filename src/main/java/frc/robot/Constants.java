@@ -20,13 +20,16 @@ public final class Constants {
     public static final int RIGHT_DRIVE_2 = 2;
     public static final int LEFT_DRIVE_1 = 3;
     public static final int LEFT_DRIVE_2 = 4;
-    public static final int INTAKE_MOTOR = 0;
-    public static final int FEEDER_MOTOR = 0;
+    public static final int INTAKE_MOTOR = 5;
+    public static final int FEEDER_MOTOR = 6;
 
     public static final int SHOOTER_MOTOR = 0;
 
-    public static final int AIM_MOTOR = 5;
+    public static final int AIM_MOTOR = 0;
     public static final int WINCH_MOTOR = 6;
+
+    // Sadness ):
+    public static final double FEEDER_INVERT = -1; // 1 or -1
 
     // Piston.
     public static final int LIFT_PISTON = 0;
@@ -44,7 +47,7 @@ public final class Constants {
 
     // Speed.
     public static final double DRIVE_SPEED = 0.5;
-    public static final double INTAKE_SPEED = 0.25;
+    public static final double INTAKE_SPEED = 0.5;
     public static final double FEEDER_SPEED = 0.25;
     public static final double WINCH_SPEED = 0;
 

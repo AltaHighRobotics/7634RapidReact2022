@@ -61,6 +61,7 @@ public class RobotContainer {
     // Set buttons.
     final JoystickButton intakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
     final JoystickButton feederButton = new JoystickButton(driveController, Constants.XBOX_A_BUTTON);
+    
 
     /*
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
@@ -68,9 +69,9 @@ public class RobotContainer {
     final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_10);
     final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
 
+    */
     intakeButton.toggleWhenPressed(m_intakeCommand);
     feederButton.whileHeld(m_feederCommand);
-    */
   }
 
   /**
