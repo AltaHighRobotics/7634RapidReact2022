@@ -32,31 +32,19 @@ public class EncodersSub extends SubsystemBase {
     }
   }
 
-  public long getEncoderRequest(byte requestType) {
-    int bytesReceived = 0;
-
-    // Sent request.
-    arduino.write(new byte[] {requestType}, 1);
-
-    bytesReceived = arduino.getBytesReceived();
+  public double getEncoderRequest(byte requestType) {
+    int bytesReceived = sentEncoderRequest(requestType);
 
     if (bytesReceived <= 0) {
       return -1;
     }
 
-    return Long.valueOf(arduino.readString(Constants.ARDUINO_MSG_LEN));
+    return Double.valueOf(arduino.readString(Constants.ARDUINO_MSG_LEN));
   }
 
-  public void sentEncoderRequest(byte requestType) {
+  public int sentEncoderRequest(byte requestType) {
     arduino.write(new byte[] {requestType}, 1);
-  }
-
-  public double rightDrive() {
-    return (double)getEncoderRequest(GET_RIGHT);
-  }
-
-  public double leftDrive() {
-    return (double)getEncoderRequest(GET_LEFT);
+    return arduino.getBytesReceived();
   }
 
   @Override
