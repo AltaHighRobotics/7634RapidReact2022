@@ -21,6 +21,7 @@ public class RaiseLiftArmCommand extends CommandBase {
   /** Creates a new ClimbCommand. */
   public RaiseLiftArmCommand(ClimbSub climbSub) {
     m_climbSub = climbSub;
+    addRequirements(m_climbSub);
     // Use addRequirements() here to declare subsystem dependencies.
   }
   // Called when the command is initially scheduled.

@@ -18,6 +18,7 @@ public class LiftRobotCommand extends CommandBase {
   public LiftRobotCommand(ClimbSub climbSub) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climbSub = climbSub;
+    addRequirements(m_climbSub);
   }
 
   // Called when the command is initially scheduled.
