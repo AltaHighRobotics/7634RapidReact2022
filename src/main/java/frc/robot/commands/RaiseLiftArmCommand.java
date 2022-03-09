@@ -1,6 +1,10 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+/*
+  @Jaden
+  @New Hawks
+*/
 
 package frc.robot.commands;
 
@@ -10,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants;
 
-
+//Make variable of ClimbSub.
 public class RaiseLiftArmCommand extends CommandBase {
   private ClimbSub m_climbSub;
 
@@ -25,6 +29,7 @@ public class RaiseLiftArmCommand extends CommandBase {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
+  //Does doArm() method every time when it is called.
   @Override
   public void execute() {
     //m_climbSub.liftArmUp();
@@ -32,9 +37,11 @@ public class RaiseLiftArmCommand extends CommandBase {
   }
 
   // Called once the command ends or is interrupted.
+  //When command is stopped, start method: stopArm().
   @Override
-  public void end(boolean interrupted) {}
-
+  public void end(boolean interrupted) {
+    m_climbSub.stopArm();
+  }
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
