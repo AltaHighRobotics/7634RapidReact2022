@@ -26,13 +26,13 @@ public final class Constants {
     public static final int SHOOTER_MOTOR = 7;
 
     public static final int AIM_MOTOR = 9;
-    public static final int WINCH_MOTOR = 8;//Temporary place holder for ID.
+    public static final int WINCH_MOTOR = 8;
 
     // Sadness ):
     public static final double FEEDER_INVERT = -1; // 1 or -1
 
     // Piston.
-    public static final int LIFT_PISTON = 0;//Place holder and determine ID later.
+    public static final int LIFT_PISTON = 15;
 
     //Encoders.
     public static final int ARDUINO_SERIAL_SPEED = 9600;
