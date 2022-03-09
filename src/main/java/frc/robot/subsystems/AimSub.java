@@ -1,7 +1,10 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
+/*
+  @Vic
+  @New Hawks
+*/
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -28,15 +31,18 @@ public class AimSub extends SubsystemBase {
   }
 
   public void rotateAimCL() {
+    //Rotates the aimer clockwise
     aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED);
 
   }
 
   public void rotateAimCO(){
+    //Rotates the aimer counter clockwise
     aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED);
   }
 
   public void stopAim(){
+    //Stops the aimer motor
     aimMotor.set(ControlMode.PercentOutput, Constants.AIM_STOP);
   }
 }
