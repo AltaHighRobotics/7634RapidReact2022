@@ -45,6 +45,11 @@ public class ClimbSub extends SubsystemBase {
     liftPiston.set(false);
     winchMotor.set(ControlMode.PercentOutput, 0.0);
   }
+  
+  public void revWinch() {
+    //liftPiston.set(false);
+    winchMotor.set(ControlMode.PercentOutput, -Constants.WINCH_SPEED);
+  }
 
   public void doArm(){
     int pov = (int)xPOV;
@@ -57,6 +62,11 @@ public class ClimbSub extends SubsystemBase {
       case 180: //Dpad down
         SmartDashboard.putString("armcom", "pull arm down");
         pullArmDown();
+      break;
+
+      case 90:
+        //rev winch
+        revWinch();
       break;
 
       case -1: //Dpad neutral

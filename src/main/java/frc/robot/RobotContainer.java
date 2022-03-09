@@ -40,7 +40,7 @@ public class RobotContainer {
   private final RaiseLiftArmCommand m_raiseLiftArmCommand = new RaiseLiftArmCommand(m_climbSub);
 
   private final AimClWiCommand m_aimClWiCommand = new AimClWiCommand(m_aimSub);
-  private final AimClWiCommand m_aimCoWiCommand = new AimClWiCommand(m_aimSub);
+  private final AimCoWiCommand m_aimCoWiCommand = new AimCoWiCommand(m_aimSub);
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
@@ -67,11 +67,14 @@ public class RobotContainer {
     final JoystickButton pullArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_12);
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
 
+    
+    final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_8);
+    final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_7);
     /*
-    final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_10);
-    final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
-
     */
+    aimClButton.whileHeld(m_aimClWiCommand);
+    aimCoButton.whileHeld(m_aimCoWiCommand);
+
     intakeButton.toggleWhenPressed(m_intakeCommand);
     feederButton.whileHeld(m_feederCommand);
     shootButton.toggleWhenPressed(m_shootCommand);

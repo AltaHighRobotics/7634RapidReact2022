@@ -23,10 +23,10 @@ public final class Constants {
     public static final int INTAKE_MOTOR = 5;
     public static final int FEEDER_MOTOR = 6;
 
-    public static final int SHOOTER_MOTOR = 0;
+    public static final int SHOOTER_MOTOR = 7;
 
-    public static final int AIM_MOTOR = 0;
-    public static final int WINCH_MOTOR = 0;//Temporary place holder for ID.
+    public static final int AIM_MOTOR = 9;
+    public static final int WINCH_MOTOR = 8;//Temporary place holder for ID.
 
     // Sadness ):
     public static final double FEEDER_INVERT = -1; // 1 or -1
@@ -48,13 +48,13 @@ public final class Constants {
     // Speed.
     public static final double DRIVE_SPEED = 0.5;
     public static final double INTAKE_SPEED = 0.5;
-    public static final double FEEDER_SPEED = 0.25;
+    public static final double FEEDER_SPEED = 1.0;
     public static final double WINCH_SPEED = 0.25;//Just a place holder and test later.
 
     public static final double STOP_SHOOTER = 0;
-    public static final double START_SHOOTER = 0.1;
+    public static final double START_SHOOTER = 1.0;
 
-    public static final double AIM_SPEED = 0.2;
+    public static final double AIM_SPEED = 0.1;
     public static final double AIM_STOP = 0;
 
     public static final double MULTIPLIER = 0;
@@ -83,6 +83,7 @@ public final class Constants {
 
     public static final int FLIGHT_BUTTON_7 = 7;
     public static final int FLIGHT_BUTTON_8 = 8;
+    public static final int FLIGHT_BUTTON_9 = 9;
     public static final int FLIGHT_BUTTON_10 = 10;
     public static final int FLIGHT_BUTTON_11 = 11;
     public static final int FLIGHT_BUTTON_12 = 12;

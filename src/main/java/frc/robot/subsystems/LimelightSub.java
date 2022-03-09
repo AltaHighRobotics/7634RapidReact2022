@@ -47,11 +47,11 @@ public class LimelightSub extends SubsystemBase {
 
     if(tarX > 10){
       //Turn to the right
-      m_aimSub.rotateAim(true);
+      m_aimSub.rotateAimCL();
      toRight = true;
     } else if (tarX < -10) {
       // Turn to the left
-      m_aimSub.rotateAim(false);
+      m_aimSub.rotateAimCO();
       toRight = false; 
     }
 

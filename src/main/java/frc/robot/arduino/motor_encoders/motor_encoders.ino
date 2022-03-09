@@ -3,6 +3,7 @@
   @New Hawks
 */
 
+/*
 #include <Encoder.h>
 
 #define GET_RIGHT 1
@@ -71,3 +72,5 @@ void reset_encoders() {
   rightDrive.write(0);
   leftDrive.write(0);
 }
+
+*/

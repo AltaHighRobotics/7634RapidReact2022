@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.AimSub;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AimCoWiCommand extends CommandBase {
   private final AimSub m_aimSub;
@@ -25,7 +26,8 @@ public class AimCoWiCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_aimSub.rotateAim(true);
+    m_aimSub.rotateAimCO();
+    SmartDashboard.putString("dir", "COWI");
   }
 
   // Called once the command ends or is interrupted.

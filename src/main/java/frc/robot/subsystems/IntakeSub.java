@@ -12,15 +12,15 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Constants;
 
 public class IntakeSub extends SubsystemBase {
   /** Creates a new IntakeSub. */
-  private TalonSRX intakeMotor;
+  private VictorSPX intakeMotor;
 
   public IntakeSub() {
-    intakeMotor = new TalonSRX(Constants.INTAKE_MOTOR);
+    intakeMotor = new VictorSPX(Constants.INTAKE_MOTOR);
     intakeMotor.configFactoryDefault();
     intakeMotor.setInverted(true);
   }

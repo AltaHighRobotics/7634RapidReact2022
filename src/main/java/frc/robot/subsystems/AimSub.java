@@ -8,9 +8,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AimSub extends SubsystemBase {
   private TalonSRX aimMotor;
+  Encoder encoder = new Encoder(0, 1);
 
   /** Creates a new AimSub. */
   public AimSub() {
@@ -21,15 +24,16 @@ public class AimSub extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Enc Dist", encoder.getDistance());
   }
 
-  public void rotateAim(boolean clockwise) {
-    if(clockwise){
-      aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED);
-    } else {
-      aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED);
-    }
+  public void rotateAimCL() {
+    aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED);
 
+  }
+
+  public void rotateAimCO(){
+    aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED);
   }
 
   public void stopAim(){
