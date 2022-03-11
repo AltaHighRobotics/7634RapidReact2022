@@ -15,6 +15,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.subsystems.DriveTrainSub;
 import frc.robot.subsystems.AimSub;
+import frc.robot.Constants;
 
 public class LimelightSub extends SubsystemBase {
   private DriveTrainSub m_driveTrainSub;
@@ -30,9 +31,6 @@ public class LimelightSub extends SubsystemBase {
   }
 
   public void runLimeNum() {
-    c++;
-    SmartDashboard.putNumber("NUMBER COUNTER PLESSE WORKKK", c);
-
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
@@ -67,7 +65,17 @@ public class LimelightSub extends SubsystemBase {
   }
 
   public void getDist(){
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableEntry ty = table.getEntry("ty");
+    double targetOffsetAngleVertical = ty.getDouble(0.0);
+
+    double angleToGoalDegrees = Constants.LIME_DEGREES + targetOffsetAngleVertical;
+    double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
+
+    //calculate distance
+    double distInch = (Constants.GOAL_HEIGHT - Constants.LIME_LENS_HEIGHT)/Math.tan(angleToGoalRadians);
     
+    SmartDashboard.putNumber("Distance to Target (In)", distInch);
   }
 
 

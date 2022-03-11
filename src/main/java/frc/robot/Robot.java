@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.LiftRobotCommand;
+import frc.robot.subsystems.LimelightSub;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   private final XboxController driveController = new XboxController(Constants.DRIVER_CONTROLLER);
   public static double xboxPOV;
   private Command m_autonomousCommand;
+  private LimelightSub lim = new LimelightSub();
 
   private RobotContainer m_robotContainer;
 
@@ -88,6 +90,8 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    lim.getDist();
+
     xboxPOV = driveController.getPOV();
 
     int pov = (int)xboxPOV;

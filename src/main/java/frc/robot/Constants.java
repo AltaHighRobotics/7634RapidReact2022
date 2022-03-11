@@ -32,7 +32,7 @@ public final class Constants {
     public static final double FEEDER_INVERT = -1; // 1 or -1
 
     // Piston.
-    public static final int LIFT_PISTON = 15;
+    public static final int LIFT_PISTON = 1;//15;
 
     //Encoders.
     public static final int ARDUINO_SERIAL_SPEED = 9600;
@@ -46,7 +46,7 @@ public final class Constants {
     public static final double DRIVE_ENCODER_DIS_PER_PULSE = 0;
 
     // Speed.
-    public static final double DRIVE_SPEED = 0.5;
+    public static final double DRIVE_SPEED = 0.6;
     public static final double INTAKE_SPEED = 0.5;
     public static final double FEEDER_SPEED = 1.0;
     public static final double WINCH_SPEED = 0.25;//Just a place holder and test later.
@@ -67,6 +67,13 @@ public final class Constants {
     public static final double TURN_RAD = 0.4;
     public static final double LOW_TURN_THRESHHOLD = 0.3;
     public static final double LOW_TURN_MULTIPLIER = 2.0; // Don't make this value 0!
+
+    //Limelight Dist
+    public static final double LIME_DEGREES = 20.0;
+
+    public static final double LIME_LENS_HEIGHT = 37.0; //in inches
+
+    public static final double GOAL_HEIGHT = 104.0; //in inches
 
     // Controller.
     public static final int DRIVER_CONTROLLER = 0;

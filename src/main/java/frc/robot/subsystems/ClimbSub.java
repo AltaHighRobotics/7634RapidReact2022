@@ -16,6 +16,8 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import edu.wpi.first.wpilibj.Compressor;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
@@ -36,6 +38,7 @@ public class ClimbSub extends SubsystemBase {
     // This method will be called once per scheduler run
     //Gets DPad.
     xPOV = Robot.xboxPOV;
+
   }
   //Creates method of lifting arm up and releasing air.
   public void liftArmUp() {
@@ -63,7 +66,7 @@ public class ClimbSub extends SubsystemBase {
       case 0: //Dpad up start method: liftArmUp().
         SmartDashboard.putString("armcom", "lif arm up");
         liftArmUp();
-      break;
+      break; //nice
 
       case 180: //Dpad down start method: pullArmDown().
         SmartDashboard.putString("armcom", "pull arm down");
