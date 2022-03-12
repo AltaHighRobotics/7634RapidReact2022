@@ -13,18 +13,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.robot.subsystems.DriveTrainSub;
-import frc.robot.subsystems.AimSub;
 import frc.robot.Constants;
 
 public class LimelightSub extends SubsystemBase {
-  private DriveTrainSub m_driveTrainSub;
-  private AimSub m_aimSub;
-
-  int c = 0;
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
-  public boolean toRight = false;
+  public static boolean toRight = false;
+  public static boolean targetSeen;
   /** Creates a new LimelightSub. */
   public LimelightSub() {
 
@@ -47,17 +42,29 @@ public class LimelightSub extends SubsystemBase {
     SmartDashboard.putNumber("LimelightY", tarY);
     SmartDashboard.putNumber("LimelightArea", area);
 
-    if(tarX > 10){
+    System.out.println(tarX);
+    SmartDashboard.putBoolean("TAR SEE", targetSeen);
+    if(tarX > 5){
       //Turn to the right
-      m_aimSub.rotateAimCL();
-     toRight = true;
-    } else if (tarX < -10) {
+      toRight = false;
+      SmartDashboard.putBoolean("ToRight", false);
+
+    } else if (tarX < -5) {
       // Turn to the left
-      m_aimSub.rotateAimCO();
-      toRight = false; 
+      toRight = true;
+      SmartDashboard.putBoolean("ToRight", true);
+
+    } else {
+
     }
 
-    SmartDashboard.putBoolean("TO THE RIGHT :: ", toRight);
+    if(tarX == 0 && tarY == 0 || (tarX < 3 && tarX > -3)){ //2 is nice
+      targetSeen = false;
+    } else {
+      targetSeen = true;
+    }
+
+
   }
 
   public void recall() {
@@ -74,8 +81,14 @@ public class LimelightSub extends SubsystemBase {
 
     //calculate distance
     double distInch = (Constants.GOAL_HEIGHT - Constants.LIME_LENS_HEIGHT)/Math.tan(angleToGoalRadians);
-    
-    SmartDashboard.putNumber("Distance to Target (In)", distInch);
+
+    //Feet
+    int distFeet = ((int)distInch / 12);
+    int remInch = ((int)distInch % 12);
+
+    String distOut = String.valueOf(distFeet) + "'" + String.valueOf(remInch);
+
+    SmartDashboard.putString("Distance to Target", distOut);
   }
 
 
@@ -83,5 +96,6 @@ public class LimelightSub extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    
   }
 }

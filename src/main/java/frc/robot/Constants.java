@@ -32,7 +32,7 @@ public final class Constants {
     public static final double FEEDER_INVERT = -1; // 1 or -1
 
     // Piston.
-    public static final int LIFT_PISTON = 1;//15;
+    public static final int LIFT_PISTON = 15;//15;
 
     //Encoders.
     public static final int ARDUINO_SERIAL_SPEED = 9600;
@@ -49,12 +49,13 @@ public final class Constants {
     public static final double DRIVE_SPEED = 0.6;
     public static final double INTAKE_SPEED = 0.5;
     public static final double FEEDER_SPEED = 1.0;
-    public static final double WINCH_SPEED = 0.25;//Just a place holder and test later.
+    public static final double WINCH_SPEED = 1.0;//Just a place holder and test later.
 
     public static final double STOP_SHOOTER = 0;
     public static final double START_SHOOTER = 1.0;
 
-    public static final double AIM_SPEED = 0.1;
+    public static final double AIM_SPEED = 0.2;
+    public static final double AIM_SLOW_SPEED = 0.14;
     public static final double AIM_STOP = 0;
 
     public static final double MULTIPLIER = 0;

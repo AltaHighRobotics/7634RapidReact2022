@@ -8,14 +8,11 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSub;
 //Creates variable of ClimbSub.
 public class LiftRobotCommand extends CommandBase {
   private ClimbSub m_climbSub;
-  Compressor phCompressor = new Compressor(1, PneumaticsModuleType.REVPH);
 
   /** Creates a new LiftRobot. */
   public LiftRobotCommand(ClimbSub climbSub) {
@@ -32,12 +29,7 @@ public class LiftRobotCommand extends CommandBase {
   //While called, run doArm().
   @Override
   public void execute() {
-    m_climbSub.pullArmDown();
-    phCompressor.enableDigital();
-
-    boolean enabled = phCompressor.enabled();
-    boolean pressureSwitch = phCompressor.getPressureSwitchValue();
-    double current = phCompressor.getCurrent();
+    //m_climbSub.pullArmDown();
 
     m_climbSub.doArm();
   }

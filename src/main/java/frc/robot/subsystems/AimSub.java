@@ -30,15 +30,23 @@ public class AimSub extends SubsystemBase {
     SmartDashboard.putNumber("Enc Dist", encoder.getDistance());
   }
 
-  public void rotateAimCL() {
+  public void rotateAimCL(boolean slow) {
     //Rotates the aimer clockwise
-    aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED);
+    if (slow){
+      aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SLOW_SPEED); 
+    } else {
+      aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED);
+    }
 
   }
 
-  public void rotateAimCO(){
+  public void rotateAimCO(boolean slow){
     //Rotates the aimer counter clockwise
-    aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED);
+    if(slow){
+      aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SLOW_SPEED);
+    } else {
+      aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED);
+    }
   }
 
   public void stopAim(){

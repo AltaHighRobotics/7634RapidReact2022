@@ -31,7 +31,7 @@ public class AimClWiCommand extends CommandBase {
   @Override
   public void execute() {
     //Does clockwise aim
-    m_aimSub.rotateAimCL();
+    m_aimSub.rotateAimCL(false);
     SmartDashboard.putString("dir", "CLWI");
   }
 

@@ -13,10 +13,14 @@ import frc.robot.subsystems.ClimbSub;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 //Make variable of ClimbSub.
 public class RaiseLiftArmCommand extends CommandBase {
   private ClimbSub m_climbSub;
+  Compressor phCompressor = new Compressor(1, PneumaticsModuleType.REVPH);
+
 
   /** Creates a new ClimbCommand. */
   public RaiseLiftArmCommand(ClimbSub climbSub) {
@@ -35,6 +39,12 @@ public class RaiseLiftArmCommand extends CommandBase {
   public void execute() {
     //m_climbSub.liftArmUp();
     m_climbSub.doArm();
+    phCompressor.enableDigital();
+
+    boolean enabled = phCompressor.enabled();
+    boolean pressureSwitch = phCompressor.getPressureSwitchValue();
+    double current = phCompressor.getCurrent();
+
   }
 
   // Called once the command ends or is interrupted.
