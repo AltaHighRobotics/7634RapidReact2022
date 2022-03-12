@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrainSub;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 public class DriveCommand extends CommandBase {
@@ -42,7 +43,9 @@ public class DriveCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_driveTrainSub.resetNavx();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -64,6 +67,8 @@ public class DriveCommand extends CommandBase {
 
     rightSpeed = (leftStickY + ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
     leftSpeed = (leftStickY - ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
+
+    SmartDashboard.putNumber("Yaw", m_driveTrainSub.navX.getYaw());
 
     m_driveTrainSub.setRightMotors(rightSpeed);
     m_driveTrainSub.setLeftMotors(leftSpeed);

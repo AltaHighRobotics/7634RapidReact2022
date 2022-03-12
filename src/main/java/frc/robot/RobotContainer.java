@@ -9,7 +9,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.*;
+import frc.robot.autonomous.*;
 import frc.robot.subsystems.*;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -46,6 +48,11 @@ public class RobotContainer {
   private final AimCoWiCommand m_aimCoWiCommand = new AimCoWiCommand(m_aimSub);
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
+
+  // Autonomous.
+  private final SequentialCommandGroup m_sequential = new SequentialCommandGroup(
+    new AutoTurnTo(m_driveTrainSub, 180.0, Constants.COUNTER_CLOCK_WISE)
+  );
 
   //society
 
@@ -96,6 +103,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return m_sequential;
   }
 }

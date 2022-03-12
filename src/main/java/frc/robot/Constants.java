@@ -57,8 +57,14 @@ public final class Constants {
     public static final double AIM_SPEED = 0.2;
     public static final double AIM_SLOW_SPEED = 0.14;
     public static final double AIM_STOP = 0;
+    public static final double AUTO_TURN_SPEED = 0.15;
 
     public static final double MULTIPLIER = 0;
+
+    // Autonmous.
+    public static final double CLOCK_WISE = 1;
+    public static final double COUNTER_CLOCK_WISE = -1;
+    public static final double TURN_MIN = 1.0;
 
 
     // Navx.

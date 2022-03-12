@@ -9,6 +9,7 @@
 
 package frc.robot.subsystems;
 
+import java.lang.Math;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
@@ -56,13 +57,10 @@ public class DriveTrainSub extends SubsystemBase {
     leftEncoder.setDistancePerPulse(Constants.DRIVE_ENCODER_DIS_PER_PULSE);
 
     resetEncoders();
+    */
 
     navX = new AHRS(I2C.Port.kMXP, Constants.NAVX_UPDATE_RATE);
-    navX.reset();
-    navX.resetDisplacement();
-    navX.calibrate();
-    navX.zeroYaw();
-    */
+    resetNavx();
   }
 
   public void setRightMotors(double speed) {
@@ -81,6 +79,11 @@ public class DriveTrainSub extends SubsystemBase {
   public void resetEncoders() {
     rightEncoder.reset();
     leftEncoder.reset();
+  }
+
+  public void resetNavx() {
+    navX.reset();
+    navX.zeroYaw();
   }
 
   @Override
