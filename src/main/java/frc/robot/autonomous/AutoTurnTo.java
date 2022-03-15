@@ -20,15 +20,14 @@ public class AutoTurnTo extends CommandBase {
   /** Creates a new AutoTurnTo. */
   private final DriveTrainSub m_driveTrain;
   private double m_turnTo;
-  private double m_turnDirection; // 1 or -1
+  private double turnDirection; // 1 or -1
  
   // The different between turnTo and current angle.
   private double turnError;
 
-  public AutoTurnTo(DriveTrainSub driveTrain, double turnTo, double turnDirection) {
+  public AutoTurnTo(DriveTrainSub driveTrain, double turnTo) {
     m_driveTrain = driveTrain;
     m_turnTo = turnTo;
-    m_turnDirection = turnDirection;
 
     addRequirements(m_driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -38,13 +37,19 @@ public class AutoTurnTo extends CommandBase {
   @Override
   public void initialize() {
     m_driveTrain.resetNavx();
+
+    if (m_turnTo >= 180.0) {
+      turnDirection = Constants.COUNTER_CLOCK_WISE;
+    } else {
+      turnDirection = Constants.CLOCK_WISE;
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * m_turnDirection);
-    m_driveTrain.setLeftMotors(Constants.AUTO_TURN_SPEED * m_turnDirection);
+    m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * turnDirection);
+    m_driveTrain.setLeftMotors(Constants.AUTO_TURN_SPEED * turnDirection);
   }
 
   // Called once the command ends or is interrupted.
