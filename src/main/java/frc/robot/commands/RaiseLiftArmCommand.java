@@ -10,7 +10,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSub;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Compressor;
@@ -37,8 +36,7 @@ public class RaiseLiftArmCommand extends CommandBase {
   //Does doArm() method every time when it is called.
   @Override
   public void execute() {
-    //m_climbSub.liftArmUp();
-    m_climbSub.doArm();
+    m_climbSub.liftArmUp();
     phCompressor.enableDigital();
 
     boolean enabled = phCompressor.enabled();

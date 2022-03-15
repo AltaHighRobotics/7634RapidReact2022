@@ -41,6 +41,7 @@ public class RobotContainer {
   private final FeederCommand m_feederCommand = new FeederCommand(m_feederSub);
   private final LiftRobotCommand m_liftRobotCommand = new LiftRobotCommand(m_climbSub);
   private final RaiseLiftArmCommand m_raiseLiftArmCommand = new RaiseLiftArmCommand(m_climbSub);
+  private final RevWinchCommand m_revWinchCommand = new RevWinchCommand(m_climbSub);
 
   private final LimelightCommand m_limeCommand = new LimelightCommand(m_limeSub, m_aimSub);
 
@@ -73,6 +74,7 @@ public class RobotContainer {
     // Set buttons.
     final JoystickButton intakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
     final JoystickButton feederButton = new JoystickButton(driveController, Constants.XBOX_A_BUTTON);
+    final JoystickButton revWinchButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
     final JoystickButton raiseArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_11);
     final JoystickButton pullArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_12);
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
@@ -94,6 +96,7 @@ public class RobotContainer {
 
     raiseArmButton.toggleWhenPressed(m_raiseLiftArmCommand);
     pullArmButton.toggleWhenPressed(m_liftRobotCommand);
+    revWinchButton.toggleWhenPressed(m_revWinchCommand);
   }
 
   /**

@@ -5,20 +5,20 @@
   @Jaden
   @New Hawks
 */
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbSub;
-//Creates variable of ClimbSub.
-public class LiftRobotCommand extends CommandBase {
-  private ClimbSub m_climbSub;
 
-  /** Creates a new LiftRobot. */
-  public LiftRobotCommand(ClimbSub climbSub) {
-    // Use addRequirements() here to declare subsystem dependencies.
+public class RevWinchCommand extends CommandBase {
+  /** Creates a new RevWinchCommand. */
+  private final ClimbSub m_climbSub;
+
+  public RevWinchCommand(ClimbSub climbSub) {
     m_climbSub = climbSub;
+
     addRequirements(m_climbSub);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -26,20 +26,18 @@ public class LiftRobotCommand extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
-  //While called, run doArm().
   @Override
+  //uses revWinch method
   public void execute() {
-    m_climbSub.pullArmDown();
-
+    m_climbSub.revWinch();
   }
 
   // Called once the command ends or is interrupted.
-  //When the command is stopped, start method: stopArm().
   @Override
   public void end(boolean interrupted) {
     m_climbSub.stopArm();
   }
-
+  
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
