@@ -32,6 +32,10 @@ public class AimSub extends SubsystemBase {
 
   public void rotateAimCL(boolean slow) {
     //Rotates the aimer clockwise
+
+    if(true){//Between Encoder distances)
+      //cut the code into here once encoder distances got
+    }
     if (slow){
       aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SLOW_SPEED); 
     } else {

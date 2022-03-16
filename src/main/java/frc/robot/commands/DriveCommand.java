@@ -9,6 +9,7 @@
 
 package frc.robot.commands;
 
+import java.lang.Math;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrainSub;
@@ -33,6 +34,10 @@ public class DriveCommand extends CommandBase {
   private double rightSpeed;
   private double leftSpeed;
 
+  private double oldSpeed;
+  private double forwardAcce;
+  private double finalSpeed;
+
   public DriveCommand(DriveTrainSub driveTrainSub, XboxController driveController) {
     m_driveTrainSub = driveTrainSub;
     m_driveController = driveController;
@@ -45,6 +50,8 @@ public class DriveCommand extends CommandBase {
   @Override
   public void initialize() {
     m_driveTrainSub.resetNavx();
+
+    oldSpeed = 0.0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -65,13 +72,31 @@ public class DriveCommand extends CommandBase {
       lowTurnMultiplier = 1.0;
     }
 
-    rightSpeed = (leftStickY + ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
-    leftSpeed = (leftStickY - ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
+    // Limit acceleration.
+    forwardAcce = leftStickY - oldSpeed;
+
+    // Vic, commet out this code if the acceleration limiter does not work.
+    if (forwardAcce >= Constants.MAX_DRIVE_ACCE) {
+      finalSpeed = oldSpeed + Constants.MAX_DRIVE_ACCE;
+    } else if (forwardAcce <= -Constants.MAX_DRIVE_ACCE) {
+      finalSpeed = oldSpeed - Constants.MAX_DRIVE_ACCE;
+    } else {
+      finalSpeed = leftStickY;
+    }
+
+    rightSpeed = (finalSpeed + ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
+    leftSpeed = (finalSpeed - ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
 
     SmartDashboard.putNumber("Yaw", m_driveTrainSub.navX.getYaw());
+    SmartDashboard.putNumber("Vel x", m_driveTrainSub.navX.getWorldLinearAccelX());
+    SmartDashboard.putNumber("Vel y", m_driveTrainSub.navX.getWorldLinearAccelY());
+    SmartDashboard.putNumber("Vel z", m_driveTrainSub.navX.getWorldLinearAccelZ());
 
     m_driveTrainSub.setRightMotors(rightSpeed);
     m_driveTrainSub.setLeftMotors(leftSpeed);
+
+    // Update stuff.
+    oldSpeed = finalSpeed;
   }
 
   private double speedMultiplier(double stick) {

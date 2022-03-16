@@ -61,6 +61,9 @@ public final class Constants {
 
     public static final double MULTIPLIER = 0;
 
+    // Limits.
+    public static final double MAX_DRIVE_ACCE = 0.1;
+
     // Autonmous.
     public static final double CLOCK_WISE = 1;
     public static final double COUNTER_CLOCK_WISE = -1;
