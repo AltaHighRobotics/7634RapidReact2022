@@ -16,41 +16,55 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AimSub extends SubsystemBase {
   private TalonSRX aimMotor;
-  Encoder encoder = new Encoder(0, 1);
+
+  private Encoder aimEncoder;
+
+  public boolean coAllow;
+  public boolean clAllow;
 
   /** Creates a new AimSub. */
   public AimSub() {
+    aimEncoder = new Encoder(0, 1);
+    aimEncoder.reset();
     aimMotor = new TalonSRX(Constants.AIM_MOTOR);
     aimMotor.configFactoryDefault();
+    
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Enc Dist", encoder.getDistance());
+    SmartDashboard.putNumber("Enc Dist", aimMotor.getSelectedSensorPosition());
+
+    if(aimMotor.getSelectedSensorPosition() > Constants.MAX_AIM_CL){
+      clAllow = true;
+    } else {
+      clAllow = false;
+    }
+
+    if(aimMotor.getSelectedSensorPosition() < Constants.MAX_AIM_CO){
+      coAllow = true;
+    } else {
+      coAllow = false;
+    }
   }
 
   public void rotateAimCL(boolean slow) {
     //Rotates the aimer clockwise
-
-    if(true){//Between Encoder distances)
-      //cut the code into here once encoder distances got
-    }
-    if (slow){
-      aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SLOW_SPEED); 
-    } else {
-      aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED);
-    }
-
+      if (slow){
+        aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SLOW_SPEED); 
+      } else {
+        aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED);
+      }
   }
 
   public void rotateAimCO(boolean slow){
-    //Rotates the aimer counter clockwise
-    if(slow){
-      aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SLOW_SPEED);
-    } else {
-      aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED);
-    }
+      //Rotates the aimer counter clockwise
+      if(slow){
+        aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SLOW_SPEED);
+      } else {
+        aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED);
+      }
   }
 
   public void stopAim(){

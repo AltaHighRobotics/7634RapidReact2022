@@ -88,9 +88,9 @@ public class DriveCommand extends CommandBase {
     leftSpeed = (finalSpeed - ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
 
     SmartDashboard.putNumber("Yaw", m_driveTrainSub.navX.getYaw());
-    SmartDashboard.putNumber("Vel x", m_driveTrainSub.navX.getWorldLinearAccelX());
-    SmartDashboard.putNumber("Vel y", m_driveTrainSub.navX.getWorldLinearAccelY());
-    SmartDashboard.putNumber("Vel z", m_driveTrainSub.navX.getWorldLinearAccelZ());
+    SmartDashboard.putNumber("Gx", m_driveTrainSub.navX.getWorldLinearAccelX());
+    SmartDashboard.putNumber("Gy", m_driveTrainSub.navX.getWorldLinearAccelY());
+    SmartDashboard.putNumber("Gz", m_driveTrainSub.navX.getWorldLinearAccelZ());
 
     m_driveTrainSub.setRightMotors(rightSpeed);
     m_driveTrainSub.setLeftMotors(leftSpeed);

@@ -31,7 +31,12 @@ public class AimCoWiCommand extends CommandBase {
   @Override
   public void execute() {
     //Does counter clockwise turn
-    m_aimSub.rotateAimCO(false);
+    if(m_aimSub.coAllow){
+      m_aimSub.rotateAimCO(false);
+    } else {
+      m_aimSub.stopAim();
+    }
+    
     SmartDashboard.putString("dir", "COWI");
   }
 
