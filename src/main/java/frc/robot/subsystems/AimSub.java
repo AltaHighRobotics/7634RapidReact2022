@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.LimelightSub;
 
 public class AimSub extends SubsystemBase {
   private TalonSRX aimMotor;
@@ -38,14 +39,21 @@ public class AimSub extends SubsystemBase {
 
     if(aimMotor.getSelectedSensorPosition() > Constants.MAX_AIM_CL){
       clAllow = true;
+      
     } else {
       clAllow = false;
+      if(LimelightSub.goingCL){
+        LimelightSub.goingCL = false;
+      }
     }
 
     if(aimMotor.getSelectedSensorPosition() < Constants.MAX_AIM_CO){
       coAllow = true;
     } else {
       coAllow = false;
+      if(!LimelightSub.goingCL){
+        LimelightSub.goingCL = true;
+      }
     }
   }
 

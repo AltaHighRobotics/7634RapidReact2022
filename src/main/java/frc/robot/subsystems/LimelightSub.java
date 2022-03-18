@@ -20,12 +20,14 @@ public class LimelightSub extends SubsystemBase {
 
   public static boolean toRight = false;
   public static boolean targetSeen;
+  public static boolean goingCL;
+
   /** Creates a new LimelightSub. */
   public LimelightSub() {
 
   }
 
-  public void runLimeNum() {
+  public void runLimeNum() { //Determines if the aimer shold go left ro right
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
@@ -53,25 +55,18 @@ public class LimelightSub extends SubsystemBase {
       // Turn to the left
       toRight = true;
       SmartDashboard.putBoolean("ToRight", true);
-
-    } else {
-
     }
 
-    if(tarX == 0 && tarY == 0 || (tarX < 3 && tarX > -3)){ //2 is nice
+    if(tarX == 0 && tarY == 0 || (tarX < 3 && tarX > -3)){ //3 is nice
       targetSeen = false;
     } else {
       targetSeen = true;
     }
-
-
   }
 
-  public void recall() {
-    //Set current degree of shooter turn to 0
-  }
+  public void recall() {}
 
-  public void getDist(){
+  public void getDist(){ //Returns the distance of limelight target
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry ty = table.getEntry("ty");
     double targetOffsetAngleVertical = ty.getDouble(0.0);
@@ -80,7 +75,7 @@ public class LimelightSub extends SubsystemBase {
     double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
 
     //calculate distance
-    double distInch = (Constants.GOAL_HEIGHT - Constants.LIME_LENS_HEIGHT)/Math.tan(angleToGoalRadians);
+    double distInch = (Constants.GOAL_HEIGHT - Constants.LIME_LENS_HEIGHT) / Math.tan(angleToGoalRadians);
 
     //Feet
     int distFeet = ((int)distInch / 12);

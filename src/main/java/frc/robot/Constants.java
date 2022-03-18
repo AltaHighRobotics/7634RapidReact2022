@@ -64,8 +64,8 @@ public final class Constants {
     // Limits.
     public static final double MAX_DRIVE_ACCE = 0.1;
 
-    public static final int MAX_AIM_CL = -19900;
-    public static final int MAX_AIM_CO = 3000;
+    public static final int MAX_AIM_CL = -15200;
+    public static final int MAX_AIM_CO = 12000;
 
     // Autonmous.
     public static final double CLOCK_WISE = 1;

@@ -28,9 +28,7 @@ public class LimelightCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -42,8 +40,24 @@ public class LimelightCommand extends CommandBase {
       m_aimSub.rotateAimCL(true);
     } else if (LimelightSub.toRight && LimelightSub.targetSeen) {
       m_aimSub.rotateAimCO(true);
+    } else if(!LimelightSub.targetSeen){
+      //Do left right turning to try to find
+      if(LimelightSub.goingCL){
+        m_aimSub.rotateAimCL(true);
+      } else {
+        m_aimSub.rotateAimCO(true);
+      }
     } else {
       m_aimSub.stopAim();
+    }
+
+    if(!LimelightSub.targetSeen){
+      //Do left right turning to try to find
+      if(LimelightSub.goingCL){
+        m_aimSub.rotateAimCL(true);
+      } else {
+        m_aimSub.rotateAimCO(true);
+      }
     }
   }
 
@@ -52,6 +66,7 @@ public class LimelightCommand extends CommandBase {
   public void end(boolean interrupted) {
     SmartDashboard.putBoolean("Aimbot", false);
     LimelightSub.targetSeen = false;
+    m_aimSub.stopAim();
   }
 
   // Returns true when the command should end.

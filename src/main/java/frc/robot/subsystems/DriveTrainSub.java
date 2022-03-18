@@ -64,11 +64,11 @@ public class DriveTrainSub extends SubsystemBase {
   }
 
   public void setRightMotors(double speed) {
-    rightDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
+    //rightDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
   }
 
   public void setLeftMotors(double speed) {
-    leftDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
+    //leftDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
   }
 
   public void setMotors(double speed) {
