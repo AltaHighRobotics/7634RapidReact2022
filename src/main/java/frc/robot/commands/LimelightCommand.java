@@ -37,15 +37,15 @@ public class LimelightCommand extends CommandBase {
     m_limelightSub.runLimeNum();
     
     if(!LimelightSub.toRight && LimelightSub.targetSeen){
-      m_aimSub.rotateAimCL(true);
+      m_aimSub.rotateAimCL(1);
     } else if (LimelightSub.toRight && LimelightSub.targetSeen) {
-      m_aimSub.rotateAimCO(true);
+      m_aimSub.rotateAimCO(1);
     } else if(!LimelightSub.targetSeen){
       //Do left right turning to try to find
       if(LimelightSub.goingCL){
-        m_aimSub.rotateAimCL(true);
+        m_aimSub.rotateAimCL(2);
       } else {
-        m_aimSub.rotateAimCO(true);
+        m_aimSub.rotateAimCO(2);
       }
     } else {
       m_aimSub.stopAim();
@@ -54,9 +54,9 @@ public class LimelightCommand extends CommandBase {
     if(!LimelightSub.targetSeen){
       //Do left right turning to try to find
       if(LimelightSub.goingCL){
-        m_aimSub.rotateAimCL(true);
+        m_aimSub.rotateAimCL(2);
       } else {
-        m_aimSub.rotateAimCO(true);
+        m_aimSub.rotateAimCO(2);
       }
     }
   }

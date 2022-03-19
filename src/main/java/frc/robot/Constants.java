@@ -56,6 +56,8 @@ public final class Constants {
 
     public static final double AIM_SPEED = 0.2;
     public static final double AIM_SLOW_SPEED = 0.14;
+    public static final double AIM_SNAIL_SPEED = 0.11;
+    public static final double AIM_ELLA_SPEED = 0.05;
     public static final double AIM_STOP = 0;
     public static final double AUTO_TURN_SPEED = 0.15;
 
@@ -101,6 +103,7 @@ public final class Constants {
     public static final int XBOX_X_BUTTON = 3;
     public static final int XBOX_Y_BUTTON = 4;
 
+    public static final int FLIGHT_BUTTON_6 = 6;
     public static final int FLIGHT_BUTTON_7 = 7;
     public static final int FLIGHT_BUTTON_8 = 8;
     public static final int FLIGHT_BUTTON_9 = 9;

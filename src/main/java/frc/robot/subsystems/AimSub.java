@@ -19,9 +19,14 @@ public class AimSub extends SubsystemBase {
   private TalonSRX aimMotor;
 
   private Encoder aimEncoder;
+  private double encNum;
 
   public boolean coAllow;
   public boolean clAllow;
+
+  public boolean centerCL;
+  public boolean centered;
+  public boolean goSlow;
 
   /** Creates a new AimSub. */
   public AimSub() {
@@ -34,10 +39,13 @@ public class AimSub extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Enc Dist", aimMotor.getSelectedSensorPosition());
+    encNum = aimMotor.getSelectedSensorPosition();
 
-    if(aimMotor.getSelectedSensorPosition() > Constants.MAX_AIM_CL){
+    // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Enc Dist", encNum);
+
+    //Checks if within limits
+    if(encNum > Constants.MAX_AIM_CL){
       clAllow = true;
       
     } else {
@@ -47,7 +55,8 @@ public class AimSub extends SubsystemBase {
       }
     }
 
-    if(aimMotor.getSelectedSensorPosition() < Constants.MAX_AIM_CO){
+    //Checks if within limits
+    if(encNum < Constants.MAX_AIM_CO){
       coAllow = true;
     } else {
       coAllow = false;
@@ -55,23 +64,54 @@ public class AimSub extends SubsystemBase {
         LimelightSub.goingCL = true;
       }
     }
+
+    //Finds if motor should turn CO/CL for center
+    if(encNum < -10){
+      //clockwise
+      centerCL = false;
+      centered = false;
+      
+    } else if (encNum > 10){
+      //counterclockwise
+      centerCL = true;
+      centered = false;
+
+    } else {
+      centered = true;
+    }
+
+    if(encNum < -500 || encNum > 500){
+      //go slower
+      goSlow = false;
+    } else {
+      goSlow = true;
+    }
+    SmartDashboard.putBoolean("goslow aim", goSlow);
   }
 
-  public void rotateAimCL(boolean slow) {
+  public void rotateAimCL(int slow) { //0 = norm; 1 = slow; 2 = extra slow
     //Rotates the aimer clockwise
-      if (slow){
+      if (slow == 1){
         aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SLOW_SPEED); 
-      } else {
+      } else if (slow == 0) {
         aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED);
+      } else if (slow == 2) {
+        aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SNAIL_SPEED);
+      } else {
+        aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_ELLA_SPEED);
       }
   }
 
-  public void rotateAimCO(boolean slow){
+  public void rotateAimCO(int slow){
       //Rotates the aimer counter clockwise
-      if(slow){
+      if(slow == 1){
         aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SLOW_SPEED);
-      } else {
+      } else if (slow == 0) {
         aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED);
+      } else  if (slow == 2) {
+        aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SNAIL_SPEED);
+      } else {
+        aimMotor.set(ControlMode.PercentOutput, Constants.AIM_ELLA_SPEED);
       }
   }
 
