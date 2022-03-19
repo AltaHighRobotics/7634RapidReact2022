@@ -50,6 +50,7 @@ public class DriveCommand extends CommandBase {
   @Override
   public void initialize() {
     m_driveTrainSub.resetNavx();
+    m_driveTrainSub.resetEncoders();
 
     oldSpeed = 0.0;
   }
@@ -88,9 +89,8 @@ public class DriveCommand extends CommandBase {
     leftSpeed = (finalSpeed - ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
 
     SmartDashboard.putNumber("Yaw", m_driveTrainSub.navX.getYaw());
-    SmartDashboard.putNumber("Gx", m_driveTrainSub.navX.getWorldLinearAccelX());
-    SmartDashboard.putNumber("Gy", m_driveTrainSub.navX.getWorldLinearAccelY());
-    SmartDashboard.putNumber("Gz", m_driveTrainSub.navX.getWorldLinearAccelZ());
+    SmartDashboard.putNumber("Right dis", m_driveTrainSub.getRightEncoderDis());
+    SmartDashboard.putNumber("Left dis", m_driveTrainSub.getLeftEncoderDis());
 
     m_driveTrainSub.setRightMotors(rightSpeed);
     m_driveTrainSub.setLeftMotors(leftSpeed);

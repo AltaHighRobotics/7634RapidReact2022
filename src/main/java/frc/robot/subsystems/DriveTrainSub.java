@@ -16,6 +16,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.Constants;
 
 public class DriveTrainSub extends SubsystemBase {
@@ -26,9 +27,9 @@ public class DriveTrainSub extends SubsystemBase {
   private VictorSPX leftDrive1;
   private VictorSPX leftDrive2;
 
-  // Encoders.
-  public Encoder rightEncoder;
-  public Encoder leftEncoder;
+  // The encoders might be handled by an arduino in the future.
+  private Encoder rightEncoder;
+  private Encoder leftEncoder;
 
   public AHRS navX;
 
@@ -49,26 +50,28 @@ public class DriveTrainSub extends SubsystemBase {
     leftDrive2.setInverted(true);
     leftDrive2.follow(leftDrive1);
 
-    /*
-    rightEncoder = new Encoder(Constants.R_DRIVE_ENCODER_A, Constants.R_DRIVE_ENCODER_B);
-    leftEncoder = new Encoder(Constants.L_DRIVE_ENCODER_A, Constants.L_DRIVE_ENCODER_B);
+    rightEncoder = new Encoder(new DigitalInput(Constants.R_DRIVE_ENCODER_A), 
+    new DigitalInput(Constants.R_DRIVE_ENCODER_B), false);
+
+    leftEncoder = new Encoder(new DigitalInput(Constants.L_DRIVE_ENCODER_A), 
+    new DigitalInput(Constants.L_DRIVE_ENCODER_B), true);
 
     rightEncoder.setDistancePerPulse(Constants.DRIVE_ENCODER_DIS_PER_PULSE);
     leftEncoder.setDistancePerPulse(Constants.DRIVE_ENCODER_DIS_PER_PULSE);
 
     resetEncoders();
-    */
 
     navX = new AHRS(I2C.Port.kMXP, Constants.NAVX_UPDATE_RATE);
     resetNavx();
   }
 
+  // Is a hot dog a sandwhich?
   public void setRightMotors(double speed) {
-    //rightDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
+    rightDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
   }
 
   public void setLeftMotors(double speed) {
-    //leftDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
+    leftDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
   }
 
   public void setMotors(double speed) {
@@ -79,6 +82,14 @@ public class DriveTrainSub extends SubsystemBase {
   public void resetEncoders() {
     rightEncoder.reset();
     leftEncoder.reset();
+  }
+
+  public double getRightEncoderDis() {
+    return rightEncoder.getDistance();
+  }
+
+  public double getLeftEncoderDis() {
+    return leftEncoder.getDistance();
   }
 
   public void resetNavx() {

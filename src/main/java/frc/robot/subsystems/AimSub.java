@@ -18,7 +18,6 @@ import frc.robot.subsystems.LimelightSub;
 public class AimSub extends SubsystemBase {
   private TalonSRX aimMotor;
 
-  private Encoder aimEncoder;
   private double encNum;
 
   public boolean coAllow;
@@ -30,8 +29,6 @@ public class AimSub extends SubsystemBase {
 
   /** Creates a new AimSub. */
   public AimSub() {
-    aimEncoder = new Encoder(0, 1);
-    aimEncoder.reset();
     aimMotor = new TalonSRX(Constants.AIM_MOTOR);
     aimMotor.configFactoryDefault();
     

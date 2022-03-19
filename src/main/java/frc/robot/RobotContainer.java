@@ -53,7 +53,7 @@ public class RobotContainer {
 
   // Autonomous.
   private final SequentialCommandGroup m_sequential = new SequentialCommandGroup(
-    new AutoTurnTo(m_driveTrainSub, 180.0)
+    new AutoDriveTo(m_driveTrainSub, 48.0)
   );
 
   //society
@@ -75,18 +75,20 @@ public class RobotContainer {
     // Set buttons.
     final JoystickButton intakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
     final JoystickButton feederButton = new JoystickButton(driveController, Constants.XBOX_A_BUTTON);
-    final JoystickButton revWinchButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
-    final JoystickButton raiseArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_11);
+    final JoystickButton revWinchButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_11);
+    final JoystickButton raiseArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
     final JoystickButton pullArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_12);
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
 
-    final JoystickButton limeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_10);
+    final JoystickButton limeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_5);
     
     final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_8);
     final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_7);
     final JoystickButton aimCenButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_6);
     /*
     */
+
+    // Is goofy a dog?
     aimClButton.whileHeld(m_aimClWiCommand);
     aimCoButton.whileHeld(m_aimCoWiCommand);
     aimCenButton.whileHeld(m_aimCenCommand);
@@ -97,7 +99,7 @@ public class RobotContainer {
 
     limeButton.toggleWhenPressed(m_limeCommand);
 
-    raiseArmButton.whileHeld(m_raiseLiftArmCommand);
+    raiseArmButton.toggleWhenPressed(m_raiseLiftArmCommand);
     pullArmButton.whileHeld(m_liftRobotCommand);
     revWinchButton.whileHeld(m_revWinchCommand);
   }

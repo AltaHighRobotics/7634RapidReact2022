@@ -37,13 +37,14 @@ public final class Constants {
     //Encoders.
     public static final int ARDUINO_SERIAL_SPEED = 9600;
     public static final int R_DRIVE_ENCODER_A = 0; // Encoders use 2 ports.
-    public static final int R_DRIVE_ENCODER_B = 0;
-    public static final int L_DRIVE_ENCODER_A = 0;
-    public static final int L_DRIVE_ENCODER_B = 0;
+    public static final int R_DRIVE_ENCODER_B = 1;
+    public static final int L_DRIVE_ENCODER_A = 2;
+    public static final int L_DRIVE_ENCODER_B = 3;
     public static final int ARDUINO_MSG_LEN = 15;
 
-    // Wheel and gears.
-    public static final double DRIVE_ENCODER_DIS_PER_PULSE = 0;
+    // Wheels, gears, and encoders.
+    public static final double DRIVE_ENCODER_PULSES_PER_ROTION = 2048.0;
+    public static final double DRIVE_ENCODER_DIS_PER_PULSE = 0.009203884727313847;
 
     // Speed.
     public static final double DRIVE_SPEED = 0.6;
@@ -60,6 +61,7 @@ public final class Constants {
     public static final double AIM_ELLA_SPEED = 0.05;
     public static final double AIM_STOP = 0;
     public static final double AUTO_TURN_SPEED = 0.15;
+    public static final double AUTO_DRIVE_SPEED = 0.25;
 
     public static final double MULTIPLIER = 0;
 
@@ -73,10 +75,11 @@ public final class Constants {
     public static final double CLOCK_WISE = 1;
     public static final double COUNTER_CLOCK_WISE = -1;
     public static final double TURN_MIN = 1.0;
+    public static final double DRIVE_MIN = 1.0;
 
 
     // Navx.
-    public static final byte NAVX_UPDATE_RATE = (byte)200; // 4 to 200.
+    public static final byte NAVX_UPDATE_RATE = (byte)100; // 4 to 200.
 
     // Turning.
     public static final double TURN_RAD = 0.4;
@@ -103,6 +106,7 @@ public final class Constants {
     public static final int XBOX_X_BUTTON = 3;
     public static final int XBOX_Y_BUTTON = 4;
 
+    public static final int FLIGHT_BUTTON_5 = 5;
     public static final int FLIGHT_BUTTON_6 = 6;
     public static final int FLIGHT_BUTTON_7 = 7;
     public static final int FLIGHT_BUTTON_8 = 8;

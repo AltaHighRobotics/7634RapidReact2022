@@ -23,6 +23,7 @@ import frc.robot.Robot;
 //Creates Solenoid, Winch Motor, and Xbox POV for the DPad variables.
 public class ClimbSub extends SubsystemBase {
   private Solenoid liftPiston;
+
   private VictorSPX winchMotor;
   
   /** Creates a new ClimbSub. */
