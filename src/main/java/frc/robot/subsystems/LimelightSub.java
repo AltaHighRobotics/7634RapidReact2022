@@ -18,9 +18,10 @@ import frc.robot.Constants;
 public class LimelightSub extends SubsystemBase {
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
-  public static boolean toRight = false;
+  public static boolean toRight;
   public static boolean targetSeen;
   public static boolean goingCL;
+  public static boolean auSlow;
 
   /** Creates a new LimelightSub. */
   public LimelightSub() {
@@ -46,18 +47,24 @@ public class LimelightSub extends SubsystemBase {
 
     System.out.println(tarX);
     SmartDashboard.putBoolean("TAR SEE", targetSeen);
+
     if(tarX > 5){
       //Turn to the right
       toRight = false;
       SmartDashboard.putBoolean("ToRight", false);
-
     } else if (tarX < -5) {
       // Turn to the left
       toRight = true;
       SmartDashboard.putBoolean("ToRight", true);
     }
 
-    if(tarX == 0 && tarY == 0 || (tarX < 3 && tarX > -3)){ //3 is nice
+    if(tarX > 10 || tarX < -10){
+      auSlow = false;
+    } else {
+      auSlow = true;
+    }
+
+    if(tarX == 0 && tarY == 0 || (tarX < 1 && tarX > -1)){ //3 is nice
       targetSeen = false;
     } else {
       targetSeen = true;

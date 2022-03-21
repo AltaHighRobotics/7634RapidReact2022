@@ -36,19 +36,34 @@ public class LimelightCommand extends CommandBase {
     SmartDashboard.putBoolean("Aimbot", true);
     m_limelightSub.runLimeNum();
     
-    if(!LimelightSub.toRight && LimelightSub.targetSeen){
-      m_aimSub.rotateAimCL(1);
-    } else if (LimelightSub.toRight && LimelightSub.targetSeen) {
-      m_aimSub.rotateAimCO(1);
+    if(!LimelightSub.toRight && LimelightSub.targetSeen){//clockwise aim to
+      if(LimelightSub.auSlow){
+        m_aimSub.rotateAimCL(3);
+        SmartDashboard.putBoolean("AUTO SLOW", true);
+      } else {
+        m_aimSub.rotateAimCL(1);
+        SmartDashboard.putBoolean("AUTO SLOW", false);
+      }
+
+    } else if (LimelightSub.toRight && LimelightSub.targetSeen) {//count clockwise aim to
+      if(LimelightSub.auSlow){
+        m_aimSub.rotateAimCO(3);
+        SmartDashboard.putBoolean("AUTO SLOW", true);
+      } else {
+        SmartDashboard.putBoolean("AUTO SLOW", false);
+        m_aimSub.rotateAimCO(1);
+      }
+      
+
     } else if(!LimelightSub.targetSeen){
       //Do left right turning to try to find
       if(LimelightSub.goingCL){
-        m_aimSub.rotateAimCL(2);
+        //m_aimSub.rotateAimCL(2);
       } else {
-        m_aimSub.rotateAimCO(2);
+        //m_aimSub.rotateAimCO(2);
       }
     } else {
-      m_aimSub.stopAim();
+      //m_aimSub.stopAim();
     }
 
     if(!LimelightSub.targetSeen){

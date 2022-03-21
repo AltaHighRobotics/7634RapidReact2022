@@ -47,7 +47,7 @@ public final class Constants {
     public static final double DRIVE_ENCODER_DIS_PER_PULSE = 0.009203884727313847;
 
     // Speed.
-    public static final double DRIVE_SPEED = 0.6;
+    public static final double DRIVE_SPEED = 1.0; //0.6
     public static final double INTAKE_SPEED = 0.5;
     public static final double FEEDER_SPEED = 1.0;
     public static final double WINCH_SPEED = 1.0;//Just a place holder and test later.

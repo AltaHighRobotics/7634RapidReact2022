@@ -36,7 +36,7 @@ public class AutoTurnTo extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_driveTrain.resetNavx();
+    //m_driveTrain.resetNavx();
 
     if (m_turnTo >= 180.0) {
       turnDirection = Constants.COUNTER_CLOCK_WISE;
