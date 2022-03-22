@@ -33,11 +33,19 @@ public class AutoDriveTo extends CommandBase {
   private double turnPower;
   private double totalDis;
 
+  private double direction;
+
   // Why do hot dogs come in differnt size packs than hot dog buns?
 
   public AutoDriveTo(DriveTrainSub driveTrainSub, double driveTo) {
     m_driveTrainSub = driveTrainSub;
     m_driveTo = driveTo;
+
+    if (m_driveTo < 0) {
+      direction = Constants.BACKWARD;
+    } else {
+      direction = Constants.FORWARD;
+    }
 
     addRequirements(m_driveTrainSub);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -62,12 +70,11 @@ public class AutoDriveTo extends CommandBase {
     rightDis = m_driveTrainSub.getRightEncoderDis();
     leftDis = m_driveTrainSub.getLeftEncoderDis();
 
-    turnPower = -yaw / Constants.AUTO_DRIVE_SPEED;
-
+    turnPower = -yaw * Constants.AUTO_TURN_CORRECT * direction;
     totalDis += ((rightDis - oldRightDis) + (leftDis - oldLeftDis)) / 2.0;
 
-    rightSpeed = -(Constants.AUTO_DRIVE_SPEED + turnPower);
-    leftSpeed = -(Constants.AUTO_DRIVE_SPEED - turnPower);
+    rightSpeed = -(Constants.AUTO_DRIVE_SPEED - turnPower) * direction;
+    leftSpeed = -(Constants.AUTO_DRIVE_SPEED + turnPower) * direction;
 
     m_driveTrainSub.setRightMotors(rightSpeed);
     m_driveTrainSub.setLeftMotors(leftSpeed);
@@ -79,6 +86,7 @@ public class AutoDriveTo extends CommandBase {
     SmartDashboard.putNumber("Left dis", leftDis);
     SmartDashboard.putNumber("Dis", totalDis);
     SmartDashboard.putNumber("yaw", yaw);
+    SmartDashboard.putNumber("TurnPower", turnPower);
   }
 
   // Called once the command ends or is interrupted.

@@ -39,17 +39,24 @@ public class AutoTurnTo extends CommandBase {
     //m_driveTrain.resetNavx();
 
     if (m_turnTo >= 180.0) {
-      turnDirection = Constants.COUNTER_CLOCK_WISE;
-    } else {
       turnDirection = Constants.CLOCK_WISE;
+    } else {
+      turnDirection = Constants.COUNTER_CLOCK_WISE;
     }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * turnDirection);
-    m_driveTrain.setLeftMotors(Constants.AUTO_TURN_SPEED * turnDirection);
+    turnError = MathTools.angleDis(m_driveTrain.navX.getYaw(), m_turnTo);
+
+    if (turnError <= Constants.AUTO_TURN_SLOWDOWN_DIS) {
+      m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * turnDirection * 0.5);
+      m_driveTrain.setLeftMotors(Constants.AUTO_TURN_SPEED * turnDirection * 0.5);
+    } else {
+      m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * turnDirection);
+      m_driveTrain.setLeftMotors(Constants.AUTO_TURN_SPEED * turnDirection);
+    }
   }
 
   // Called once the command ends or is interrupted.

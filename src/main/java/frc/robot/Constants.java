@@ -60,7 +60,7 @@ public final class Constants {
     public static final double AIM_SNAIL_SPEED = 0.11;
     public static final double AIM_ELLA_SPEED = 0.05;
     public static final double AIM_STOP = 0;
-    public static final double AUTO_TURN_SPEED = 0.15;
+    public static final double AUTO_TURN_SPEED = 0.20;
     public static final double AUTO_DRIVE_SPEED = 0.25;
 
     public static final double MULTIPLIER = 0;
@@ -74,8 +74,11 @@ public final class Constants {
     // Autonmous.
     public static final double CLOCK_WISE = 1;
     public static final double COUNTER_CLOCK_WISE = -1;
-    public static final double TURN_MIN = 1.0;
+    public static final double FORWARD = 1.0;
+    public static final double BACKWARD = -1.0;
+    public static final double TURN_MIN = 5.0;
     public static final double DRIVE_MIN = 1.0;
+    public static final double AUTO_TURN_SLOWDOWN_DIS = 20.0;
 
 
     // Navx.
@@ -85,6 +88,7 @@ public final class Constants {
     public static final double TURN_RAD = 0.4;
     public static final double LOW_TURN_THRESHHOLD = 0.3;
     public static final double LOW_TURN_MULTIPLIER = 2.0; // Don't make this value 0!
+    public static final double AUTO_TURN_CORRECT = 0.02;
 
     //Limelight Dist
     public static final double LIME_DEGREES = 20.0;
