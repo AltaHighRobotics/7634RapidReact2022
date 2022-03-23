@@ -112,6 +112,14 @@ public class AimSub extends SubsystemBase {
       }
   }
 
+  public void roAimCL(double mult){
+    aimMotor.set(ControlMode.PercentOutput, -Constants.AIM_SPEED * mult);
+  }
+
+  public void roAimCO(double mult){
+    aimMotor.set(ControlMode.PercentOutput, Constants.AIM_SPEED * mult);
+  }
+
   public void stopAim(){
     //Stops the aimer motor
     aimMotor.set(ControlMode.PercentOutput, Constants.AIM_STOP);

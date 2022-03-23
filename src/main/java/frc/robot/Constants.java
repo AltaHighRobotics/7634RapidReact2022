@@ -48,12 +48,12 @@ public final class Constants {
 
     // Speed.
     public static final double DRIVE_SPEED = 1.0; //0.6
-    public static final double INTAKE_SPEED = 0.5;
+    public static final double INTAKE_SPEED = 0.4;
     public static final double FEEDER_SPEED = 1.0;
     public static final double WINCH_SPEED = 1.0;//Just a place holder and test later.
 
     public static final double STOP_SHOOTER = 0;
-    public static final double START_SHOOTER = 1.0;
+    public static final double START_SHOOTER = 0.25;
 
     public static final double AIM_SPEED = 0.2;
     public static final double AIM_SLOW_SPEED = 0.14;

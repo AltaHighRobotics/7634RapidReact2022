@@ -15,6 +15,8 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.Constants;
 
+import java.lang.Math;
+
 public class LimelightSub extends SubsystemBase {
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
@@ -22,6 +24,7 @@ public class LimelightSub extends SubsystemBase {
   public static boolean targetSeen;
   public static boolean goingCL;
   public static boolean auSlow;
+  public static double absX;
 
   /** Creates a new LimelightSub. */
   public LimelightSub() {
@@ -38,8 +41,10 @@ public class LimelightSub extends SubsystemBase {
     double tarX = tx.getDouble(0.0);
     double tarY = ty.getDouble(0.0);
     double area = ta.getDouble(0.0);
-    
 
+    //gets abs value
+    absX = Math.abs(tarX);
+    
     //post to smart dashboard periodically
     SmartDashboard.putNumber("LimelightX", tarX);
     SmartDashboard.putNumber("LimelightY", tarY);
@@ -48,20 +53,14 @@ public class LimelightSub extends SubsystemBase {
     System.out.println(tarX);
     SmartDashboard.putBoolean("TAR SEE", targetSeen);
 
-    if(tarX > 5){
+    if(tarX > 0){
       //Turn to the right
       toRight = false;
       SmartDashboard.putBoolean("ToRight", false);
-    } else if (tarX < -5) {
+    } else if (tarX < 0) {
       // Turn to the left
       toRight = true;
       SmartDashboard.putBoolean("ToRight", true);
-    }
-
-    if(tarX > 10 || tarX < -10){
-      auSlow = false;
-    } else {
-      auSlow = true;
     }
 
     if(tarX == 0 && tarY == 0 || (tarX < 1 && tarX > -1)){ //3 is nice
