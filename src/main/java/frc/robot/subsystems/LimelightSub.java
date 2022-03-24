@@ -53,11 +53,11 @@ public class LimelightSub extends SubsystemBase {
     System.out.println(tarX);
     SmartDashboard.putBoolean("TAR SEE", targetSeen);
 
-    if(tarX > 0){
+    if(tarX > 2){
       //Turn to the right
       toRight = false;
       SmartDashboard.putBoolean("ToRight", false);
-    } else if (tarX < 0) {
+    } else if (tarX < 2) {
       // Turn to the left
       toRight = true;
       SmartDashboard.putBoolean("ToRight", true);

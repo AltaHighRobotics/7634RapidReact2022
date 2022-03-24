@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimelightSub;
 import frc.robot.subsystems.AimSub;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 
 public class LimelightCommand extends CommandBase {
   private final LimelightSub m_limelightSub;
@@ -37,17 +38,17 @@ public class LimelightCommand extends CommandBase {
     m_limelightSub.runLimeNum();
     
     if(!LimelightSub.toRight && LimelightSub.targetSeen){//clockwise aim to
-      if(LimelightSub.absX < 2){
-        m_aimSub.roAimCL(LimelightSub.absX);
-      } else {
-        m_aimSub.rotateAimCL(3);
+      if(LimelightSub.absX < Constants.AIM_THRESH && m_aimSub.clAllow){
+        m_aimSub.roAimCL(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH);
+      } else if (m_aimSub.clAllow) {
+        m_aimSub.roAimCL(Constants.AIM_SPEED);
       }
 
-    } else if (LimelightSub.toRight && LimelightSub.targetSeen) {//count clockwise aim to
-      if(LimelightSub.absX < 2){
-        m_aimSub.roAimCO(LimelightSub.absX);
-      } else {
-        m_aimSub.rotateAimCO(3);
+    } else if (LimelightSub.toRight && LimelightSub.targetSeen && m_aimSub.coAllow) {//count clockwise aim to
+      if(LimelightSub.absX < Constants.AIM_THRESH){
+        m_aimSub.roAimCO(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH);
+      } else if (m_aimSub.coAllow){
+        m_aimSub.roAimCO(Constants.AIM_SPEED);
       }
 
     } else if(!LimelightSub.targetSeen){

@@ -32,7 +32,7 @@ public class AimClWiCommand extends CommandBase {
   public void execute() {
     //Does clockwise aim
     if(m_aimSub.clAllow){
-      m_aimSub.rotateAimCL(0);
+      m_aimSub.rotateAimCL(1);
     } else {
       m_aimSub.stopAim();
     }

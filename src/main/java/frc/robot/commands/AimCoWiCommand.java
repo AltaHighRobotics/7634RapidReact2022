@@ -32,7 +32,7 @@ public class AimCoWiCommand extends CommandBase {
   public void execute() {
     //Does counter clockwise turn
     if(m_aimSub.coAllow){
-      m_aimSub.rotateAimCO(0);
+      m_aimSub.rotateAimCO(1);
     } else {
       m_aimSub.stopAim();
     }
