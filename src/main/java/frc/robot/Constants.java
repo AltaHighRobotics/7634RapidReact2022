@@ -48,12 +48,13 @@ public final class Constants {
 
     // Speed.
     public static final double DRIVE_SPEED = 1.0; //0.6
-    public static final double INTAKE_SPEED = 0.4;
+    public static final double INTAKE_SPEED = 1.0;
     public static final double FEEDER_SPEED = 1.0;
     public static final double WINCH_SPEED = 1.0;//Just a place holder and test later.
 
     public static final double STOP_SHOOTER = 0;
     public static final double START_SHOOTER = 0.25;
+    public static final double MIN_SPEED_STICK = 0.3;
 
     public static final double AIM_SPEED = 0.2;
     public static final double AIM_SLOW_SPEED = 0.14;
@@ -76,16 +77,16 @@ public final class Constants {
     public static final double COUNTER_CLOCK_WISE = -1;
     public static final double FORWARD = 1.0;
     public static final double BACKWARD = -1.0;
-    public static final double TURN_MIN = 5.0;
+    public static final double TURN_MIN = 1.0;
     public static final double DRIVE_MIN = 1.0;
-    public static final double AUTO_TURN_SLOWDOWN_DIS = 20.0;
-
+    public static final double AUTO_TURN_SLOWDOWN_DIS = 45.0;
+    public static final double AUTO_DRIVE_SLOW_AT = 20.0;
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)100; // 4 to 200.
 
     // Turning.
-    public static final double TURN_RAD = 0.4;
+    public static final double TURN_RAD = 0.6;
     public static final double LOW_TURN_THRESHHOLD = 0.3;
     public static final double LOW_TURN_MULTIPLIER = 2.0; // Don't make this value 0!
     public static final double AUTO_TURN_CORRECT = 0.02;

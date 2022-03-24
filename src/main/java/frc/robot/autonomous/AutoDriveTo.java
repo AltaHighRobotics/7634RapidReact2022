@@ -32,6 +32,7 @@ public class AutoDriveTo extends CommandBase {
   private double yaw;
   private double turnPower;
   private double totalDis;
+  private double disToEnd;
 
   private double direction;
 
@@ -76,6 +77,14 @@ public class AutoDriveTo extends CommandBase {
     rightSpeed = -(Constants.AUTO_DRIVE_SPEED - turnPower) * direction;
     leftSpeed = -(Constants.AUTO_DRIVE_SPEED + turnPower) * direction;
 
+    disToEnd = Math.abs(totalDis - m_driveTo);
+
+    // Slow near end.
+    if (disToEnd <= Constants.AUTO_DRIVE_SLOW_AT) {
+      rightSpeed *= disToEnd / Constants.AUTO_DRIVE_SLOW_AT;
+      leftSpeed *= disToEnd / Constants.AUTO_DRIVE_SLOW_AT;
+    }
+
     m_driveTrainSub.setRightMotors(rightSpeed);
     m_driveTrainSub.setLeftMotors(leftSpeed);
 
@@ -98,7 +107,9 @@ public class AutoDriveTo extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(totalDis - m_driveTo) <= Constants.DRIVE_MIN) {
+    disToEnd = Math.abs(totalDis - m_driveTo);
+
+    if (disToEnd <= Constants.DRIVE_MIN) {
       return true;
     }
 

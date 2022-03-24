@@ -85,8 +85,8 @@ public class DriveCommand extends CommandBase {
       finalSpeed = leftStickY;
     }
 
-    rightSpeed = (finalSpeed + ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
-    leftSpeed = (finalSpeed - ((leftStickX + stickZ) * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
+    rightSpeed = (finalSpeed + (stickZ * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
+    leftSpeed = (finalSpeed - (stickZ * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
 
     SmartDashboard.putNumber("Yaw", m_driveTrainSub.navX.getYaw());
     SmartDashboard.putNumber("Right dis", m_driveTrainSub.getRightEncoderDis());
@@ -100,7 +100,9 @@ public class DriveCommand extends CommandBase {
   }
 
   private double speedMultiplier(double stick) {
-    return (stick - 1.0) / -2.0 + 0.5;
+    double reValue = (((1.0 - stick) / 2.0) * (1.0 - Constants.MIN_SPEED_STICK)) + Constants.MIN_SPEED_STICK;
+    SmartDashboard.putNumber("Speed stick", reValue);
+    return reValue;
   }
 
   // Called once the command ends or is interrupted.

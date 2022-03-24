@@ -11,6 +11,7 @@
 
 package frc.robot.autonomous;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrainSub;
 import frc.robot.util.MathTools;
@@ -24,6 +25,8 @@ public class AutoTurnTo extends CommandBase {
  
   // The different between turnTo and current angle.
   private double turnError;
+  
+  private double yaw;
 
   public AutoTurnTo(DriveTrainSub driveTrain, double turnTo) {
     m_driveTrain = driveTrain;
@@ -36,27 +39,41 @@ public class AutoTurnTo extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //m_driveTrain.resetNavx();
+    m_driveTrain.resetNavx();
 
+    /*
+    // Find fastest direction to turn.
     if (m_turnTo >= 180.0) {
       turnDirection = Constants.CLOCK_WISE;
     } else {
       turnDirection = Constants.COUNTER_CLOCK_WISE;
     }
+    */
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    turnError = MathTools.angleDis(m_driveTrain.navX.getYaw(), m_turnTo);
+    yaw = m_driveTrain.navX.getYaw();
+    turnError = MathTools.angleDis(yaw, m_turnTo);
+    SmartDashboard.putNumber("Turn error", turnError);
+
+    // Switch direction.
+    if (Math.abs(m_turnTo - MathTools.makeNonNegAngle(yaw)) >= 180.0) {
+      turnDirection = Constants.CLOCK_WISE;
+    } else {
+      turnDirection = Constants.COUNTER_CLOCK_WISE;
+    }
 
     if (turnError <= Constants.AUTO_TURN_SLOWDOWN_DIS) {
-      m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * turnDirection * 0.5);
-      m_driveTrain.setLeftMotors(Constants.AUTO_TURN_SPEED * turnDirection * 0.5);
+      m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * turnDirection * (turnError / Constants.AUTO_TURN_SLOWDOWN_DIS));
+      m_driveTrain.setLeftMotors(Constants.AUTO_TURN_SPEED * turnDirection * (turnError / Constants.AUTO_TURN_SLOWDOWN_DIS));
     } else {
       m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * turnDirection);
       m_driveTrain.setLeftMotors(Constants.AUTO_TURN_SPEED * turnDirection);
     }
+
+    SmartDashboard.putNumber("yaw", yaw);
   }
 
   // Called once the command ends or is interrupted.

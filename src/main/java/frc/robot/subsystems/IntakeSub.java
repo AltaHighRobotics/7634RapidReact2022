@@ -22,7 +22,7 @@ public class IntakeSub extends SubsystemBase {
   public IntakeSub() {
     intakeMotor = new VictorSPX(Constants.INTAKE_MOTOR);
     intakeMotor.configFactoryDefault();
-    intakeMotor.setInverted(true);
+    intakeMotor.setInverted(false);
   }
 
   public void startMotor() {

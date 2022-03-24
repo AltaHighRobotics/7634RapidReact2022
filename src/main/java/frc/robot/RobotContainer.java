@@ -53,7 +53,7 @@ public class RobotContainer {
 
   // Autonomous.
   private final SequentialCommandGroup m_sequential = new SequentialCommandGroup(
-    new AutoDriveTo(m_driveTrainSub, 75)
+    new AutoTurnTo(m_driveTrainSub, 150)
   );
 
   //society
