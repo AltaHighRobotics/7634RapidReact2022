@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.*;
 import frc.robot.autonomous.*;
 import frc.robot.subsystems.*;
@@ -52,14 +53,21 @@ public class RobotContainer {
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
   // Autonomous.
-  private final SequentialCommandGroup m_sequential = new SequentialCommandGroup(
-    new AutoTurnTo(m_driveTrainSub, 150)
-  );
+  private final AutoTurnTo m_testTurn = new AutoTurnTo(m_driveTrainSub, 270);
+  private final AutoDriveTo m_testDrive = new AutoDriveTo(m_driveTrainSub, 100);
+
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   //society
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    // Configure autonomous stuff.
+    m_chooser.setDefaultOption("Test turn", m_testTurn);
+    m_chooser.addOption("Test drive", m_testDrive);
+
+    SmartDashboard.putData(m_chooser);
+
     // Configure the button bindings
     configureButtonBindings();
     CommandScheduler.getInstance().setDefaultCommand(m_driveTrainSub, m_driveCommand);
@@ -110,7 +118,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_sequential;
+    return m_chooser.getSelected();
   }
 }

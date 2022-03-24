@@ -41,14 +41,12 @@ public class AutoTurnTo extends CommandBase {
   public void initialize() {
     m_driveTrain.resetNavx();
 
-    /*
     // Find fastest direction to turn.
     if (m_turnTo >= 180.0) {
       turnDirection = Constants.CLOCK_WISE;
     } else {
       turnDirection = Constants.COUNTER_CLOCK_WISE;
     }
-    */
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -59,11 +57,13 @@ public class AutoTurnTo extends CommandBase {
     SmartDashboard.putNumber("Turn error", turnError);
 
     // Switch direction.
+    /*
     if (Math.abs(m_turnTo - MathTools.makeNonNegAngle(yaw)) >= 180.0) {
       turnDirection = Constants.CLOCK_WISE;
     } else {
       turnDirection = Constants.COUNTER_CLOCK_WISE;
     }
+    */
 
     if (turnError <= Constants.AUTO_TURN_SLOWDOWN_DIS) {
       m_driveTrain.setRightMotors(-Constants.AUTO_TURN_SPEED * turnDirection * (turnError / Constants.AUTO_TURN_SLOWDOWN_DIS));

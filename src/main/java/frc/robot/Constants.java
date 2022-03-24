@@ -82,7 +82,7 @@ public final class Constants {
     public static final double BACKWARD = -1.0;
     public static final double TURN_MIN = 1.0;
     public static final double DRIVE_MIN = 1.0;
-    public static final double AUTO_TURN_SLOWDOWN_DIS = 45.0;
+    public static final double AUTO_TURN_SLOWDOWN_DIS = 15.0;
     public static final double AUTO_DRIVE_SLOW_AT = 20.0;
 
     // Navx.
