@@ -53,6 +53,12 @@ public class RobotContainer {
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
   // Autonomous.
+  private final SequentialCommandGroup m_testAuto = new SequentialCommandGroup(
+    new AutoIntake(m_intakeSub, true),
+    new AutoTurnTo(m_driveTrainSub, 90),
+    new AutoIntake(m_intakeSub, false)
+  );
+
   private final AutoTurnTo m_testTurn = new AutoTurnTo(m_driveTrainSub, 270);
   private final AutoDriveTo m_testDrive = new AutoDriveTo(m_driveTrainSub, 100);
 
@@ -63,7 +69,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure autonomous stuff.
-    m_chooser.setDefaultOption("Test turn", m_testTurn);
+    m_chooser.setDefaultOption("Test auto", m_testAuto);
+    m_chooser.addOption("Test turn", m_testTurn);
     m_chooser.addOption("Test drive", m_testDrive);
 
     SmartDashboard.putData(m_chooser);
