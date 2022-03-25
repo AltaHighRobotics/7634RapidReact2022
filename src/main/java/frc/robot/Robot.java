@@ -12,6 +12,7 @@ import frc.robot.subsystems.LimelightSub;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.cameraserver.CameraServer;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,6 +25,9 @@ public class Robot extends TimedRobot {
   public static double xboxPOV;
   private Command m_autonomousCommand;
   private LimelightSub lim = new LimelightSub();
+  private FeederSub feed = new FeederSub();
+  private IntakeSub intake = new IntakeSub();
+  private ShooterSub shooter = new ShooterSub();
 
   private RobotContainer m_robotContainer;
 
@@ -105,10 +109,17 @@ public class Robot extends TimedRobot {
 
       case 180: //Dpad down
         SmartDashboard.putString("POV", "Down");
+        feed.revMotor();
+        intake.revMotor();
+        shooter.revShooterMotor();
+
       break;
 
       case -1: //Dpad neutral
-      SmartDashboard.putString("POV", "NEUTRAL");
+        SmartDashboard.putString("POV", "NEUTRAL");
+        feed.stopMotor();
+        intake.stopMotor();
+        //shooter.stopShooterMotor();
       break;
     }
   }

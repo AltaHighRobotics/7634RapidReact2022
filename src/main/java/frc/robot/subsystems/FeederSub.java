@@ -28,6 +28,10 @@ public class FeederSub extends SubsystemBase {
     feederMotor.set(ControlMode.PercentOutput, Constants.FEEDER_SPEED * Constants.FEEDER_INVERT);
   }
 
+  public void revMotor() {
+    feederMotor.set(ControlMode.PercentOutput, -Constants.FEEDER_REV_SPEED * Constants.FEEDER_INVERT);
+  }
+
   public void stopMotor() {
     feederMotor.set(ControlMode.PercentOutput, 0.0);
   }

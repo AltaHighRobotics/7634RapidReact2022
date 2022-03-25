@@ -29,7 +29,7 @@ public final class Constants {
     public static final int WINCH_MOTOR = 8;
 
     // Sadness ):
-    public static final double FEEDER_INVERT = -1; // 1 or -1
+    public static final double FEEDER_INVERT = 1; // 1 or -1
 
     // Piston.
     public static final int LIFT_PISTON = 15;//15;
@@ -49,11 +49,13 @@ public final class Constants {
     // Speed.
     public static final double DRIVE_SPEED = 1.0; //0.6
     public static final double INTAKE_SPEED = 1.0;
+    public static final double INTAKE_REV_SPEED = 0.5;
     public static final double FEEDER_SPEED = 1.0;
+    public static final double FEEDER_REV_SPEED = 0.5;
     public static final double WINCH_SPEED = 1.0;//Just a place holder and test later.
 
     public static final double STOP_SHOOTER = 0;
-    public static final double START_SHOOTER = 0.25;
+    public static final double START_SHOOTER = 1.0;
     public static final double MIN_SPEED_STICK = 0.3;
 
     public static final double AIM_SPEED = 0.275; //.4
@@ -62,6 +64,7 @@ public final class Constants {
     public static final double AIM_ELLA_SPEED = 0.05;
     public static final double AUT_AIM_SPEED = 2;
     public static final double AIM_STOP = 0;
+    
     public static final double AUTO_TURN_SPEED = 0.20;
     public static final double AUTO_DRIVE_SPEED = 0.25;
 
@@ -89,7 +92,7 @@ public final class Constants {
     public static final byte NAVX_UPDATE_RATE = (byte)100; // 4 to 200.
 
     // Turning.
-    public static final double TURN_RAD = 0.6;
+    public static final double TURN_RAD = 0.5;
     public static final double LOW_TURN_THRESHHOLD = 0.3;
     public static final double LOW_TURN_MULTIPLIER = 2.0; // Don't make this value 0!
     public static final double AUTO_TURN_CORRECT = 0.02;

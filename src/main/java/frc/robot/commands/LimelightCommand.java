@@ -54,12 +54,12 @@ public class LimelightCommand extends CommandBase {
     } else if(!LimelightSub.targetSeen){
       //Do left right turning to try to find
       if(LimelightSub.goingCL){
-        //m_aimSub.rotateAimCL(2);
+        m_aimSub.rotateAimCL(2);
       } else {
-        //m_aimSub.rotateAimCO(2);
+        m_aimSub.rotateAimCO(2);
       }
     } else {
-      //m_aimSub.stopAim();
+      m_aimSub.stopAim();
     }
 
     if(!LimelightSub.targetSeen){

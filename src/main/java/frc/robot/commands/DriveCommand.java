@@ -85,8 +85,8 @@ public class DriveCommand extends CommandBase {
       finalSpeed = leftStickY;
     }
 
-    rightSpeed = (finalSpeed + (stickZ * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
-    leftSpeed = (finalSpeed - (stickZ * Constants.TURN_RAD * lowTurnMultiplier)) * multiplier;
+    rightSpeed = (finalSpeed * multiplier + (stickZ * Constants.TURN_RAD * lowTurnMultiplier));
+    leftSpeed = (finalSpeed * multiplier - (stickZ * Constants.TURN_RAD * lowTurnMultiplier));
 
     SmartDashboard.putNumber("Yaw", m_driveTrainSub.navX.getYaw());
     SmartDashboard.putNumber("Right dis", m_driveTrainSub.getRightEncoderDis());

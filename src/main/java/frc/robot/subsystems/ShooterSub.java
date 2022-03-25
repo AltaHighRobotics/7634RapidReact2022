@@ -37,4 +37,8 @@ public class ShooterSub extends SubsystemBase {
   public void startShooterMotor() {
     shooterMotor.set(ControlMode.PercentOutput ,Constants.START_SHOOTER);
   }
+
+  public void revShooterMotor() {
+    shooterMotor.set(ControlMode.PercentOutput ,-Constants.INTAKE_REV_SPEED);
+  }
 }
