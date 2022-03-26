@@ -66,6 +66,7 @@ public final class Constants {
     public static final double AIM_ELLA_SPEED = 0.05;
     public static final double AUT_AIM_SPEED = 2;
     public static final double AIM_STOP = 0;
+    public static final double MIN_AIM_SPEED = 0.03;
     
     public static final double AUTO_TURN_SPEED = 0.20;
     public static final double AUTO_DRIVE_SPEED = 0.25;
@@ -85,6 +86,7 @@ public final class Constants {
     public static final int MAX_AIM_CO = 12000;
 
     public static final double AIM_THRESH = 20; //25
+    public static final double AIM_PRECISION = 0.0;
 
     // Autonmous.
     public static final double CLOCK_WISE = 1;

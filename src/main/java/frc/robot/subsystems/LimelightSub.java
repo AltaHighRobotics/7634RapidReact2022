@@ -25,6 +25,9 @@ public class LimelightSub extends SubsystemBase {
   public static boolean goingCL;
   public static boolean auSlow;
   public static double absX;
+  
+  public static double tarX;
+  public static double tarY;
 
   /** Creates a new LimelightSub. */
   public LimelightSub() {
@@ -38,8 +41,8 @@ public class LimelightSub extends SubsystemBase {
     NetworkTableEntry ta = table.getEntry("ta");
 
     //read values periodically; tar = target
-    double tarX = tx.getDouble(0.0);
-    double tarY = ty.getDouble(0.0);
+    tarX = tx.getDouble(0.0);
+    tarY = ty.getDouble(0.0);
     double area = ta.getDouble(0.0);
 
     //gets abs value

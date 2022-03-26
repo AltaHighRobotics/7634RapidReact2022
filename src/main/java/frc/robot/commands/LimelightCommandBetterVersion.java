@@ -51,22 +51,20 @@ public class LimelightCommandBetterVersion extends CommandBase {
   private void targetSeen() {
     // Stay on target.
 
-    // To right.
-    if (LimelightSub.toRight && m_aimSub.clAllow) {
+    if (LimelightSub.tarX < -Constants.AIM_PRECISION && m_aimSub.coAllow) {
 
-      if (LimelightSub.absX < Constants.AIM_THRESH){
-        m_aimSub.roAimCL(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH);
+      if (LimelightSub.absX < Constants.AIM_THRESH) {
+        m_aimSub.roAimCO(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH + Constants.MIN_AIM_SPEED);
       } else {
-        m_aimSub.roAimCL(Constants.AIM_SPEED);
+        m_aimSub.roAimCO(Constants.AIM_SLOW_SPEED);
       }
 
-    // To left.
-    } else if (!LimelightSub.toRight && m_aimSub.coAllow) {
+    } else if (LimelightSub.tarX > Constants.AIM_PRECISION && m_aimSub.clAllow) {
 
-      if (LimelightSub.absX < Constants.AIM_THRESH){ 
-        m_aimSub.roAimCO(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH);
+      if (LimelightSub.absX < Constants.AIM_THRESH) { 
+        m_aimSub.roAimCL(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH + Constants.MIN_AIM_SPEED);
       } else {
-        m_aimSub.roAimCO(Constants.AIM_SPEED);
+        m_aimSub.roAimCL(Constants.AIM_SLOW_SPEED);
       }
 
     } else {
@@ -78,9 +76,9 @@ public class LimelightCommandBetterVersion extends CommandBase {
     // Search for target.
 
     if (LimelightSub.goingCL) {
-      m_aimSub.rotateAimCL(Constants.AIM_ROTATE_SNAIL_SPEED);
+      m_aimSub.roAimCL(Constants.AIM_SLOW_SPEED);
     } else {
-      m_aimSub.rotateAimCO(Constants.AIM_ROTATE_SNAIL_SPEED);
+      m_aimSub.roAimCO(Constants.AIM_SLOW_SPEED);
     }
   }
 

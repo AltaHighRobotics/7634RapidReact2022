@@ -35,7 +35,7 @@ public class RobotContainer {
   private final AimSub m_aimSub = new AimSub();
   private final ShooterSub m_shooterSub = new ShooterSub();
   private final LimelightSub m_limeSub = new LimelightSub();
-  private final IntakeExtensionSub m_intakeExtensionSub = new IntakeExtensionSub();
+  //private final IntakeExtensionSub m_intakeExtensionSub = new IntakeExtensionSub();
 
   // Commands.
   private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrainSub, driveController);
@@ -46,6 +46,7 @@ public class RobotContainer {
   private final RevWinchCommand m_revWinchCommand = new RevWinchCommand(m_climbSub);
 
   private final LimelightCommand m_limeCommand = new LimelightCommand(m_limeSub, m_aimSub);
+  private final LimelightCommandBetterVersion m_limeCommand2 = new LimelightCommandBetterVersion(m_limeSub, m_aimSub);
 
   private final AimClWiCommand m_aimClWiCommand = new AimClWiCommand(m_aimSub);
   private final AimCoWiCommand m_aimCoWiCommand = new AimCoWiCommand(m_aimSub);
@@ -53,7 +54,7 @@ public class RobotContainer {
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
-  private final ExtendIntakeCommand m_extendIntakeCommand = new ExtendIntakeCommand(m_intakeExtensionSub);
+  //private final ExtendIntakeCommand m_extendIntakeCommand = new ExtendIntakeCommand(m_intakeExtensionSub);
 
   // Autonomous.
   private final SequentialCommandGroup m_testAuto = new SequentialCommandGroup(
@@ -118,13 +119,13 @@ public class RobotContainer {
     feederButton.whileHeld(m_feederCommand);
     shootButton.toggleWhenPressed(m_shootCommand);
 
-    limeButton.toggleWhenPressed(m_limeCommand);
+    limeButton.toggleWhenPressed(m_limeCommand2);
 
     raiseArmButton.toggleWhenPressed(m_raiseLiftArmCommand);
     pullArmButton.whileHeld(m_liftRobotCommand);
     revWinchButton.whileHeld(m_revWinchCommand);
 
-    extendIntakeButton.toggleWhenPressed(m_extendIntakeCommand);
+    //extendIntakeButton.toggleWhenPressed(m_extendIntakeCommand);
   }
 
   /**
