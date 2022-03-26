@@ -53,7 +53,6 @@ public class LimelightSub extends SubsystemBase {
     SmartDashboard.putNumber("LimelightY", tarY);
     SmartDashboard.putNumber("LimelightArea", area);
 
-    System.out.println(tarX);
     SmartDashboard.putBoolean("TAR SEE", targetSeen);
 
     if(tarX > 0){
@@ -66,7 +65,7 @@ public class LimelightSub extends SubsystemBase {
       SmartDashboard.putBoolean("ToRight", true);
     }
 
-    if(tarX == 0 && tarY == 0 || (tarX < 1 && tarX > -1)){ //3 is nice
+    if(tarX == 0 && tarY == 0) { //3 is nice
       targetSeen = false;
     } else {
       targetSeen = true;
@@ -100,6 +99,6 @@ public class LimelightSub extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    
+    runLimeNum(); 
   }
 }

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimelightSub;
 import frc.robot.subsystems.AimSub;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.math.controller.PIDController;
 import frc.robot.Constants;
 
 import java.lang.Math;
@@ -21,6 +22,10 @@ public class LimelightCommandBetterVersion extends CommandBase {
   /** Creates a new LimelightCommandBetterVersion. */
   private final LimelightSub m_limelightSub;
   private final AimSub m_aimSub;
+  private PIDController pid;
+
+  private double pidValue;
+  private double pidError;
 
   public LimelightCommandBetterVersion(LimelightSub limelightSub, AimSub aimSub) {
     m_limelightSub = limelightSub;
@@ -32,7 +37,10 @@ public class LimelightCommandBetterVersion extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    pid = new PIDController(0.15, -2.0, 0.0);
+    pid.setSetpoint(0.0);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -51,12 +59,20 @@ public class LimelightCommandBetterVersion extends CommandBase {
   private void targetSeen() {
     // Stay on target.
 
+    pidValue = pid.calculate(LimelightSub.tarX);
+    pidError = pid.getPositionError();
+
+    SmartDashboard.putNumber("Pid value", pidValue / LimelightSub.absX);
+    SmartDashboard.putNumber("Pid error", pidError);
+
+    //m_aimSub.roAimCO(pidValue / LimelightSub.absX);
+
     if (LimelightSub.tarX < -Constants.AIM_PRECISION && m_aimSub.coAllow) {
 
       if (LimelightSub.absX < Constants.AIM_THRESH) {
         m_aimSub.roAimCO(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH + Constants.MIN_AIM_SPEED);
       } else {
-        m_aimSub.roAimCO(Constants.AIM_SLOW_SPEED);
+        m_aimSub.roAimCO(Constants.AIM_SPEED);
       }
 
     } else if (LimelightSub.tarX > Constants.AIM_PRECISION && m_aimSub.clAllow) {
@@ -64,7 +80,7 @@ public class LimelightCommandBetterVersion extends CommandBase {
       if (LimelightSub.absX < Constants.AIM_THRESH) { 
         m_aimSub.roAimCL(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH + Constants.MIN_AIM_SPEED);
       } else {
-        m_aimSub.roAimCL(Constants.AIM_SLOW_SPEED);
+        m_aimSub.roAimCL(Constants.AIM_SPEED);
       }
 
     } else {
@@ -76,9 +92,9 @@ public class LimelightCommandBetterVersion extends CommandBase {
     // Search for target.
 
     if (LimelightSub.goingCL) {
-      m_aimSub.roAimCL(Constants.AIM_SLOW_SPEED);
+      m_aimSub.roAimCL(Constants.AIM_SPEED);
     } else {
-      m_aimSub.roAimCO(Constants.AIM_SLOW_SPEED);
+      m_aimSub.roAimCO(Constants.AIM_SPEED);
     }
   }
 
