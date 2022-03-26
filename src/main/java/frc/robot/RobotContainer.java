@@ -35,6 +35,7 @@ public class RobotContainer {
   private final AimSub m_aimSub = new AimSub();
   private final ShooterSub m_shooterSub = new ShooterSub();
   private final LimelightSub m_limeSub = new LimelightSub();
+  private final IntakeExtensionSub m_intakeExtensionSub = new IntakeExtensionSub();
 
   // Commands.
   private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrainSub, driveController);
@@ -52,6 +53,8 @@ public class RobotContainer {
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
+  private final ExtendIntakeCommand m_extendIntakeCommand = new ExtendIntakeCommand(m_intakeExtensionSub);
+
   // Autonomous.
   private final SequentialCommandGroup m_testAuto = new SequentialCommandGroup(
     new AutoIntake(m_intakeSub, true),
@@ -65,6 +68,7 @@ public class RobotContainer {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   //society
+  //hmmmmmm.....
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -94,6 +98,7 @@ public class RobotContainer {
     final JoystickButton raiseArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
     final JoystickButton pullArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_12);
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
+    final JoystickButton extendIntakeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_10);
 
     final JoystickButton limeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_5);
     
@@ -104,6 +109,7 @@ public class RobotContainer {
     */
 
     // Is goofy a dog?
+    //We have already been through this, yes.
     aimClButton.whileHeld(m_aimClWiCommand);
     aimCoButton.whileHeld(m_aimCoWiCommand);
     aimCenButton.whileHeld(m_aimCenCommand);
@@ -117,6 +123,8 @@ public class RobotContainer {
     raiseArmButton.toggleWhenPressed(m_raiseLiftArmCommand);
     pullArmButton.whileHeld(m_liftRobotCommand);
     revWinchButton.whileHeld(m_revWinchCommand);
+
+    extendIntakeButton.toggleWhenPressed(m_extendIntakeCommand);
   }
 
   /**

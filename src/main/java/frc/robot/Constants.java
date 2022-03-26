@@ -33,6 +33,8 @@ public final class Constants {
 
     // Piston.
     public static final int LIFT_PISTON = 15;//15;
+    public static final int LIFT_PISTON_1 = 0;//Change later.
+    public static final int LIFT_PISTON_2 = 0;//Change later.
 
     //Encoders.
     public static final int ARDUINO_SERIAL_SPEED = 9600;
