@@ -1,8 +1,9 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+
 /*
-  @Vic
+  @Hacker
   @New Hawks
 */
 
@@ -14,17 +15,19 @@ import frc.robot.subsystems.AimSub;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
-public class LimelightCommand extends CommandBase {
+import java.lang.Math;
+
+public class LimelightCommandBetterVersion extends CommandBase {
+  /** Creates a new LimelightCommandBetterVersion. */
   private final LimelightSub m_limelightSub;
   private final AimSub m_aimSub;
 
-  /** Creates a new LimelightCommand. */
-  public LimelightCommand(LimelightSub subsystem, AimSub aimSub) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    m_limelightSub = subsystem;
+  public LimelightCommandBetterVersion(LimelightSub limelightSub, AimSub aimSub) {
+    m_limelightSub = limelightSub;
     m_aimSub = aimSub;
-    //subsystem dependencies
+
     addRequirements(m_limelightSub, m_aimSub);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -36,40 +39,48 @@ public class LimelightCommand extends CommandBase {
   public void execute() {
     SmartDashboard.putBoolean("Aimbot", true);
     m_limelightSub.runLimeNum();
-    
-    //That's a little sus.
-    if(!LimelightSub.toRight && LimelightSub.targetSeen){//clockwise aim to
-      if(LimelightSub.absX < Constants.AIM_THRESH && m_aimSub.clAllow){
+
+    // Vic, why did you make the varibles in limelightSub static!
+    if (LimelightSub.targetSeen) {
+      targetSeen();
+    } else {
+      targetNotSeen();
+    }
+  }
+
+  private void targetSeen() {
+    // Stay on target.
+
+    // To right.
+    if (LimelightSub.toRight && m_aimSub.clAllow) {
+
+      if (LimelightSub.absX < Constants.AIM_THRESH){
         m_aimSub.roAimCL(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH);
-      } else if (m_aimSub.clAllow) {
+      } else {
         m_aimSub.roAimCL(Constants.AIM_SPEED);
       }
 
-    } else if (LimelightSub.toRight && LimelightSub.targetSeen && m_aimSub.coAllow) {//count clockwise aim to
-      if(LimelightSub.absX < Constants.AIM_THRESH){
+    // To left.
+    } else if (!LimelightSub.toRight && m_aimSub.coAllow) {
+
+      if (LimelightSub.absX < Constants.AIM_THRESH){ 
         m_aimSub.roAimCO(LimelightSub.absX * Constants.AIM_SPEED / Constants.AIM_THRESH);
-      } else if (m_aimSub.coAllow){
+      } else {
         m_aimSub.roAimCO(Constants.AIM_SPEED);
       }
 
-    } else if(!LimelightSub.targetSeen){
-      //Do left right turning to try to find
-      if(LimelightSub.goingCL){
-        m_aimSub.rotateAimCL(2);
-      } else {
-        m_aimSub.rotateAimCO(2);
-      }
     } else {
       m_aimSub.stopAim();
     }
+  }
 
-    if(!LimelightSub.targetSeen){
-      //Do left right turning to try to find
-      if(LimelightSub.goingCL){
-        m_aimSub.rotateAimCL(2);
-      } else {
-        m_aimSub.rotateAimCO(2);
-      }
+  private void targetNotSeen() {
+    // Search for target.
+
+    if (LimelightSub.goingCL) {
+      m_aimSub.rotateAimCL(Constants.AIM_ROTATE_SNAIL_SPEED);
+    } else {
+      m_aimSub.rotateAimCO(Constants.AIM_ROTATE_SNAIL_SPEED);
     }
   }
 
@@ -84,7 +95,6 @@ public class LimelightCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    LimelightSub.targetSeen = false;
     return false;
   }
 }

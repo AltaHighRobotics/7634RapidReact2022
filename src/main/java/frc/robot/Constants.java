@@ -72,6 +72,12 @@ public final class Constants {
 
     public static final double MULTIPLIER = 0;
 
+    // Here is some constants vic. Use them well.
+    public static final int AIM_ROTATE_MAIN_SPEED = 0;
+    public static final int AIM_ROTATE_SLOW_SPEED = 1;
+    public static final int AIM_ROTATE_SNAIL_SPEED = 2;
+    public static final int AIM_ROTATE_ELLA_SPEED = 3;
+
     // Limits.
     public static final double MAX_DRIVE_ACCE = 0.1;
 
