@@ -11,16 +11,16 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import frc.robot.Constants;
 
 public class FeederSub extends SubsystemBase {
   /** Creates a new FeederSub. */
-  private final VictorSPX feederMotor;
+  private final WPI_VictorSPX feederMotor;
 
   public FeederSub() {
-    feederMotor = new VictorSPX(Constants.FEEDER_MOTOR);
+    feederMotor = new WPI_VictorSPX(Constants.FEEDER_MOTOR);
     feederMotor.configFactoryDefault();
   }
 

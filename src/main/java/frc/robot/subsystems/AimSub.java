@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.LimelightSub;
 
 public class AimSub extends SubsystemBase {
-  private TalonSRX aimMotor;
+  private WPI_TalonSRX aimMotor;
 
   private double encNum;
 
@@ -29,7 +29,7 @@ public class AimSub extends SubsystemBase {
 
   /** Creates a new AimSub. */
   public AimSub() {
-    aimMotor = new TalonSRX(Constants.AIM_MOTOR);
+    aimMotor = new WPI_TalonSRX(Constants.AIM_MOTOR);
     aimMotor.configFactoryDefault();
     
   }

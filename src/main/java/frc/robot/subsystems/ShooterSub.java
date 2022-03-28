@@ -11,16 +11,16 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 
 public class ShooterSub extends SubsystemBase {
-  private TalonFX shooterMotor;
+  private WPI_TalonFX shooterMotor;
 
   /** Creates a new ShooterSub. */
   public ShooterSub() {
-    shooterMotor = new TalonFX(Constants.SHOOTER_MOTOR);
+    shooterMotor = new WPI_TalonFX(Constants.SHOOTER_MOTOR);
 
     shooterMotor.configFactoryDefault();
     shooterMotor.setNeutralMode(NeutralMode.Brake);
