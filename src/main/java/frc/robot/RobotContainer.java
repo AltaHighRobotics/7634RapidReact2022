@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final XboxController driveController = new XboxController(Constants.DRIVER_CONTROLLER);
+  private final XboxController shotController = new XboxController(Constants.SHOTGUN_CONTROLLER);
 
   // Subsystems.
   private final DriveTrainSub m_driveTrainSub = new DriveTrainSub();
@@ -51,6 +52,7 @@ public class RobotContainer {
   private final AimClWiCommand m_aimClWiCommand = new AimClWiCommand(m_aimSub);
   private final AimCoWiCommand m_aimCoWiCommand = new AimCoWiCommand(m_aimSub);
   private final AimCenCommand m_aimCenCommand = new AimCenCommand(m_aimSub);
+  private final AimerCommand m_aimerCommand = new AimerCommand(m_aimSub, shotController);
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
@@ -83,6 +85,8 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     CommandScheduler.getInstance().setDefaultCommand(m_driveTrainSub, m_driveCommand);
+    CommandScheduler.getInstance().setDefaultCommand(m_aimSub, m_aimerCommand);
+    CommandScheduler.getInstance().schedule(m_aimerCommand);
   }
 
   /**

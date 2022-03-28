@@ -12,7 +12,10 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -24,12 +27,15 @@ import frc.robot.Robot;
 public class ClimbSub extends SubsystemBase {
   private Solenoid liftPiston;
 
-  private VictorSPX winchMotor;
+  private WPI_VictorSPX winchMotor;
   
   /** Creates a new ClimbSub. */
   public ClimbSub() {
-    winchMotor = new VictorSPX(Constants.WINCH_MOTOR);
+    winchMotor = new WPI_VictorSPX(Constants.WINCH_MOTOR);
     liftPiston = new Solenoid(PneumaticsModuleType.REVPH, Constants.LIFT_PISTON);
+
+    winchMotor.configFactoryDefault();
+    winchMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override

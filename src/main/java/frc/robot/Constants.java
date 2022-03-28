@@ -73,6 +73,7 @@ public final class Constants {
     public static final double AUTO_DRIVE_SPEED = 0.25;
 
     public static final double MULTIPLIER = 0;
+    public static final double SHOT_AIM_MULT = 0.5;
 
     // Here is some constants vic. Use them well.
     public static final int AIM_ROTATE_MAIN_SPEED = 0;
@@ -103,7 +104,7 @@ public final class Constants {
     public static final byte NAVX_UPDATE_RATE = (byte)100; // 4 to 200.
 
     // Turning.
-    public static final double TURN_RAD = 0.5;
+    public static final double TURN_RAD = 0.3;
     public static final double LOW_TURN_THRESHHOLD = 0.3;
     public static final double LOW_TURN_MULTIPLIER = 2.0; // Don't make this value 0!
     public static final double AUTO_TURN_CORRECT = 0.02;
@@ -117,11 +118,16 @@ public final class Constants {
 
     // Controller.
     public static final int DRIVER_CONTROLLER = 0;
+    public static final int SHOTGUN_CONTROLLER = 1;
+
     public static final int RIGHT_STICK_Y = 3; //5 for flight, 3 for cntroller
     public static final int RIGHT_STICK_X = 4;
     public static final int LEFT_STICK_Y = 1;
     public static final int LEFT_STICK_X = 0;
     public static final int STICK_Z = 2;
+
+    public static final int LEFT_TRIGGER = 2;
+    public static final int RIGHT_TRIGGER = 3;
 
     public static final int XBOX_A_BUTTON = 1; 
     public static final int XBOX_B_BUTTON = 2;
