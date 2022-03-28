@@ -10,18 +10,26 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import frc.robot.Constants;
 
 public class IntakeExtensionSub extends SubsystemBase {
   //Pistons.
   private Solenoid liftPiston1;
   private Solenoid liftPiston2;
+  //Velcro motor.
+  private VictorSPX velcroMotor;
 
   /** Creates a new IntakeExtensionSub. */
   public IntakeExtensionSub() {
     liftPiston1 = new Solenoid(PneumaticsModuleType.REVPH, Constants.LIFT_PISTON_1);
     liftPiston2 = new Solenoid(PneumaticsModuleType.REVPH, Constants.LIFT_PISTON_2);
+    velcroMotor = new VictorSPX(Constants.VELCRO_MOTOR);
   }
 
   @Override

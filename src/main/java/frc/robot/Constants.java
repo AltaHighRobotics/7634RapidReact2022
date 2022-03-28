@@ -27,6 +27,7 @@ public final class Constants {
 
     public static final int AIM_MOTOR = 9;
     public static final int WINCH_MOTOR = 8;
+    public static final int VELCRO_MOTOR = 0;//Change later.
 
     // Sadness ):
     public static final double FEEDER_INVERT = 1; // 1 or -1

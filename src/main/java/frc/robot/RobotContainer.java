@@ -121,7 +121,7 @@ public class RobotContainer {
 
     limeButton.toggleWhenPressed(m_limeCommand2);
 
-    raiseArmButton.toggleWhenPressed(m_raiseLiftArmCommand);
+    raiseArmButton.whileHeld(m_raiseLiftArmCommand);
     pullArmButton.whileHeld(m_liftRobotCommand);
     revWinchButton.whileHeld(m_revWinchCommand);
 
