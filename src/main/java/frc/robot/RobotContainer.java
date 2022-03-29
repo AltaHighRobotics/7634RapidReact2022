@@ -50,8 +50,8 @@ public class RobotContainer {
   private final LimelightCommand m_limeCommand = new LimelightCommand(m_limeSub, m_aimSub);
   private final LimelightCommandBetterVersion m_limeCommand2 = new LimelightCommandBetterVersion(m_limeSub, m_aimSub);
 
-  //private final AimClWiCommand m_aimClWiCommand = new AimClWiCommand(m_aimSub);
-  //private final AimCoWiCommand m_aimCoWiCommand = new AimCoWiCommand(m_aimSub);
+  private final AimClWiCommand m_aimClWiCommand = new AimClWiCommand(m_aimSub);
+  private final AimCoWiCommand m_aimCoWiCommand = new AimCoWiCommand(m_aimSub);
   private final AimCenCommand m_aimCenCommand = new AimCenCommand(m_aimSub);
   private final AimerCommand m_aimerCommand = new AimerCommand(m_aimSub, shotController);
 
@@ -86,7 +86,7 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
-    //CommandScheduler.getInstance().setDefaultCommand(m_driveTrainSub, m_driveCommand);
+    CommandScheduler.getInstance().setDefaultCommand(m_driveTrainSub, m_driveCommand);
     CommandScheduler.getInstance().setDefaultCommand(m_aimSub, m_aimerCommand);
     CommandScheduler.getInstance().schedule(m_aimerCommand);
     CommandScheduler.getInstance().schedule(m_winchCommand);
@@ -110,8 +110,8 @@ public class RobotContainer {
 
     final JoystickButton limeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_5);
     
-    //final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_8);
-    //final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_7);
+    final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_8);
+    final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_7);
     final JoystickButton aimCenButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_6);
 
     //For Second Controller
@@ -122,8 +122,8 @@ public class RobotContainer {
 
     // Is goofy a dog?
     //We have already been through this, yes.
-    //aimClButton.whileHeld(m_aimClWiCommand);
-    //aimCoButton.whileHeld(m_aimCoWiCommand);
+    aimClButton.whileHeld(m_aimClWiCommand);
+    aimCoButton.whileHeld(m_aimCoWiCommand);
     aimCenButton.whileHeld(m_aimCenCommand);
 
     intakeButton.toggleWhenPressed(m_intakeCommand);

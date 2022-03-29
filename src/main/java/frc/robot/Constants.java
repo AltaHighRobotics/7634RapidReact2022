@@ -58,7 +58,7 @@ public final class Constants {
     public static final double WINCH_SPEED = 1.0;//Just a place holder and test later.
 
     public static final double STOP_SHOOTER = 0;
-    public static final double START_SHOOTER = 0.85;
+    public static final double START_SHOOTER = 0.79;
     public static final double MIN_SPEED_STICK = 0.3;
 
     public static final double AIM_SPEED = 0.2; //.4
