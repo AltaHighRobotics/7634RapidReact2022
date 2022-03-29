@@ -38,8 +38,10 @@ public class LimelightCommandBetterVersion extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    /*
     pid = new PIDController(0.15, -2.0, 0.0);
     pid.setSetpoint(0.0);
+    */
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -59,13 +61,15 @@ public class LimelightCommandBetterVersion extends CommandBase {
   private void targetSeen() {
     // Stay on target.
 
+    /*
     pidValue = pid.calculate(LimelightSub.tarX);
     pidError = pid.getPositionError();
 
     SmartDashboard.putNumber("Pid value", pidValue / LimelightSub.absX);
     SmartDashboard.putNumber("Pid error", pidError);
 
-    //m_aimSub.roAimCO(pidValue / LimelightSub.absX);
+    m_aimSub.roAimCO(pidValue / LimelightSub.absX);
+    */
 
     if (LimelightSub.tarX < -Constants.AIM_PRECISION && m_aimSub.coAllow) {
 
