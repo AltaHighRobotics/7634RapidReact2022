@@ -73,7 +73,7 @@ public final class Constants {
     public static final double AUTO_DRIVE_SPEED = 0.25;
 
     public static final double MULTIPLIER = 0;
-    public static final double SHOT_AIM_MULT = 0.5;
+    public static final double SHOT_AIM_MULT = 0.2;
 
     // Here is some constants vic. Use them well.
     public static final int AIM_ROTATE_MAIN_SPEED = 0;
@@ -84,7 +84,7 @@ public final class Constants {
     // Limits.
     public static final double MAX_DRIVE_ACCE = 0.1;
 
-    public static final int MAX_AIM_CL = -15200;
+    public static final int MAX_AIM_CL = -14293;
     public static final int MAX_AIM_CO = 12000;
 
     public static final double AIM_THRESH = 20.0; //25

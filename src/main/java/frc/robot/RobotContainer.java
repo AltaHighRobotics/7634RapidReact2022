@@ -50,8 +50,8 @@ public class RobotContainer {
   private final LimelightCommand m_limeCommand = new LimelightCommand(m_limeSub, m_aimSub);
   private final LimelightCommandBetterVersion m_limeCommand2 = new LimelightCommandBetterVersion(m_limeSub, m_aimSub);
 
-  private final AimClWiCommand m_aimClWiCommand = new AimClWiCommand(m_aimSub);
-  private final AimCoWiCommand m_aimCoWiCommand = new AimCoWiCommand(m_aimSub);
+  //private final AimClWiCommand m_aimClWiCommand = new AimClWiCommand(m_aimSub);
+  //private final AimCoWiCommand m_aimCoWiCommand = new AimCoWiCommand(m_aimSub);
   private final AimCenCommand m_aimCenCommand = new AimCenCommand(m_aimSub);
   private final AimerCommand m_aimerCommand = new AimerCommand(m_aimSub, shotController);
 
@@ -85,10 +85,10 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
-    //CommandScheduler.getInstance().setDefaultCommand(m_driveTrainSub, m_driveCommand);
-    //CommandScheduler.getInstance().setDefaultCommand(m_aimSub, m_aimerCommand);
-    //CommandScheduler.getInstance().schedule(m_aimerCommand);
-    //CommandScheduler.getInstance().schedule(m_winchCommand);
+    CommandScheduler.getInstance().setDefaultCommand(m_driveTrainSub, m_driveCommand);
+    CommandScheduler.getInstance().setDefaultCommand(m_aimSub, m_aimerCommand);
+    CommandScheduler.getInstance().schedule(m_aimerCommand);
+    CommandScheduler.getInstance().schedule(m_winchCommand);
   }
 
   /**

@@ -4,6 +4,7 @@
 /*
   @Vic
   @Jaden
+  @Hacker
   @New Hawks
 */
 
@@ -44,17 +45,15 @@ public class AimerCommand extends CommandBase {
 
     SmartDashboard.putNumber("L TRIG", leftTrigger);
     SmartDashboard.putNumber("R TRIG", rightTrigger);
+    SmartDashboard.putBoolean("clAllow", m_aimSub.clAllow);
+    SmartDashboard.putBoolean("coallow", m_aimSub.coAllow);
 
-    if(rightTrigger == 0 && leftTrigger == 0){
-      m_aimSub.stopAim();
+    if (rightTrigger != 0.0 && m_aimSub.clAllow) {
+      m_aimSub.roAimCL(rightTrigger * Constants.SHOT_AIM_MULT);
+    } else if (leftTrigger != 0.0 && m_aimSub.coAllow) {
+      m_aimSub.roAimCO(leftTrigger * Constants.SHOT_AIM_MULT);
     } else {
-      if(m_aimSub.clAllow){
-        m_aimSub.roAimCO(-rightTrigger * Constants.SHOT_AIM_MULT);
-      }
-      
-      if(m_aimSub.coAllow){
-        m_aimSub.roAimCO(leftTrigger * Constants.SHOT_AIM_MULT);
-      }
+      m_aimSub.stopAim();
     }
   }
 
