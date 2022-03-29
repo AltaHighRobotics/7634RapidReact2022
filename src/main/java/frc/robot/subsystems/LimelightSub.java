@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 /*
   @Vic
+  @Hacker
   @New Hawks
 */
 
@@ -22,6 +23,7 @@ public class LimelightSub extends SubsystemBase {
 
   public static boolean toRight;
   public static boolean targetSeen;
+  public static boolean onTarget;
   public static boolean goingCL;
   public static boolean auSlow;
   public static double absX;
@@ -52,6 +54,7 @@ public class LimelightSub extends SubsystemBase {
     SmartDashboard.putNumber("LimelightX", tarX);
     SmartDashboard.putNumber("LimelightY", tarY);
     SmartDashboard.putNumber("LimelightArea", area);
+    SmartDashboard.putBoolean("On target", onTarget);
 
     SmartDashboard.putBoolean("TAR SEE", targetSeen);
 
@@ -69,6 +72,12 @@ public class LimelightSub extends SubsystemBase {
       targetSeen = false;
     } else {
       targetSeen = true;
+    }
+
+    if (absX <= Constants.TARGET_PRECISION) {
+      onTarget = true;
+    } else {
+      onTarget = false;
     }
   }
 
@@ -96,10 +105,13 @@ public class LimelightSub extends SubsystemBase {
     SmartDashboard.putString("Distance to Target", distOut);
   }
 
-  public void ledOff(){
-    
+  public void ledOff() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(Constants.LIMELIGHT_OFF);
   }
 
+  public void ledOn() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(Constants.LIMELIGHT_ON);
+  }
 
 
   @Override

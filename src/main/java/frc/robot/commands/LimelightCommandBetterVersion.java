@@ -42,6 +42,7 @@ public class LimelightCommandBetterVersion extends CommandBase {
     pid = new PIDController(0.15, -2.0, 0.0);
     pid.setSetpoint(0.0);
     */
+    m_limelightSub.ledOn();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -108,6 +109,7 @@ public class LimelightCommandBetterVersion extends CommandBase {
     SmartDashboard.putBoolean("Aimbot", false);
     LimelightSub.targetSeen = false;
     m_aimSub.stopAim();
+    m_limelightSub.ledOff();
   }
 
   // Returns true when the command should end.

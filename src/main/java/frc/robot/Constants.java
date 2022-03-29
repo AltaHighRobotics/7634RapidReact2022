@@ -89,6 +89,7 @@ public final class Constants {
 
     public static final double AIM_THRESH = 20.0; //25
     public static final double AIM_PRECISION = 1.0;
+    public static final double TARGET_PRECISION = 3.0;
 
     // Autonmous.
     public static final double CLOCK_WISE = 1;
@@ -142,4 +143,7 @@ public final class Constants {
     public static final int FLIGHT_BUTTON_10 = 10;
     public static final int FLIGHT_BUTTON_11 = 11;
     public static final int FLIGHT_BUTTON_12 = 12;
+
+    public static final int LIMELIGHT_ON = 3;
+    public static final int LIMELIGHT_OFF = 1;
 }
