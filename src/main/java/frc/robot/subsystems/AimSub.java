@@ -27,6 +27,8 @@ public class AimSub extends SubsystemBase {
   public boolean centered;
   public boolean goSlow;
 
+  public boolean active;
+
   /** Creates a new AimSub. */
   public AimSub() {
     aimMotor = new WPI_TalonSRX(Constants.AIM_MOTOR);

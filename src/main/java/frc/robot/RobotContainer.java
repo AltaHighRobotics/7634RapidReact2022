@@ -45,6 +45,7 @@ public class RobotContainer {
   private final LiftRobotCommand m_liftRobotCommand = new LiftRobotCommand(m_climbSub);
   private final RaiseLiftArmCommand m_raiseLiftArmCommand = new RaiseLiftArmCommand(m_climbSub);
   private final RevWinchCommand m_revWinchCommand = new RevWinchCommand(m_climbSub);
+  private WinchCommand m_winchCommand = new WinchCommand(m_climbSub, shotController);
 
   private final LimelightCommand m_limeCommand = new LimelightCommand(m_limeSub, m_aimSub);
   private final LimelightCommandBetterVersion m_limeCommand2 = new LimelightCommandBetterVersion(m_limeSub, m_aimSub);
@@ -84,9 +85,10 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
-    CommandScheduler.getInstance().setDefaultCommand(m_driveTrainSub, m_driveCommand);
-    CommandScheduler.getInstance().setDefaultCommand(m_aimSub, m_aimerCommand);
-    CommandScheduler.getInstance().schedule(m_aimerCommand);
+    //CommandScheduler.getInstance().setDefaultCommand(m_driveTrainSub, m_driveCommand);
+    //CommandScheduler.getInstance().setDefaultCommand(m_aimSub, m_aimerCommand);
+    //CommandScheduler.getInstance().schedule(m_aimerCommand);
+    //CommandScheduler.getInstance().schedule(m_winchCommand);
   }
 
   /**
@@ -99,24 +101,28 @@ public class RobotContainer {
     // Set buttons.
     final JoystickButton intakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
     final JoystickButton feederButton = new JoystickButton(driveController, Constants.XBOX_A_BUTTON);
-    final JoystickButton revWinchButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_11);
+    final JoystickButton revWinchButton = new JoystickButton(shotController, Constants.FLIGHT_BUTTON_5);
     final JoystickButton raiseArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
-    final JoystickButton pullArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_12);
+    final JoystickButton pullArmButton = new JoystickButton(shotController, Constants.FLIGHT_BUTTON_6);
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
     final JoystickButton extendIntakeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_10);
 
     final JoystickButton limeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_5);
     
-    final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_8);
-    final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_7);
+    //final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_8);
+    //final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_7);
     final JoystickButton aimCenButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_6);
+
+    //For Second Controller
+    final JoystickButton raiseArmButton2 = new JoystickButton(shotController, Constants.XBOX_A_BUTTON);
+
     /*
     */
 
     // Is goofy a dog?
     //We have already been through this, yes.
-    aimClButton.whileHeld(m_aimClWiCommand);
-    aimCoButton.whileHeld(m_aimCoWiCommand);
+    //aimClButton.whileHeld(m_aimClWiCommand);
+    //aimCoButton.whileHeld(m_aimCoWiCommand);
     aimCenButton.whileHeld(m_aimCenCommand);
 
     intakeButton.toggleWhenPressed(m_intakeCommand);
@@ -128,6 +134,10 @@ public class RobotContainer {
     raiseArmButton.whileHeld(m_raiseLiftArmCommand);
     pullArmButton.whileHeld(m_liftRobotCommand);
     revWinchButton.whileHeld(m_revWinchCommand);
+
+    //Second Controller
+    raiseArmButton2.whileHeld(m_raiseLiftArmCommand);
+    
 
     //extendIntakeButton.toggleWhenPressed(m_extendIntakeCommand);
   }

@@ -45,8 +45,17 @@ public class AimerCommand extends CommandBase {
     SmartDashboard.putNumber("L TRIG", leftTrigger);
     SmartDashboard.putNumber("R TRIG", rightTrigger);
 
-    m_aimSub.roAimCL(rightTrigger * Constants.SHOT_AIM_MULT);
-    m_aimSub.roAimCO(leftTrigger * Constants.SHOT_AIM_MULT);
+    if(rightTrigger == 0 && leftTrigger == 0){
+      m_aimSub.stopAim();
+    } else {
+      if(m_aimSub.clAllow){
+        m_aimSub.roAimCO(-rightTrigger * Constants.SHOT_AIM_MULT);
+      }
+      
+      if(m_aimSub.coAllow){
+        m_aimSub.roAimCO(leftTrigger * Constants.SHOT_AIM_MULT);
+      }
+    }
   }
 
   // Called once the command ends or is interrupted.
