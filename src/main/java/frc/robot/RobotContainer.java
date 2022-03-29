@@ -82,6 +82,7 @@ public class RobotContainer {
     m_chooser.addOption("Test drive", m_testDrive);
 
     SmartDashboard.putData(m_chooser);
+    m_limeSub.ledOff();
 
     // Configure the button bindings
     configureButtonBindings();
