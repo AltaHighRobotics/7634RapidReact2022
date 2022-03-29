@@ -11,7 +11,7 @@ package frc.robot.subsystems;
 
 import java.lang.Math;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -22,10 +22,10 @@ import frc.robot.Constants;
 public class DriveTrainSub extends SubsystemBase {
   /** Creates a new DriveTrainSub. */
   // I know am i werid.  I name stuff right to left.  Is that so bad?
-  private VictorSPX rightDrive1;
-  private VictorSPX rightDrive2;
-  private VictorSPX leftDrive1;
-  private VictorSPX leftDrive2;
+  private WPI_VictorSPX rightDrive1;
+  private WPI_VictorSPX rightDrive2;
+  private WPI_VictorSPX leftDrive1;
+  private WPI_VictorSPX leftDrive2;
 
   // The encoders might be handled by an arduino in the future.
   private Encoder rightEncoder;
@@ -34,15 +34,15 @@ public class DriveTrainSub extends SubsystemBase {
   public AHRS navX;
 
   public DriveTrainSub() {
-    rightDrive1 = new VictorSPX(Constants.RIGHT_DRIVE_1);
-    rightDrive2 = new VictorSPX(Constants.RIGHT_DRIVE_2);
+    rightDrive1 = new WPI_VictorSPX(Constants.RIGHT_DRIVE_1);
+    rightDrive2 = new WPI_VictorSPX(Constants.RIGHT_DRIVE_2);
 
     rightDrive1.configFactoryDefault();
     rightDrive2.configFactoryDefault();
     rightDrive2.follow(rightDrive1);
 
-    leftDrive1 = new VictorSPX(Constants.LEFT_DRIVE_1);
-    leftDrive2 = new VictorSPX(Constants.LEFT_DRIVE_2);
+    leftDrive1 = new WPI_VictorSPX(Constants.LEFT_DRIVE_1);
+    leftDrive2 = new WPI_VictorSPX(Constants.LEFT_DRIVE_2);
 
     leftDrive1.configFactoryDefault();
     leftDrive2.configFactoryDefault();
