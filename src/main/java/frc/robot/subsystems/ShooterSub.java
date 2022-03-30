@@ -23,7 +23,7 @@ public class ShooterSub extends SubsystemBase {
     shooterMotor = new WPI_TalonFX(Constants.SHOOTER_MOTOR);
 
     shooterMotor.configFactoryDefault();
-    shooterMotor.setNeutralMode(NeutralMode.Brake);
+    shooterMotor.setNeutralMode(NeutralMode.Coast);
     shooterMotor.setInverted(TalonFXInvertType.CounterClockwise);
   }
 
