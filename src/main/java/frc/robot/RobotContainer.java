@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.*;
 import frc.robot.autonomous.*;
@@ -66,6 +67,71 @@ public class RobotContainer {
     new AutoIntake(m_intakeSub, false)
   );
 
+  // THIS AUTONOMOUS CODE WILL BURN YOUR EYES OUT OF THEIR SOCKETS!!!!!!
+  private final ParallelCommandGroup m_doubleSide1 = new ParallelCommandGroup(
+    m_limeCommand2,
+    new SequentialCommandGroup(
+      new AutoTurnTo(m_driveTrainSub, 25.09),
+      new AutoIntake(m_intakeSub, true),
+      new AutoDriveTo(m_driveTrainSub, 66.665), // Gets ball.
+      new AutoTurnTo(m_driveTrainSub, 180.0),
+      new AutoShooter(m_shooterSub, true),
+      new AutoDriveTo(m_driveTrainSub, 40.451),
+      new AutoWaitForAim(m_limeSub), // Shoot.
+      new AutoFeeder(m_feederSub, true),
+      new AutoWaitFor(1.0),
+      new AutoFeeder(m_feederSub, false),
+      new AutoShooter(m_shooterSub, false),
+      new AutoTurnTo(m_driveTrainSub, 197.4), // 180 - 17.4deg counter.
+      new AutoDriveTo(m_driveTrainSub, 162.54),
+      new AutoTurnTo(m_driveTrainSub, 41.19),
+      new AutoDriveTo(m_driveTrainSub, 36.441), // Gets ball.
+      new AutoIntake(m_intakeSub, false)
+    )
+  );
+
+  private final ParallelCommandGroup m_doubleMid1 = new ParallelCommandGroup(
+    m_limeCommand2,
+    new SequentialCommandGroup(
+      new AutoTurnTo(m_driveTrainSub, 3.09),
+      new AutoIntake(m_intakeSub, true),
+      new AutoDriveTo(m_driveTrainSub, 52.523), // Gets ball.
+      new AutoTurnTo(m_driveTrainSub, 180.0),
+      new AutoShooter(m_shooterSub, true),
+      new AutoDriveTo(m_driveTrainSub, 29.537),
+      new AutoWaitForAim(m_limeSub), // Shoot.
+      new AutoFeeder(m_feederSub, true),
+      new AutoWaitFor(1.0),
+      new AutoFeeder(m_feederSub, false),
+      new AutoShooter(m_shooterSub, false),
+      new AutoTurnTo(m_driveTrainSub, 95.3),
+      new AutoDriveTo(m_driveTrainSub, 113.925), // Gets ball.
+      new AutoIntake(m_intakeSub, false)
+    )
+  );
+
+  private final ParallelCommandGroup m_sinMid1 = new ParallelCommandGroup(
+    m_limeCommand2,
+    new SequentialCommandGroup(
+      new AutoTurnTo(m_driveTrainSub, 356.9), // 180 - 176.9 counter.
+      new AutoIntake(m_intakeSub, true),
+      new AutoDriveTo(m_driveTrainSub, 61.541), // Gets ball.
+      new AutoTurnTo(m_driveTrainSub, 180.0),
+      new AutoShooter(m_shooterSub, true),
+      new AutoDriveTo(m_driveTrainSub, 39.558),
+      new AutoWaitForAim(m_limeSub), // Shoot.
+      new AutoFeeder(m_feederSub, true),
+      new AutoWaitFor(1.0),
+      new AutoFeeder(m_feederSub, false),
+      new AutoShooter(m_shooterSub, false),
+      new AutoTurnTo(m_driveTrainSub, 264.7), // 180 - 84.7deg counter.
+      new AutoDriveTo(m_driveTrainSub, 113.936), // Gets ball.
+      new AutoIntake(m_intakeSub, false)
+    )
+  );
+
+  // The pain is over for now.
+
   private final AutoTurnTo m_testTurn = new AutoTurnTo(m_driveTrainSub, 270);
   private final AutoDriveTo m_testDrive = new AutoDriveTo(m_driveTrainSub, 100);
 
@@ -80,6 +146,9 @@ public class RobotContainer {
     m_chooser.setDefaultOption("Test auto", m_testAuto);
     m_chooser.addOption("Test turn", m_testTurn);
     m_chooser.addOption("Test drive", m_testDrive);
+    m_chooser.addOption("double side 1", m_doubleSide1);
+    m_chooser.addOption("double mid 1", m_doubleMid1);
+    m_chooser.addOption("sin mid 1", m_sinMid1);
 
     SmartDashboard.putData(m_chooser);
     m_limeSub.ledOff();
