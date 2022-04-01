@@ -10,12 +10,8 @@ import frc.robot.Constants;
 
 public class AutoWaitForAim extends CommandBase {
   /** Creates a new AutoWaitForAim. */
-  private final LimelightSub m_limelightSub;
 
-  public AutoWaitForAim(LimelightSub limelightSub) {
-    m_limelightSub = limelightSub;
-
-    addRequirements(m_limelightSub);
+  public AutoWaitForAim() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -37,6 +33,8 @@ public class AutoWaitForAim extends CommandBase {
     if (LimelightSub.onTarget) {
       return true;
     }
+
+    // Why did the chicken cross the road, because the farmer had a knife.
 
     return false;
   }

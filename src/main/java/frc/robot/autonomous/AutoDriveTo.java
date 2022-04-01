@@ -80,10 +80,12 @@ public class AutoDriveTo extends CommandBase {
     disToEnd = Math.abs(totalDis - m_driveTo);
 
     // Slow near end.
+    /*
     if (disToEnd <= Constants.AUTO_DRIVE_SLOW_AT) {
-      rightSpeed *= disToEnd / Constants.AUTO_DRIVE_SLOW_AT;
-      leftSpeed *= disToEnd / Constants.AUTO_DRIVE_SLOW_AT;
+      rightSpeed = rightSpeed * disToEnd / Constants.AUTO_DRIVE_SLOW_AT + Constants.AUTO_MIN_DRIVE;
+      leftSpeed = leftSpeed * disToEnd / Constants.AUTO_DRIVE_SLOW_AT + Constants.AUTO_MIN_DRIVE;
     }
+    */
 
     m_driveTrainSub.setRightMotors(rightSpeed);
     m_driveTrainSub.setLeftMotors(leftSpeed);
@@ -110,6 +112,7 @@ public class AutoDriveTo extends CommandBase {
     disToEnd = Math.abs(totalDis - m_driveTo);
 
     if (disToEnd <= Constants.DRIVE_MIN) {
+      System.out.println("Yes you dummy");
       return true;
     }
 

@@ -97,6 +97,10 @@ public class DriveTrainSub extends SubsystemBase {
     navX.zeroYaw();
   }
 
+  public double getAvgDis() {
+    return (getRightEncoderDis() + getLeftEncoderDis()) / 2.0;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

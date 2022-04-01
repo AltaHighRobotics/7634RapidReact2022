@@ -69,7 +69,7 @@ public final class Constants {
     public static final double AIM_STOP = 0;
     public static final double MIN_AIM_SPEED = 0.04;
     
-    public static final double AUTO_TURN_SPEED = 0.20;
+    public static final double AUTO_TURN_SPEED = 0.4;
     public static final double AUTO_DRIVE_SPEED = 0.25;
 
     public static final double MULTIPLIER = 0;
@@ -96,16 +96,17 @@ public final class Constants {
     public static final double COUNTER_CLOCK_WISE = -1;
     public static final double FORWARD = 1.0;
     public static final double BACKWARD = -1.0;
-    public static final double TURN_MIN = 1.0;
-    public static final double DRIVE_MIN = 1.0;
+    public static final double TURN_MIN = 5.0;
+    public static final double DRIVE_MIN = 5.0;
     public static final double AUTO_TURN_SLOWDOWN_DIS = 15.0;
-    public static final double AUTO_DRIVE_SLOW_AT = 20.0;
+    public static final double AUTO_DRIVE_SLOW_AT = 10.0;
+    public static final double AUTO_MIN_DRIVE = 0.15;
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)100; // 4 to 200.
 
     // Turning.
-    public static final double TURN_RAD = 0.3;
+    public static final double TURN_RAD = 0.4;
     public static final double LOW_TURN_THRESHHOLD = 0.3;
     public static final double LOW_TURN_MULTIPLIER = 2.0; // Don't make this value 0!
     public static final double AUTO_TURN_CORRECT = 0.02;
@@ -146,4 +147,8 @@ public final class Constants {
 
     public static final int LIMELIGHT_ON = 3;
     public static final int LIMELIGHT_OFF = 1;
+    public static final double AUTO_DISTANCE1 = 52.523;
+    public static final double AUTO_TURN_DISTANCE = 180.0;
+    public static final double AUTO_DISTANCE_SHOOT1 = 52.523;
+    public static final int AUTO_SHOOT_TIME = 10;
 }
