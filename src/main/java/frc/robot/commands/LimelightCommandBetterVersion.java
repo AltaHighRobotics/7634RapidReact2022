@@ -50,6 +50,7 @@ public class LimelightCommandBetterVersion extends CommandBase {
   public void execute() {
     SmartDashboard.putBoolean("Aimbot", true);
     m_limelightSub.runLimeNum();
+    m_limelightSub.determine();
 
     // Vic, why did you make the varibles in limelightSub static!
     if (LimelightSub.targetSeen) {
@@ -95,7 +96,6 @@ public class LimelightCommandBetterVersion extends CommandBase {
 
   private void targetNotSeen() {
     // Search for target.
-
     if (LimelightSub.goingCL) {
       m_aimSub.roAimCL(Constants.AIM_SPEED);
     } else {

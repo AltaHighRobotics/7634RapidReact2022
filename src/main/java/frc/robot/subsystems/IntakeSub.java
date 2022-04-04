@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.Constants;
 
 public class IntakeSub extends SubsystemBase {
@@ -23,8 +24,7 @@ public class IntakeSub extends SubsystemBase {
     intakeMotor = new WPI_VictorSPX(Constants.INTAKE_MOTOR);
     intakeMotor.configFactoryDefault();
     intakeMotor.setInverted(true);
-
-    intakeMotor.configFactoryDefault();
+    intakeMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   public void startMotor() {

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.Constants;
 
 public class FeederSub extends SubsystemBase {
@@ -22,6 +23,7 @@ public class FeederSub extends SubsystemBase {
   public FeederSub() {
     feederMotor = new WPI_VictorSPX(Constants.FEEDER_MOTOR);
     feederMotor.configFactoryDefault();
+    feederMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   public void startMotor() {

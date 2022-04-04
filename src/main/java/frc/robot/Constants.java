@@ -118,10 +118,9 @@ public final class Constants {
 
     //Limelight Dist
     public static final double LIME_DEGREES = 20.0;
-
     public static final double LIME_LENS_HEIGHT = 37.0; //in inches
-
     public static final double GOAL_HEIGHT = 104.0; //in inches
+    public static final double TARGET_DIST = 87.3; //inches
 
     // Controller.
     public static final int DRIVER_CONTROLLER = 0;

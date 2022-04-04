@@ -195,8 +195,8 @@ public class RobotContainer {
 
     intakeButton.toggleWhenPressed(m_intakeCommand);
     feederButton.whileHeld(m_feederCommand);
-    shootButton.toggleWhenPressed(m_shootCommand);
-    extendIntakeButton.toggleWhenPressed(m_extendIntakeCommand);
+    shootButton.whileHeld(m_shootCommand);
+    extendIntakeButton.whileHeld(m_extendIntakeCommand);
     velcroMotorButton.toggleWhenPressed(m_velcroMotorCommand);
     revVelcroMotorButton.toggleWhenPressed(m_revVelcroMotorCommand);
 

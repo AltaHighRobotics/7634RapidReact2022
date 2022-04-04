@@ -31,12 +31,14 @@ public class LimelightSub extends SubsystemBase {
   public static double tarX;
   public static double tarY;
 
+  public double distInch;
+
   /** Creates a new LimelightSub. */
   public LimelightSub() {
 
   }
 
-  public void runLimeNum() { //Determines if the aimer shold go left ro right
+  public void runLimeNum() { //Gets position of lime target; puts to s dash
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
@@ -57,7 +59,9 @@ public class LimelightSub extends SubsystemBase {
     SmartDashboard.putBoolean("On target", onTarget);
 
     SmartDashboard.putBoolean("TAR SEE", targetSeen);
+  }
 
+  public void determine() { //Determines if the aimer shold go left ro right
     if(tarX > 0){
       //Turn to the right
       toRight = false;
@@ -88,13 +92,11 @@ public class LimelightSub extends SubsystemBase {
     NetworkTableEntry ty = table.getEntry("ty");
     double targetOffsetAngleVertical = ty.getDouble(0.0);
 
-
-
     double angleToGoalDegrees = Constants.LIME_DEGREES + targetOffsetAngleVertical;
     double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
 
     //calculate distance
-    double distInch = (Constants.GOAL_HEIGHT - Constants.LIME_LENS_HEIGHT) / Math.tan(angleToGoalRadians);
+    distInch = (Constants.GOAL_HEIGHT - Constants.LIME_LENS_HEIGHT) / Math.tan(angleToGoalRadians);
 
     //Feet
     int distFeet = ((int)distInch / 12);
@@ -118,5 +120,6 @@ public class LimelightSub extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     runLimeNum(); 
+    determine();
   }
 }
