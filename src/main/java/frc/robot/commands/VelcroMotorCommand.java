@@ -10,20 +10,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeExtensionSub;
-import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
-//Make variable of IntakeExtensionSub.
-public class ExtendIntakeCommand extends CommandBase {
+public class VelcroMotorCommand extends CommandBase {
   private final IntakeExtensionSub m_intakeExtensionSub;
-  //Two compressors.
-  Compressor phCompressor1 = new Compressor(1, PneumaticsModuleType.REVPH);
-  Compressor phCompressor2 = new Compressor(1, PneumaticsModuleType.REVPH);
-
-  /** Creates a new ExtendIntakeCommand. */
-  public ExtendIntakeCommand(IntakeExtensionSub intakeExtensionSub) {
+  /** Creates a new VelcroMotorCommand. */
+  public VelcroMotorCommand(IntakeExtensionSub intakeExtensionSub) {
     m_intakeExtensionSub = intakeExtensionSub;
     addRequirements(m_intakeExtensionSub);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -37,16 +29,6 @@ public class ExtendIntakeCommand extends CommandBase {
   @Override
   public void execute() {
     m_intakeExtensionSub.extendIntake();
-    phCompressor1.enableDigital();
-    phCompressor2.enableDigital();
-
-    boolean enabled1 = phCompressor1.enabled();
-    boolean pressureSwitch1 = phCompressor1.getPressureSwitchValue();
-    double current1 = phCompressor1.getCurrent();
-
-    boolean enabled2 = phCompressor2.enabled();
-    boolean pressureSwitch2 = phCompressor2.getPressureSwitchValue();
-    double current2 = phCompressor2.getCurrent();
   }
 
   // Called once the command ends or is interrupted.

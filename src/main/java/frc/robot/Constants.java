@@ -56,6 +56,7 @@ public final class Constants {
     public static final double FEEDER_SPEED = 0.8;
     public static final double FEEDER_REV_SPEED = 0.5;
     public static final double WINCH_SPEED = 1.0;//Just a place holder and test later.
+    public static final double VELCRO_SPEED = 1.0; //Just a place holder and test later.
 
     public static final double STOP_SHOOTER = 0;
     public static final double START_SHOOTER = 0.79;

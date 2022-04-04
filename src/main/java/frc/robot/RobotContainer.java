@@ -39,7 +39,7 @@ public class RobotContainer {
   private final AimSub m_aimSub = new AimSub();
   private final ShooterSub m_shooterSub = new ShooterSub();
   private final LimelightSub m_limeSub = new LimelightSub();
-  //private final IntakeExtensionSub m_intakeExtensionSub = new IntakeExtensionSub();
+  private final IntakeExtensionSub m_intakeExtensionSub = new IntakeExtensionSub();
 
   // Commands.
   private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrainSub, driveController);
@@ -60,7 +60,9 @@ public class RobotContainer {
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
-  //private final ExtendIntakeCommand m_extendIntakeCommand = new ExtendIntakeCommand(m_intakeExtensionSub);
+  private final ExtendIntakeCommand m_extendIntakeCommand = new ExtendIntakeCommand(m_intakeExtensionSub);
+  private final VelcroMotorCommand m_velcroMotorCommand = new VelcroMotorCommand(m_intakeExtensionSub);
+  private final RevVelcroMotorCommand m_revVelcroMotorCommand = new RevVelcroMotorCommand(m_intakeExtensionSub);
 
   // Autonomous.
   private final SequentialCommandGroup m_testAuto = new SequentialCommandGroup(
@@ -169,7 +171,9 @@ public class RobotContainer {
     final JoystickButton raiseArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
     final JoystickButton pullArmButton = new JoystickButton(shotController, Constants.FLIGHT_BUTTON_6);
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
-    final JoystickButton extendIntakeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_10);
+    final JoystickButton extendIntakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
+    final JoystickButton velcroMotorButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
+    final JoystickButton revVelcroMotorButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
 
     final JoystickButton limeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_5);
     
@@ -192,6 +196,9 @@ public class RobotContainer {
     intakeButton.toggleWhenPressed(m_intakeCommand);
     feederButton.whileHeld(m_feederCommand);
     shootButton.toggleWhenPressed(m_shootCommand);
+    extendIntakeButton.toggleWhenPressed(m_extendIntakeCommand);
+    velcroMotorButton.toggleWhenPressed(m_velcroMotorCommand);
+    revVelcroMotorButton.toggleWhenPressed(m_revVelcroMotorCommand);
 
     limeButton.toggleWhenPressed(m_limeCommand2);
 
@@ -203,7 +210,6 @@ public class RobotContainer {
     raiseArmButton2.whileHeld(m_raiseLiftArmCommand);
     
 
-    //extendIntakeButton.toggleWhenPressed(m_extendIntakeCommand);
   }
 
   /**

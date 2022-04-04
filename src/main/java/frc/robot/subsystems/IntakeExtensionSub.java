@@ -42,10 +42,18 @@ public class IntakeExtensionSub extends SubsystemBase {
   public void extendIntake() {
     liftPiston1.set(true);
     liftPiston2.set(true);
+    velcroMotor.set(ControlMode.PercentOutput, Constants.VELCRO_SPEED);
   }
   //Creates method for stopping both arms.
   public void retractIntake() {
     liftPiston1.set(false);
     liftPiston2.set(false);
+    velcroMotor.set(ControlMode.PercentOutput, 0.0);
+  }
+  //Creates method for reversing intake extension.
+  public void reverseIntake() {
+    liftPiston1.set(true);
+    liftPiston2.set(true);
+    velcroMotor.set(ControlMode.PercentOutput, -Constants.VELCRO_SPEED);
   }
 }
