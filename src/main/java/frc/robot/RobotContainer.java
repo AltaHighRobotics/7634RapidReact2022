@@ -173,7 +173,6 @@ public class RobotContainer {
     final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
     final JoystickButton extendIntakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
     final JoystickButton velcroMotorButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
-    final JoystickButton revVelcroMotorButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
 
     final JoystickButton limeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_5);
     
@@ -198,7 +197,6 @@ public class RobotContainer {
     shootButton.whileHeld(m_shootCommand);
     extendIntakeButton.whileHeld(m_extendIntakeCommand);
     velcroMotorButton.toggleWhenPressed(m_velcroMotorCommand);
-    revVelcroMotorButton.toggleWhenPressed(m_revVelcroMotorCommand);
 
     limeButton.toggleWhenPressed(m_limeCommand2);
 
