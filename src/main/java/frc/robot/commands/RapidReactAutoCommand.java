@@ -133,7 +133,7 @@ public class RapidReactAutoCommand extends CommandBase {
           stage = 4;
           m_driveSub.resetEncoders();
           m_driveSub.resetNavx();
-          m_driveSub.setRightMotors(0.0);
+          m_driveSub.setMotors(0.0);
         }
         break;
       
@@ -146,7 +146,7 @@ public class RapidReactAutoCommand extends CommandBase {
             stage = 5;
             m_driveSub.resetEncoders();
             m_driveSub.resetNavx();
-            m_feederSub.startMotor();
+            m_feederSub.stopMotor();
           }
           break;
 

@@ -145,7 +145,7 @@ public class RobotContainer {
     m_chooser.addOption("sin mid 1", m_sinMid1);
 
     SmartDashboard.putData(m_chooser);
-    m_limeSub.ledOff();
+    //m_limeSub.ledOff();
 
     // Configure the button bindings
     configureButtonBindings();

@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterSub extends SubsystemBase {
   private WPI_TalonFX shooterMotor;
@@ -34,13 +35,16 @@ public class ShooterSub extends SubsystemBase {
 
   public void stopShooterMotor() {
     shooterMotor.set(ControlMode.PercentOutput, Constants.STOP_SHOOTER);
+    SmartDashboard.putBoolean("Shooter on", false);
   }
 
   public void startShooterMotor() {
     shooterMotor.set(ControlMode.PercentOutput ,Constants.START_SHOOTER);
+    SmartDashboard.putBoolean("Shooter on", true);
   }
 
   public void revShooterMotor() {
     shooterMotor.set(ControlMode.PercentOutput ,-Constants.INTAKE_REV_SPEED);
+    SmartDashboard.putBoolean("Shooter on", true);
   }
 }

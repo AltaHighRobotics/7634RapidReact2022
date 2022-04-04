@@ -53,7 +53,7 @@ public final class Constants {
     public static final double DRIVE_SPEED = 1.0; //0.6
     public static final double INTAKE_SPEED = 1.0;
     public static final double INTAKE_REV_SPEED = 0.5;
-    public static final double FEEDER_SPEED = 1.0;
+    public static final double FEEDER_SPEED = 0.8;
     public static final double FEEDER_REV_SPEED = 0.5;
     public static final double WINCH_SPEED = 1.0;//Just a place holder and test later.
 
@@ -101,6 +101,10 @@ public final class Constants {
     public static final double AUTO_TURN_SLOWDOWN_DIS = 15.0;
     public static final double AUTO_DRIVE_SLOW_AT = 10.0;
     public static final double AUTO_MIN_DRIVE = 0.15;
+    public static final double AUTO_DISTANCE1 = 52.523;
+    public static final double AUTO_TURN_DISTANCE = 200.0;
+    public static final double AUTO_DISTANCE_SHOOT1 = 32.523;
+    public static final int AUTO_SHOOT_TIME = 100;
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)100; // 4 to 200.
@@ -147,8 +151,4 @@ public final class Constants {
 
     public static final int LIMELIGHT_ON = 3;
     public static final int LIMELIGHT_OFF = 1;
-    public static final double AUTO_DISTANCE1 = 52.523;
-    public static final double AUTO_TURN_DISTANCE = 180.0;
-    public static final double AUTO_DISTANCE_SHOOT1 = 52.523;
-    public static final int AUTO_SHOOT_TIME = 10;
 }
