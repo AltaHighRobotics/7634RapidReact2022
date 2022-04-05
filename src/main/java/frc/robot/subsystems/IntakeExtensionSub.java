@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.Constants;
 
@@ -23,13 +23,13 @@ public class IntakeExtensionSub extends SubsystemBase {
   private Solenoid liftPiston1;
   private Solenoid liftPiston2;
   //Velcro motor.
-  private WPI_VictorSPX velcroMotor;
+  private WPI_TalonSRX velcroMotor;
 
   /** Creates a new IntakeExtensionSub. */
   public IntakeExtensionSub() {
     liftPiston1 = new Solenoid(PneumaticsModuleType.REVPH, Constants.LIFT_PISTON_1);
     liftPiston2 = new Solenoid(PneumaticsModuleType.REVPH, Constants.LIFT_PISTON_2);
-    velcroMotor = new WPI_VictorSPX(Constants.VELCRO_MOTOR);
+    velcroMotor = new WPI_TalonSRX(Constants.VELCRO_MOTOR);
 
     velcroMotor.configFactoryDefault();
   }
