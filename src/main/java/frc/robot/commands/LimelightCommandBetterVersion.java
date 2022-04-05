@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimelightSub;
 import frc.robot.subsystems.AimSub;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.hal.PowerDistributionVersion;
 import edu.wpi.first.math.controller.PIDController;
 import frc.robot.Constants;
 
@@ -25,11 +26,14 @@ public class LimelightCommandBetterVersion extends CommandBase {
   private PIDController pid;
 
   private double pidValue;
-  private double pidError;
 
   public LimelightCommandBetterVersion(LimelightSub limelightSub, AimSub aimSub) {
     m_limelightSub = limelightSub;
     m_aimSub = aimSub;
+
+    pid = new PIDController(Constants.LIMELIGHT_KP, 0.0, Constants.LIMELIGHT_KD);
+    pid.setSetpoint(0.0);
+    pid.setIntegratorRange(-Constants.AIM_SPEED, Constants.AIM_SPEED);
 
     addRequirements(m_limelightSub, m_aimSub);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -38,10 +42,6 @@ public class LimelightCommandBetterVersion extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    /*
-    pid = new PIDController(0.15, -2.0, 0.0);
-    pid.setSetpoint(0.0);
-    */
     m_limelightSub.ledOn();
   }
 
@@ -63,16 +63,18 @@ public class LimelightCommandBetterVersion extends CommandBase {
   private void targetSeen() {
     // Stay on target.
 
-    /*
     pidValue = pid.calculate(LimelightSub.tarX);
-    pidError = pid.getPositionError();
 
-    SmartDashboard.putNumber("Pid value", pidValue / LimelightSub.absX);
-    SmartDashboard.putNumber("Pid error", pidError);
+    if ((pidValue > 0 && m_aimSub.coAllow) || (pidValue < 0 && m_aimSub.clAllow)) {
+      m_aimSub.roAimCO(pidValue);
+    } else {
+      m_aimSub.stopAim();
+      System.out.println("Stoped stuff");
+    }
 
-    m_aimSub.roAimCO(pidValue / LimelightSub.absX);
-    */
+    SmartDashboard.putNumber("Pid value", pidValue);
 
+    /*
     if (LimelightSub.tarX < -Constants.AIM_PRECISION && m_aimSub.coAllow) {
 
       if (LimelightSub.absX < Constants.AIM_THRESH) {
@@ -92,6 +94,7 @@ public class LimelightCommandBetterVersion extends CommandBase {
     } else {
       m_aimSub.stopAim();
     }
+    */
   }
 
   private void targetNotSeen() {

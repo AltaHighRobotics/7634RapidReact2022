@@ -44,6 +44,7 @@ public final class Constants {
     public static final int L_DRIVE_ENCODER_A = 2;
     public static final int L_DRIVE_ENCODER_B = 3;
     public static final int ARDUINO_MSG_LEN = 15;
+    public static final double UNITS_PER_ROTATION = 2048.0;
 
     // Wheels, gears, and encoders.
     public static final double DRIVE_ENCODER_PULSES_PER_ROTION = 2048.0;
@@ -61,6 +62,9 @@ public final class Constants {
     public static final double STOP_SHOOTER = 0;
     public static final double START_SHOOTER = 0.79;
     public static final double MIN_SPEED_STICK = 0.3;
+
+    // Deg per update.
+    public static final double SHOOTER_VELOCITY = 800.0;
 
     public static final double AIM_SPEED = 0.2; //.4
     public static final double AIM_SLOW_SPEED = 0.14;
@@ -88,6 +92,9 @@ public final class Constants {
     public static final int MAX_AIM_CL = -14293;
     public static final int MAX_AIM_CO = 12000;
 
+    public static final double SHOOTER_MIN_VOLT = 1.0;
+    public static final double SHOOTER_MAX_VOLT = 12.0;
+
     public static final double AIM_THRESH = 20.0; //25
     public static final double AIM_PRECISION = 1.0;
     public static final double TARGET_PRECISION = 3.0;
@@ -107,6 +114,9 @@ public final class Constants {
     public static final double AUTO_DISTANCE_SHOOT1 = 32.523;
     public static final int AUTO_SHOOT_TIME = 100;
 
+    // PID stuff.
+    public static final double SHOOTER_KP = 0.0006; //0.0006
+
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)100; // 4 to 200.
 
@@ -116,11 +126,13 @@ public final class Constants {
     public static final double LOW_TURN_MULTIPLIER = 2.0; // Don't make this value 0!
     public static final double AUTO_TURN_CORRECT = 0.02;
 
-    //Limelight Dist
+    //Limelight
     public static final double LIME_DEGREES = 20.0;
     public static final double LIME_LENS_HEIGHT = 37.0; //in inches
     public static final double GOAL_HEIGHT = 104.0; //in inches
     public static final double TARGET_DIST = 87.3; //inches
+    public static final double LIMELIGHT_KP = 0.012;
+    public static final double LIMELIGHT_KD = 0.0;
 
     // Controller.
     public static final int DRIVER_CONTROLLER = 0;
