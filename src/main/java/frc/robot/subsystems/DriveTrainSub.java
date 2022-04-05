@@ -39,6 +39,8 @@ public class DriveTrainSub extends SubsystemBase {
 
     rightDrive1.configFactoryDefault();
     rightDrive2.configFactoryDefault();
+    rightDrive1.setInverted(true);
+    rightDrive2.setInverted(true);
     rightDrive2.follow(rightDrive1);
 
     leftDrive1 = new WPI_VictorSPX(Constants.LEFT_DRIVE_1);
@@ -46,8 +48,8 @@ public class DriveTrainSub extends SubsystemBase {
 
     leftDrive1.configFactoryDefault();
     leftDrive2.configFactoryDefault();
-    leftDrive1.setInverted(true);
-    leftDrive2.setInverted(true);
+    //leftDrive1.setInverted(true);
+    //leftDrive2.setInverted(true);
     leftDrive2.follow(leftDrive1);
 
     rightEncoder = new Encoder(new DigitalInput(Constants.R_DRIVE_ENCODER_A), 
@@ -67,11 +69,11 @@ public class DriveTrainSub extends SubsystemBase {
 
   // Is a hot dog a sandwhich?
   public void setRightMotors(double speed) {
-    //rightDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
+    rightDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
   }
 
   public void setLeftMotors(double speed) {
-    //leftDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
+    leftDrive1.set(ControlMode.PercentOutput, speed * Constants.DRIVE_SPEED);
   }
 
   public void setMotors(double speed) {

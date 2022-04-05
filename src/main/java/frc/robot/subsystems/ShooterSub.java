@@ -21,10 +21,11 @@ import edu.wpi.first.math.controller.PIDController;
 import java.lang.Math;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.DemandType;
+import frc.robot.util.ConfigurablePID;
 
 public class ShooterSub extends SubsystemBase {
   private WPI_TalonFX shooterMotor;
-  private PIDController pid;
+  private ConfigurablePID shooterPid;
 
   private double pidValue;
   private boolean motorPidOn;
@@ -37,11 +38,19 @@ public class ShooterSub extends SubsystemBase {
     shooterMotor.configFactoryDefault();
     shooterMotor.setNeutralMode(NeutralMode.Coast);
     shooterMotor.setInverted(TalonFXInvertType.CounterClockwise);
+
+    shooterPid = new ConfigurablePID(
+      Constants.SHOOTER_PORPORTIONAL_GAIN,
+      Constants.SHOOTER_INTERGRAL_GAIN,
+      Constants.SHOOTER_DERIVITIVE_GAIN,
+      Constants.SHOOTER_MAX_PROPORTIONAL,
+      Constants.SHOOTER_MAX_INTEGRAL,
+      Constants.SHOOTER_MAX_DERIVITIVE,
+      Constants.SHOOTER_POWER_OFFSET,
+      1,
+      1
+    );
     
-    pid = new PIDController(Constants.SHOOTER_KP, 0.0, 0.0);
-    pid.setSetpoint(Constants.SHOOTER_VELOCITY);
-    pid.setIntegratorRange(-0.005, 0.005);
-    pid.setTolerance(50.0, 20.0);
     pidValue = 0.0;
     motorPidOn = false;
     motorVel = 0.0;
@@ -56,21 +65,23 @@ public class ShooterSub extends SubsystemBase {
       pidLoop();
     }
 
-    motorVel = getMotorVelocity();
+    motorVel = shooterMotor.getSelectedSensorVelocity();
     SmartDashboard.putNumber("Shooter velocity", motorVel);
   }
 
   private void pidLoop() {
-    motorVel = getMotorVelocity();
-    pidValue = Math.abs(pid.calculate(motorVel));
+    motorVel = shooterMotor.getSelectedSensorVelocity();
+    pidValue = shooterPid.runPID(Constants.SHOOTER_VELOCITY, motorVel);
+
     shooterMotor.set(ControlMode.PercentOutput, pidValue);
 
     SmartDashboard.putNumber("Shooter power", pidValue);
     SmartDashboard.putNumber("Shooter velocity", motorVel);
+    SmartDashboard.putNumber("Shooter pid error", motorVel - Constants.SHOOTER_VELOCITY);
   }
 
   public double getMotorVelocity() {
-    return Math.abs((shooterMotor.getSelectedSensorVelocity() / Constants.UNITS_PER_ROTATION) * 360.0);
+    return shooterMotor.getSelectedSensorVelocity() / Constants.UNITS_PER_ROTATION;
   }
 
   public void stopShooterMotor() {
@@ -80,8 +91,8 @@ public class ShooterSub extends SubsystemBase {
   }
 
   public void startShooterMotor() {
-    shooterMotor.set(ControlMode.PercentOutput, Constants.START_SHOOTER);
-    //motorPidOn = true;
+    //shooterMotor.set(ControlMode.PercentOutput, Constants.START_SHOOTER);
+    motorPidOn = true;
     SmartDashboard.putBoolean("Shooter on", true);
   }
 

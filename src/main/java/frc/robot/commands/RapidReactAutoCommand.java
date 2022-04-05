@@ -11,8 +11,11 @@ import frc.robot.subsystems.DriveTrainSub;
 import frc.robot.subsystems.IntakeSub;
 import frc.robot.subsystems.ShooterSub;
 import frc.robot.subsystems.FeederSub;
+import frc.robot.subsystems.LimelightSub;
 import frc.robot.util.MathTools;
 import java.lang.Math;
+
+import javax.sound.sampled.LineEvent;
 
 public class RapidReactAutoCommand extends CommandBase {
   private int stage;
@@ -26,18 +29,25 @@ public class RapidReactAutoCommand extends CommandBase {
   private double turnPower;
   private double turnError;
   private double turnDirection;
+  private double driveDirection;
+  private double driveError;
+  private double driveSpeed;
+
   private DriveTrainSub m_driveSub;
   private IntakeSub m_intakeSub;
   private ShooterSub m_shootSub;
   private FeederSub m_feederSub;
+  private LimelightSub m_limeLight;
+
   /** Creates a new RapidReactAutoCommand. */
-  public RapidReactAutoCommand(DriveTrainSub drivetrain, IntakeSub intakeSub, ShooterSub shootSub, FeederSub feederSub) {
+  public RapidReactAutoCommand(DriveTrainSub drivetrain, IntakeSub intakeSub, ShooterSub shootSub, FeederSub feederSub, LimelightSub limeLightSub) {
     m_driveSub = drivetrain;
     m_intakeSub = intakeSub;
     m_shootSub = shootSub;
     m_feederSub = feederSub;
+    m_limeLight = limeLightSub;
 
-    addRequirements(m_shootSub, m_intakeSub, m_driveSub, m_feederSub);
+    addRequirements(m_shootSub, m_intakeSub, m_driveSub, m_feederSub, m_limeLight);
   }
 
   // Called when the command is initially scheduled.
@@ -46,17 +56,20 @@ public class RapidReactAutoCommand extends CommandBase {
     m_driveSub.resetEncoders();
     m_driveSub.resetNavx();
 
-    stage = 1;
+    stage = 3;
     c = 0;
-    leftDist = 0;
-    rightDist = 0;
-    avgDist = 0;
-    rightSpeed = 0;
-    leftSpeed = 0;
-    yaw = 0;
-    turnPower = 0;
-    turnError = 0;
-    turnDirection = 0;
+    leftDist = 0.0;
+    rightDist = 0.0;
+    avgDist = 0.0;
+    rightSpeed = 0.0;
+    leftSpeed = 0.0;
+    yaw = 0.0;
+    turnPower = 0.0;
+    turnError = 0.0;
+    turnDirection = 0.0;
+    driveDirection = 0.0;
+    driveError = 0.0;
+    driveSpeed = 0.0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -67,20 +80,19 @@ public class RapidReactAutoCommand extends CommandBase {
 
     SmartDashboard.putNumber("AUTO", stage);
 
-    switch (stage)
-    {
+    switch (stage) {
       case 1:
       //TODO make drivetrain go pick up first ball
         rightDist = m_driveSub.getRightEncoderDis();
         leftDist = m_driveSub.getLeftEncoderDis();
         avgDist = Math.abs(m_driveSub.getAvgDis());
         yaw = m_driveSub.navX.getYaw();
-        turnPower = -yaw * Constants.AUTO_TURN_CORRECT;
+        turnPower = yaw * Constants.AUTO_TURN_CORRECT;
 
-        m_driveSub.setRightMotors(-Constants.AUTO_DRIVE_SPEED);
-        m_driveSub.setLeftMotors(-Constants.AUTO_DRIVE_SPEED);
+        m_driveSub.setRightMotors(Constants.AUTO_DRIVE_SPEED);
+        m_driveSub.setLeftMotors(Constants.AUTO_DRIVE_SPEED);
 
-        if(avgDist >= Constants.AUTO_DISTANCE1) {
+        if (avgDist >= Constants.AUTO_DISTANCE1) {
           stage = 2;
           m_driveSub.setMotors(0.0);
           m_driveSub.resetEncoders();
@@ -95,24 +107,32 @@ public class RapidReactAutoCommand extends CommandBase {
         leftDist = m_driveSub.getLeftEncoderDis();
         avgDist = Math.abs(m_driveSub.getAvgDis());
         yaw = m_driveSub.navX.getYaw();
-        turnPower = yaw * Constants.AUTO_TURN_CORRECT;
+        turnPower = -yaw * Constants.AUTO_TURN_CORRECT;
 
         rightSpeed = Constants.AUTO_DRIVE_SPEED - turnPower;
         leftSpeed = Constants.AUTO_DRIVE_SPEED + turnPower;
-        m_driveSub.setRightMotors(Constants.AUTO_DRIVE_SPEED);
-        m_driveSub.setLeftMotors(Constants.AUTO_DRIVE_SPEED);
+        m_driveSub.setRightMotors(-Constants.AUTO_DRIVE_SPEED);
+        m_driveSub.setLeftMotors(-Constants.AUTO_DRIVE_SPEED);
 
-        if(avgDist >= Constants.AUTO_DISTANCE_SHOOT1)
-        {
+        if (avgDist >= Constants.AUTO_DISTANCE_SHOOT1) {
           stage = 3;
           m_driveSub.setMotors(0.0);
           m_driveSub.resetEncoders();
           m_driveSub.resetNavx();
+
+          /*
+          if (Constants.AUTO_TURN_DISTANCE >= 180.0) {
+            turnDirection = Constants.CLOCK_WISE;
+          } else {
+            turnDirection = Constants.COUNTER_CLOCK_WISE;
+          }
+          */
         }
         break;
 
       case 3:
         //TODO make drive train turn around
+        /*
         turnDirection = Constants.CLOCK_WISE;
         yaw = m_driveSub.navX.getYaw();
         turnError = MathTools.angleDis(yaw, Constants.AUTO_TURN_DISTANCE);
@@ -127,30 +147,79 @@ public class RapidReactAutoCommand extends CommandBase {
         }
 
         SmartDashboard.putNumber("yaw", yaw);
+        */
 
-        if(turnError <= Constants.TURN_MIN)
-        {
+        m_driveSub.setRightMotors(-Constants.LIMELIGHT_TURN_SPEED);
+        m_driveSub.setLeftMotors(Constants.LIMELIGHT_TURN_SPEED);
+
+        if (LimelightSub.targetSeen) {
           stage = 4;
           m_driveSub.resetEncoders();
           m_driveSub.resetNavx();
           m_driveSub.setMotors(0.0);
         }
+
         break;
+
+        case 4: // Limelight
+          turnDirection = (LimelightSub.tarX > 0) ? Constants.CLOCK_WISE : Constants.COUNTER_CLOCK_WISE;
+          turnError = LimelightSub.absX;
+
+          SmartDashboard.putNumber("turn error", turnError);
+
+          // Slow near end.
+          if (turnError <= Constants.LIMELIGHT_SLOW_DOWN_DIS) {
+            m_driveSub.setRightMotors(-Constants.LIMELIGHT_TURN_SPEED * turnDirection * (turnError / Constants.LIMELIGHT_SLOW_DOWN_DIS));
+            m_driveSub.setLeftMotors(Constants.LIMELIGHT_TURN_SPEED * turnDirection * (turnError / Constants.LIMELIGHT_SLOW_DOWN_DIS));
+          } else {
+            m_driveSub.setRightMotors(-Constants.LIMELIGHT_TURN_SPEED * turnDirection);
+            m_driveSub.setLeftMotors(Constants.LIMELIGHT_TURN_SPEED * turnDirection);
+          }
+
+          if (turnError <= Constants.LIMELIGHT_MIN_TURN) {
+            stage = 5;
+            m_driveSub.resetEncoders();
+            m_driveSub.resetNavx();
+            m_driveSub.setMotors(0.0);
+          }
+
+          break;
+        case 5:
+          driveDirection = (m_limeLight.distInch > Constants.TARGET_DIST) ? Constants.FORWARD : Constants.BACKWARD;
+          driveError = Math.abs(m_limeLight.distInch - Constants.TARGET_DIST);
+
+          // Slow down.
+          if (driveError <= Constants.AUTO_DRIVE_SLOW_AT) {
+            driveSpeed = Constants.AUTO_DRIVE_SPEED * driveDirection * (driveError / Constants.AUTO_DRIVE_SLOW_AT);
+          } else {
+            driveSpeed = Constants.AUTO_DRIVE_SPEED * driveDirection;
+          }
+
+          m_driveSub.setMotors(driveSpeed);
+
+          if (driveError <= Constants.DRIVE_MIN) {
+            stage = 6;
+            m_driveSub.resetEncoders();
+            m_driveSub.resetNavx();
+            m_driveSub.setMotors(0.0);
+          }
+
+          break;
       
-        case 4:
+        case 6:
           //TODO shoot ball lol
           c++;
           m_feederSub.startMotor();
-          if (c >= Constants.AUTO_SHOOT_TIME)
-          {
-            stage = 5;
+          if (c >= Constants.AUTO_SHOOT_TIME) {
+            stage = 7;
             m_driveSub.resetEncoders();
             m_driveSub.resetNavx();
             m_feederSub.stopMotor();
           }
+
           break;
 
-        case 5:
+        case 7:
           SmartDashboard.putString("AUTO", "IDLE");
           break;
 

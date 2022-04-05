@@ -63,8 +63,7 @@ public final class Constants {
     public static final double START_SHOOTER = 0.79;
     public static final double MIN_SPEED_STICK = 0.3;
 
-    // Deg per update.
-    public static final double SHOOTER_VELOCITY = 800.0;
+    public static final double SHOOTER_VELOCITY = 16650.0;
 
     public static final double AIM_SPEED = 0.2; //.4
     public static final double AIM_SLOW_SPEED = 0.14;
@@ -74,7 +73,7 @@ public final class Constants {
     public static final double AIM_STOP = 0;
     public static final double MIN_AIM_SPEED = 0.04;
     
-    public static final double AUTO_TURN_SPEED = 0.4;
+    public static final double AUTO_TURN_SPEED = 0.3;
     public static final double AUTO_DRIVE_SPEED = 0.25;
 
     public static final double MULTIPLIER = 0;
@@ -106,7 +105,7 @@ public final class Constants {
     public static final double BACKWARD = -1.0;
     public static final double TURN_MIN = 5.0;
     public static final double DRIVE_MIN = 5.0;
-    public static final double AUTO_TURN_SLOWDOWN_DIS = 15.0;
+    public static final double AUTO_TURN_SLOWDOWN_DIS = 20.0;
     public static final double AUTO_DRIVE_SLOW_AT = 10.0;
     public static final double AUTO_MIN_DRIVE = 0.15;
     public static final double AUTO_DISTANCE1 = 52.523;
@@ -114,8 +113,14 @@ public final class Constants {
     public static final double AUTO_DISTANCE_SHOOT1 = 32.523;
     public static final int AUTO_SHOOT_TIME = 100;
 
-    // PID stuff.
-    public static final double SHOOTER_KP = 0.0006; //0.0006
+    // Shooter pid.
+    public static final double SHOOTER_PORPORTIONAL_GAIN = 0.000006;
+    public static final double SHOOTER_INTERGRAL_GAIN = 0.000003;
+    public static final double SHOOTER_DERIVITIVE_GAIN = 0;
+    public static final double SHOOTER_MAX_PROPORTIONAL = 1;
+    public static final double SHOOTER_MAX_INTEGRAL = 1;
+    public static final double SHOOTER_MAX_DERIVITIVE = 0;
+    public static final double SHOOTER_POWER_OFFSET = 0.1;
 
     // Navx.
     public static final byte NAVX_UPDATE_RATE = (byte)100; // 4 to 200.
@@ -133,6 +138,9 @@ public final class Constants {
     public static final double TARGET_DIST = 87.3; //inches
     public static final double LIMELIGHT_KP = 0.012;
     public static final double LIMELIGHT_KD = 0.0;
+    public static final double LIMELIGHT_SLOW_DOWN_DIS = 17.0;
+    public static final double LIMELIGHT_MIN_TURN = 2.0;
+    public static final double LIMELIGHT_TURN_SPEED = 0.1;
 
     // Controller.
     public static final int DRIVER_CONTROLLER = 0;

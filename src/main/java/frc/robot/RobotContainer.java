@@ -39,7 +39,7 @@ public class RobotContainer {
   private final AimSub m_aimSub = new AimSub();
   private final ShooterSub m_shooterSub = new ShooterSub();
   private final LimelightSub m_limeSub = new LimelightSub();
-  private final IntakeExtensionSub m_intakeExtensionSub = new IntakeExtensionSub();
+  //private final IntakeExtensionSub m_intakeExtensionSub = new IntakeExtensionSub();
 
   // Commands.
   private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrainSub, driveController);
@@ -60,9 +60,11 @@ public class RobotContainer {
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
+  /*
   private final ExtendIntakeCommand m_extendIntakeCommand = new ExtendIntakeCommand(m_intakeExtensionSub);
   private final VelcroMotorCommand m_velcroMotorCommand = new VelcroMotorCommand(m_intakeExtensionSub);
   private final RevVelcroMotorCommand m_revVelcroMotorCommand = new RevVelcroMotorCommand(m_intakeExtensionSub);
+  */
 
   // Autonomous.
   private final SequentialCommandGroup m_testAuto = new SequentialCommandGroup(
@@ -125,7 +127,7 @@ public class RobotContainer {
 
   // The pain is over for now.
 
-  private final RapidReactAutoCommand m_sinMidBetterVersion = new RapidReactAutoCommand(m_driveTrainSub, m_intakeSub, m_shooterSub, m_feederSub);
+  private final RapidReactAutoCommand m_sinMidBetterVersion = new RapidReactAutoCommand(m_driveTrainSub, m_intakeSub, m_shooterSub, m_feederSub, m_limeSub);
 
   private final AutoTurnTo m_testTurn = new AutoTurnTo(m_driveTrainSub, 270);
   private final AutoDriveTo m_testDrive = new AutoDriveTo(m_driveTrainSub, 100);
@@ -147,7 +149,7 @@ public class RobotContainer {
     m_chooser.addOption("sin mid 1", m_sinMid1);
 
     SmartDashboard.putData(m_chooser);
-    //m_limeSub.ledOff();
+    m_limeSub.ledOn();
 
     // Configure the button bindings
     configureButtonBindings();
@@ -170,7 +172,8 @@ public class RobotContainer {
     final JoystickButton revWinchButton = new JoystickButton(shotController, Constants.FLIGHT_BUTTON_5);
     final JoystickButton raiseArmButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_9);
     final JoystickButton pullArmButton = new JoystickButton(shotController, Constants.FLIGHT_BUTTON_6);
-    final JoystickButton shootButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
+    final JoystickButton shootOnButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
+    final JoystickButton shootOffButton = new JoystickButton(driveController, Constants.XBOX_Y_BUTTON);
     final JoystickButton extendIntakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
     final JoystickButton velcroMotorButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
 
@@ -194,9 +197,12 @@ public class RobotContainer {
 
     intakeButton.toggleWhenPressed(m_intakeCommand);
     feederButton.whileHeld(m_feederCommand);
-    shootButton.whileHeld(m_shootCommand);
+    shootOnButton.toggleWhenPressed(new AutoShooter(m_shooterSub, true));
+    shootOffButton.toggleWhenPressed(new AutoShooter(m_shooterSub, false));
+    /*
     extendIntakeButton.whileHeld(m_extendIntakeCommand);
     velcroMotorButton.toggleWhenPressed(m_velcroMotorCommand);
+    */
 
     limeButton.toggleWhenPressed(m_limeCommand2);
 

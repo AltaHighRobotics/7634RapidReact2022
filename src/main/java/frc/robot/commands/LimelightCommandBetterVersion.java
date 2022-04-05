@@ -42,7 +42,7 @@ public class LimelightCommandBetterVersion extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_limelightSub.ledOn();
+    //m_limelightSub.ledOn();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -69,7 +69,6 @@ public class LimelightCommandBetterVersion extends CommandBase {
       m_aimSub.roAimCO(pidValue);
     } else {
       m_aimSub.stopAim();
-      System.out.println("Stoped stuff");
     }
 
     SmartDashboard.putNumber("Pid value", pidValue);
@@ -112,7 +111,7 @@ public class LimelightCommandBetterVersion extends CommandBase {
     SmartDashboard.putBoolean("Aimbot", false);
     LimelightSub.targetSeen = false;
     m_aimSub.stopAim();
-    m_limelightSub.ledOff();
+    //m_limelightSub.ledOff();
   }
 
   // Returns true when the command should end.
