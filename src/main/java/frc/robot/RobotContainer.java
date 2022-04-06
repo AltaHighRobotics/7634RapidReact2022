@@ -39,7 +39,6 @@ public class RobotContainer {
   private final AimSub m_aimSub = new AimSub();
   private final ShooterSub m_shooterSub = new ShooterSub();
   private final LimelightSub m_limeSub = new LimelightSub();
-  //private final IntakeExtensionSub m_intakeExtensionSub = new IntakeExtensionSub();
 
   // Commands.
   private final DriveCommand m_driveCommand = new DriveCommand(m_driveTrainSub, driveController);
@@ -48,7 +47,7 @@ public class RobotContainer {
   private final LiftRobotCommand m_liftRobotCommand = new LiftRobotCommand(m_climbSub);
   private final RaiseLiftArmCommand m_raiseLiftArmCommand = new RaiseLiftArmCommand(m_climbSub);
   private final RevWinchCommand m_revWinchCommand = new RevWinchCommand(m_climbSub);
-  private WinchCommand m_winchCommand = new WinchCommand(m_climbSub, shotController);
+  private final   WinchCommand m_winchCommand = new WinchCommand(m_climbSub, shotController);
 
   private final LimelightCommand m_limeCommand = new LimelightCommand(m_limeSub, m_aimSub);
   private final LimelightCommandBetterVersion m_limeCommand2 = new LimelightCommandBetterVersion(m_limeSub, m_aimSub);
@@ -60,11 +59,7 @@ public class RobotContainer {
 
   private ShooterCommand m_shootCommand = new ShooterCommand(m_shooterSub);
 
-  /*
-  private final ExtendIntakeCommand m_extendIntakeCommand = new ExtendIntakeCommand(m_intakeExtensionSub);
-  private final VelcroMotorCommand m_velcroMotorCommand = new VelcroMotorCommand(m_intakeExtensionSub);
-  private final RevVelcroMotorCommand m_revVelcroMotorCommand = new RevVelcroMotorCommand(m_intakeExtensionSub);
-  */
+
 
   // Autonomous.
   private final SequentialCommandGroup m_testAuto = new SequentialCommandGroup(
@@ -174,14 +169,13 @@ public class RobotContainer {
     final JoystickButton pullArmButton = new JoystickButton(shotController, Constants.FLIGHT_BUTTON_6);
     final JoystickButton shootOnButton = new JoystickButton(driveController, Constants.XBOX_B_BUTTON);
     final JoystickButton shootOffButton = new JoystickButton(driveController, Constants.XBOX_Y_BUTTON);
-    final JoystickButton extendIntakeButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
-    final JoystickButton velcroMotorButton = new JoystickButton(driveController, Constants.XBOX_X_BUTTON);
 
     final JoystickButton limeButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_5);
     
     final JoystickButton aimClButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_8);
     final JoystickButton aimCoButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_7);
     final JoystickButton aimCenButton = new JoystickButton(driveController, Constants.FLIGHT_BUTTON_6);
+    final JoystickButton aimCenButton2 = new JoystickButton(shotController, Constants.XBOX_B_BUTTON);
 
     //For Second Controller
     final JoystickButton raiseArmButton2 = new JoystickButton(shotController, Constants.XBOX_A_BUTTON);
@@ -194,9 +188,11 @@ public class RobotContainer {
     aimClButton.whileHeld(m_aimClWiCommand);
     aimCoButton.whileHeld(m_aimCoWiCommand);
     aimCenButton.whileHeld(m_aimCenCommand);
+    aimCenButton2.whileHeld(m_aimCenCommand);
 
     intakeButton.toggleWhenPressed(m_intakeCommand);
     feederButton.whileHeld(m_feederCommand);
+    //shootOnButton.toggleWhenPressed(m_shootCommand);
     shootOnButton.toggleWhenPressed(new AutoShooter(m_shooterSub, true));
     shootOffButton.toggleWhenPressed(new AutoShooter(m_shooterSub, false));
     /*

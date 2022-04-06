@@ -28,7 +28,6 @@ public class Robot extends TimedRobot {
   private FeederSub feed = new FeederSub();
   private IntakeSub intake = new IntakeSub();
   private ShooterSub shooter = new ShooterSub();
-  //private IntakeExtensionSub intakeExt = new IntakeExtensionSub();
 
   private RobotContainer m_robotContainer;
 
@@ -113,7 +112,6 @@ public class Robot extends TimedRobot {
         feed.revMotor();
         intake.revMotor();
         shooter.revShooterMotor();
-        //intakeExt.reverseIntake();
 
       break;
 

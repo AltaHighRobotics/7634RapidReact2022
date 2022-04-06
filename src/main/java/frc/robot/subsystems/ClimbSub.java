@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -48,10 +47,11 @@ public class ClimbSub extends SubsystemBase {
   //Creates method of lifting arm up and releasing air.
   public void liftArmUp() {
     liftPiston.set(true);
+    System.out.println("Intake on.");
   }
   //Creates method to pull arm down to stop air and start up winch.
   public void pullArmDown() {
-    liftPiston.set(false);
+    liftPiston.set(false);  
     winchMotor.set(ControlMode.PercentOutput, Constants.WINCH_SPEED);
   }
   //This creates a method to stop the arm altogethe and to stop air and stop winch.

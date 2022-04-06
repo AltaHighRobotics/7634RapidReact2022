@@ -85,7 +85,7 @@ public class ShooterSub extends SubsystemBase {
   }
 
   public void stopShooterMotor() {
-    shooterMotor.set(ControlMode.PercentOutput, Constants.STOP_SHOOTER);
+    shooterMotor.neutralOutput();
     motorPidOn = false;
     SmartDashboard.putBoolean("Shooter on", false);
   }
