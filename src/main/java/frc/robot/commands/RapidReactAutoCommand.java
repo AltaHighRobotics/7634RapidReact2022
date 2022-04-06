@@ -17,6 +17,8 @@ import java.lang.Math;
 
 import javax.sound.sampled.LineEvent;
 
+// Why?! JUST WHY!!!!!!!!!
+
 public class RapidReactAutoCommand extends CommandBase {
   private int stage;
   private int c;
@@ -185,6 +187,7 @@ public class RapidReactAutoCommand extends CommandBase {
 
           break;
         case 5:
+          /*
           m_limeLight.getDist();
           driveDirection = (m_limeLight.distInch > Constants.TARGET_DIST) ? Constants.FORWARD : Constants.BACKWARD;
           driveError = Math.abs(Constants.TARGET_DIST - m_limeLight.distInch);
@@ -207,10 +210,13 @@ public class RapidReactAutoCommand extends CommandBase {
             m_driveSub.resetNavx();
             m_driveSub.setMotors(0.0);
           }
+          */
 
+          stage = 6; // Remeber this you big fat ugly dummy!!!!!
           break;
         
         case 6: // Limelight again
+        /*
           turnDirection = (LimelightSub.tarX > 0) ? Constants.CLOCK_WISE : Constants.COUNTER_CLOCK_WISE;
           turnError = LimelightSub.absX;
 
@@ -225,7 +231,9 @@ public class RapidReactAutoCommand extends CommandBase {
             m_driveSub.resetNavx();
             m_driveSub.setMotors(0.0);
           }
+          */
 
+          stage = 7;
           break;
       
         case 7:
