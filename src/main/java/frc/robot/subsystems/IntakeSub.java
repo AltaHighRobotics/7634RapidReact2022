@@ -24,7 +24,7 @@ public class IntakeSub extends SubsystemBase {
     intakeMotor = new WPI_VictorSPX(Constants.INTAKE_MOTOR);
     intakeMotor.configFactoryDefault();
     intakeMotor.setInverted(true);
-    intakeMotor.setNeutralMode(NeutralMode.Brake);
+    //intakeMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   public void startMotor() {
@@ -35,7 +35,8 @@ public class IntakeSub extends SubsystemBase {
   }
 
   public void stopMotor() {
-    intakeMotor.set(ControlMode.PercentOutput, 0.0);
+    intakeMotor.neutralOutput();
+    System.out.println("Shooter stop");
   }
 
   @Override

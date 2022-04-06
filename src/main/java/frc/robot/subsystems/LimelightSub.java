@@ -104,7 +104,7 @@ public class LimelightSub extends SubsystemBase {
 
     String distOut = String.valueOf(distFeet) + "'" + String.valueOf(remInch);
 
-    SmartDashboard.putString("Distance to Target", distOut);
+    SmartDashboard.putNumber("Target dis", distInch);
   }
 
   public void ledOff() {

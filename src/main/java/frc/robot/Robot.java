@@ -121,7 +121,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putString("POV", "NEUTRAL");
         feed.stopMotor();
         intake.stopMotor();
-        //shooter.stopShooterMotor();
+        shooter.stopShooterMotor();
       break;
     }
   }

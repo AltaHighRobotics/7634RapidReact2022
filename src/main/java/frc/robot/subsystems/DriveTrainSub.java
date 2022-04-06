@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.DigitalInput;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.Constants;
 
 public class DriveTrainSub extends SubsystemBase {
@@ -41,6 +42,8 @@ public class DriveTrainSub extends SubsystemBase {
     rightDrive2.configFactoryDefault();
     rightDrive1.setInverted(true);
     rightDrive2.setInverted(true);
+    rightDrive1.setNeutralMode(NeutralMode.Brake);
+    rightDrive2.setNeutralMode(NeutralMode.Brake);
     rightDrive2.follow(rightDrive1);
 
     leftDrive1 = new WPI_VictorSPX(Constants.LEFT_DRIVE_1);
@@ -50,6 +53,8 @@ public class DriveTrainSub extends SubsystemBase {
     leftDrive2.configFactoryDefault();
     //leftDrive1.setInverted(true);
     //leftDrive2.setInverted(true);
+    leftDrive1.setNeutralMode(NeutralMode.Brake);
+    leftDrive2.setNeutralMode(NeutralMode.Brake);
     leftDrive2.follow(leftDrive1);
 
     rightEncoder = new Encoder(new DigitalInput(Constants.R_DRIVE_ENCODER_A), 
@@ -101,6 +106,13 @@ public class DriveTrainSub extends SubsystemBase {
 
   public double getAvgDis() {
     return (getRightEncoderDis() + getLeftEncoderDis()) / 2.0;
+  }
+
+  public void setMotorsNeutralMode(NeutralMode nMode) {
+    rightDrive1.setNeutralMode(nMode);
+    rightDrive2.setNeutralMode(nMode);
+    leftDrive1.setNeutralMode(nMode);
+    leftDrive2.setNeutralMode(nMode);
   }
 
   @Override

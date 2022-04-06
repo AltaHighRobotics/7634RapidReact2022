@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrainSub;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.Constants;
 
 public class DriveCommand extends CommandBase {
@@ -51,6 +52,7 @@ public class DriveCommand extends CommandBase {
   public void initialize() {
     m_driveTrainSub.resetNavx();
     m_driveTrainSub.resetEncoders();
+    m_driveTrainSub.setMotorsNeutralMode(NeutralMode.Brake);
 
     oldSpeed = 0.0;
   }
@@ -107,7 +109,9 @@ public class DriveCommand extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_driveTrainSub.setMotorsNeutralMode(NeutralMode.Coast);
+  }
 
   // Returns true when the command should end.
   @Override

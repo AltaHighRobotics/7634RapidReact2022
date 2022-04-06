@@ -185,8 +185,11 @@ public class RapidReactAutoCommand extends CommandBase {
 
           break;
         case 5:
+          m_limeLight.getDist();
           driveDirection = (m_limeLight.distInch > Constants.TARGET_DIST) ? Constants.FORWARD : Constants.BACKWARD;
-          driveError = Math.abs(m_limeLight.distInch - Constants.TARGET_DIST);
+          driveError = Math.abs(Constants.TARGET_DIST - m_limeLight.distInch);
+
+          SmartDashboard.putNumber("Drive error", driveError);
 
           // Slow down.
           if (driveError <= Constants.AUTO_DRIVE_SLOW_AT) {
@@ -195,6 +198,7 @@ public class RapidReactAutoCommand extends CommandBase {
             driveSpeed = Constants.AUTO_DRIVE_SPEED * driveDirection;
           }
 
+          driveSpeed = Constants.AUTO_DRIVE_SPEED * driveDirection;
           m_driveSub.setMotors(driveSpeed);
 
           if (driveError <= Constants.DRIVE_MIN) {
@@ -205,13 +209,31 @@ public class RapidReactAutoCommand extends CommandBase {
           }
 
           break;
+        
+        case 6: // Limelight again
+          turnDirection = (LimelightSub.tarX > 0) ? Constants.CLOCK_WISE : Constants.COUNTER_CLOCK_WISE;
+          turnError = LimelightSub.absX;
+
+          SmartDashboard.putNumber("turn error", turnError);
+
+          m_driveSub.setRightMotors(-Constants.LIMELIGHT_TURN_SPEED_2 * turnDirection);
+          m_driveSub.setLeftMotors(Constants.LIMELIGHT_TURN_SPEED_2 * turnDirection);
+
+          if (turnError <= Constants.LIMELIGHT_MIN_TURN) {
+            stage = 7;
+            m_driveSub.resetEncoders();
+            m_driveSub.resetNavx();
+            m_driveSub.setMotors(0.0);
+          }
+
+          break;
       
-        case 6:
+        case 7:
           //TODO shoot ball lol
           c++;
           m_feederSub.startMotor();
           if (c >= Constants.AUTO_SHOOT_TIME) {
-            stage = 7;
+            stage = 8;
             m_driveSub.resetEncoders();
             m_driveSub.resetNavx();
             m_feederSub.stopMotor();
@@ -219,7 +241,7 @@ public class RapidReactAutoCommand extends CommandBase {
 
           break;
 
-        case 7:
+        case 8:
           SmartDashboard.putString("AUTO", "IDLE");
           break;
 

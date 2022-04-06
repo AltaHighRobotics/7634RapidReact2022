@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.subsystems.LimelightSub;
 
 public class AimSub extends SubsystemBase {
@@ -33,6 +34,7 @@ public class AimSub extends SubsystemBase {
   public AimSub() {
     aimMotor = new WPI_TalonSRX(Constants.AIM_MOTOR);
     aimMotor.configFactoryDefault();
+    aimMotor.setNeutralMode(NeutralMode.Brake);
     
   }
 
