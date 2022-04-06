@@ -16,6 +16,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.Constants;
 
+// Chicken little.
+
 public class IntakeSub extends SubsystemBase {
   /** Creates a new IntakeSub. */
   private WPI_VictorSPX intakeMotor;
@@ -24,7 +26,8 @@ public class IntakeSub extends SubsystemBase {
     intakeMotor = new WPI_VictorSPX(Constants.INTAKE_MOTOR);
     intakeMotor.configFactoryDefault();
     intakeMotor.setInverted(true);
-    //intakeMotor.setNeutralMode(NeutralMode.Brake);
+    //intakeMotor.configOpenloopRamp(Constants.INTAKE_SEC_TO_FULL);
+    intakeMotor.setNeutralMode(NeutralMode.Coast);
   }
 
   public void startMotor() {

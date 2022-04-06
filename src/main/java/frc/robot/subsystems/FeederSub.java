@@ -35,7 +35,7 @@ public class FeederSub extends SubsystemBase {
   }
 
   public void stopMotor() {
-    feederMotor.set(ControlMode.PercentOutput, 0.0);
+    feederMotor.neutralOutput();
   }
 
   @Override

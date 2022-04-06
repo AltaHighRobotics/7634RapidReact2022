@@ -29,6 +29,8 @@ public class Robot extends TimedRobot {
   private IntakeSub intake = new IntakeSub();
   private ShooterSub shooter = new ShooterSub();
 
+  private boolean hasStopped = false;
+
   private RobotContainer m_robotContainer;
 
   /**
@@ -112,10 +114,17 @@ public class Robot extends TimedRobot {
         feed.revMotor();
         intake.revMotor();
         shooter.revShooterMotor();
+        hasStopped = false;
 
       break;
 
       case -1: //Dpad neutral
+        if (hasStopped) {
+          break;
+        }
+
+        hasStopped = true;
+
         SmartDashboard.putString("POV", "NEUTRAL");
         feed.stopMotor();
         intake.stopMotor();

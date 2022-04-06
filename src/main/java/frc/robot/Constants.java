@@ -49,7 +49,7 @@ public final class Constants {
 
     // Speed.
     public static final double DRIVE_SPEED = 1.0; //0.6
-    public static final double INTAKE_SPEED = 1.0;
+    public static final double INTAKE_SPEED = 0.8;
     public static final double INTAKE_REV_SPEED = 0.5;
     public static final double FEEDER_SPEED = 0.8;
     public static final double FEEDER_REV_SPEED = 0.5;
@@ -74,6 +74,8 @@ public final class Constants {
 
     public static final double MULTIPLIER = 0;
     public static final double SHOT_AIM_MULT = 0.2;
+
+    public static final double INTAKE_SEC_TO_FULL = 2.0;
 
     // Here is some constants vic. Use them well.
     public static final int AIM_ROTATE_MAIN_SPEED = 0;
@@ -131,13 +133,13 @@ public final class Constants {
     public static final double LIME_DEGREES = 34.0;
     public static final double LIME_LENS_HEIGHT = 37.0; //in inches
     public static final double GOAL_HEIGHT = 104.0; //in inches
-    public static final double TARGET_DIST = 87.3; //inches
+    public static final double TARGET_DIST = 105.0; //inches 87.3
     public static final double LIMELIGHT_KP = 0.012;
     public static final double LIMELIGHT_KD = 0.0;
     public static final double LIMELIGHT_SLOW_DOWN_DIS = 10.0;
     public static final double LIMELIGHT_MIN_TURN = 2.0;
-    public static final double LIMELIGHT_TURN_SPEED = 0.15;
-    public static final double LIMELIGHT_TURN_SPEED_2 = 0.095;
+    public static final double LIMELIGHT_TURN_SPEED = 0.2; // 0.15
+    public static final double LIMELIGHT_TURN_SPEED_2 = 0.1; // 0.098
     public static final double TARGET_HEIGHT = 104.0;
 
     // Controller.

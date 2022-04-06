@@ -27,6 +27,8 @@ public class ClimbSub extends SubsystemBase {
   private Solenoid liftPiston;
 
   private WPI_VictorSPX winchMotor;
+
+  // patado!!!!!
   
   /** Creates a new ClimbSub. */
   public ClimbSub() {

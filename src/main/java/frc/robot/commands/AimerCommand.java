@@ -25,6 +25,8 @@ public class AimerCommand extends CommandBase {
   private double leftTrigger;
   private double rightTrigger;
 
+  // your mothers anus
+
   public AimerCommand(AimSub aimSub, XboxController shotController) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_aimSub = aimSub;
