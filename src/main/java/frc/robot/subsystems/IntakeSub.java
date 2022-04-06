@@ -36,7 +36,6 @@ public class IntakeSub extends SubsystemBase {
 
   public void stopMotor() {
     intakeMotor.neutralOutput();
-    System.out.println("Shooter stop");
   }
 
   @Override
