@@ -47,7 +47,7 @@ public class ClimbSub extends SubsystemBase {
   //Creates method of lifting arm up and releasing air.
   public void liftArmUp() {
     liftPiston.set(true);
-    System.out.println("Intake on.");
+    //System.out.println("Intake on.");
   }
   //Creates method to pull arm down to stop air and start up winch.
   public void pullArmDown() {
